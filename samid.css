@@ -153,6 +153,646 @@ button i {
 .toast > i {
     font-size: 15px;
 }
+
+/* =========================================================
+   GLOBAL FEE CONTROL
+========================================================= */
+
+.fee-control {
+    margin-top: 16px;
+    padding: 14px 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    border-radius: var(--r);
+
+    background: var(--glass);
+
+    border: 1px solid var(--stroke);
+
+    box-shadow: var(--shadow);
+
+    backdrop-filter: blur(30px) saturate(150%);
+    -webkit-backdrop-filter: blur(30px) saturate(150%);
+}
+
+.fee-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    min-width: max-content;
+
+    color: var(--txt);
+
+    font-weight: 700;
+}
+
+.fee-label i {
+    color: var(--gold);
+    font-size: 15px;
+}
+
+.fee-input-wrap {
+    flex: 1;
+    position: relative;
+}
+
+.fee-input {
+    width: 100%;
+    height: 48px;
+
+    padding: 0 16px;
+
+    border: 1px solid transparent;
+    border-radius: var(--pill);
+
+    outline: none;
+
+    background: rgba(255,255,255,.22);
+
+    color: var(--txt);
+
+    direction: ltr;
+    text-align: center;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        background .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+html.dark .fee-input {
+    background: rgba(255,255,255,.05);
+}
+
+.fee-input:focus {
+    background: var(--glass2);
+
+    border-color:
+        rgba(183,134,47,.42);
+
+    box-shadow:
+        0 0 0 4px rgba(183,134,47,.08),
+        var(--shadow);
+}
+
+.fee-hint {
+    margin-top: 7px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   READONLY PRICE INPUT
+========================================================= */
+
+.price-input {
+    cursor: default;
+}
+
+.price-input:focus {
+    border-color: transparent;
+    box-shadow: var(--shadow);
+}
+
+
+/* =========================================================
+   PDF FEE INFORMATION
+========================================================= */
+
+.print-fee {
+    margin-top: 2mm;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    text-align: right;
+
+    direction: rtl;
+}
+
+/* =========================================================
+   GLOBAL FEE / LIVE RATE CARD
+========================================================= */
+
+.rate-card {
+    margin-top: 16px;
+    padding: 20px;
+    border-radius: 35px;
+}
+
+.rate-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.rate-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.rate-title > i {
+    color: var(--gold);
+    font-size: 18px;
+}
+
+.rate-title strong {
+    display: block;
+    font-size: 15px;
+}
+
+.rate-title small {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.rate-status {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.rate-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 4px rgba(75,165,124,.10);
+}
+
+.rate-main {
+    margin-top: 18px;
+}
+
+.rate-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 9px;
+}
+
+.rate-price > #liveRateDisplay {
+    font-size: clamp(26px,4vw,42px);
+    font-weight: 800;
+    color: var(--gold);
+    direction: ltr;
+}
+
+.currency-label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.rate-meta {
+    margin-top: 6px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.rate-meta a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+.rate-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 18px;
+}
+
+.unit-switch,
+.rate-mode {
+    display: inline-flex;
+    padding: 4px;
+    border-radius: 35px;
+    background: rgba(255,255,255,.16);
+    border: 1px solid var(--stroke);
+    box-shadow: var(--shadow);
+}
+
+.unit-btn,
+.mode-btn {
+    min-height: 36px;
+    padding: 0 13px;
+    border: 0;
+    border-radius: 35px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.unit-btn.active,
+.mode-btn.active {
+    background: var(--glass2);
+    color: var(--txt);
+    box-shadow: var(--shadow);
+}
+
+.mode-btn i {
+    margin-left: 5px;
+    font-size: 11px;
+}
+
+.manual-rate-area {
+    display: none;
+    margin-top: 15px;
+}
+
+.manual-rate-area.active {
+    display: block;
+}
+
+.manual-rate-area label {
+    display: block;
+    margin: 0 5px 7px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.fee-input {
+    width: 100%;
+    height: 48px;
+    border: 1px solid transparent;
+    border-radius: 35px;
+    background: rgba(255,255,255,.22);
+    color: var(--txt);
+    outline: none;
+    padding: 0 16px;
+    direction: ltr;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+html.dark .fee-input {
+    background: rgba(255,255,255,.05);
+}
+
+.fee-input:focus {
+    background: var(--glass2);
+    border-color: rgba(183,134,47,.42);
+    box-shadow:
+        0 0 0 4px rgba(183,134,47,.08),
+        var(--shadow);
+}
+
+.rate-updated {
+    margin-top: 10px;
+    color: var(--muted);
+    text-align: center;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   PRICE INPUT
+========================================================= */
+
+.price-input {
+    cursor: default;
+    color: var(--gold);
+    font-weight: 700;
+}
+
+.price-input:focus {
+    border-color: transparent;
+}
+
+
+/* =========================================================
+   GLOBAL GOLD RATE CARD
+========================================================= */
+
+.rate-card {
+    margin-top: 16px;
+    padding: 20px;
+    border-radius: 35px;
+}
+
+.rate-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.rate-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.rate-title > i {
+    color: var(--gold);
+    font-size: 18px;
+}
+
+.rate-title strong {
+    display: block;
+    font-size: 15px;
+}
+
+.rate-title small {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.rate-status {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.rate-dot {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--green);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(75,165,124,.10);
+}
+
+.rate-main {
+    margin-top: 18px;
+}
+
+.rate-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 9px;
+}
+
+#liveRateDisplay {
+    font-size: clamp(27px,4vw,42px);
+    font-weight: 800;
+    color: var(--gold);
+    direction: ltr;
+}
+
+.currency-label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.rate-meta {
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 11px;
+    text-align: center;
+}
+
+.rate-meta a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+.rate-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 18px;
+}
+
+.unit-switch,
+.rate-mode {
+    display: inline-flex;
+    gap: 3px;
+    padding: 4px;
+    border-radius: 35px;
+    border: 1px solid var(--stroke);
+    background: rgba(255,255,255,.16);
+    box-shadow: var(--shadow);
+}
+
+.unit-btn,
+.mode-btn {
+    min-height: 36px;
+    padding: 0 13px;
+    border: 0;
+    border-radius: 35px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.unit-btn.active,
+.mode-btn.active {
+    color: var(--txt);
+    background: var(--glass2);
+    box-shadow: var(--shadow);
+}
+
+.mode-btn i {
+    margin-left: 5px;
+    font-size: 11px;
+}
+
+.manual-rate-area {
+    display: none;
+    margin-top: 15px;
+}
+
+.manual-rate-area.active {
+    display: block;
+}
+
+.manual-rate-area label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.fee-input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    border: 1px solid transparent;
+    border-radius: 35px;
+    outline: none;
+    background: rgba(255,255,255,.22);
+    color: var(--txt);
+    direction: ltr;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+html.dark .fee-input {
+    background: rgba(255,255,255,.05);
+}
+
+.fee-input:focus {
+    background: var(--glass2);
+    border-color: rgba(183,134,47,.42);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(183,134,47,.08),
+        var(--shadow);
+}
+
+.rate-updated {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 10px;
+    text-align: center;
+}
+
+
+/* =========================================================
+   AUTOMATIC PRICE
+========================================================= */
+
+.price-input {
+    color: var(--gold);
+    font-weight: 700;
+    cursor: default;
+}
+
+
+/* =========================================================
+   PDF FEE
+========================================================= */
+
+.print-fee {
+    margin-top: 2mm;
+    margin-bottom: 2mm;
+    text-align: right;
+    direction: rtl;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.print-fee{
+    width:100%;
+    margin:8px 0 10px;
+    padding:5px 8px;
+    text-align:right;
+    font-size:10px;
+    font-weight:700;
+    color:#111;
+    border-bottom:1px solid #d5d5d5;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .rate-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .rate-status {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .rate-controls {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .unit-switch,
+    .rate-mode,
+    .rate-controls > .pill {
+        width: 100%;
+    }
+
+    .unit-btn,
+    .mode-btn {
+        flex: 1;
+    }
+
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .rate-top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .rate-status {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .rate-controls {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .unit-switch,
+    .rate-mode,
+    .rate-controls > .pill {
+        width: 100%;
+    }
+
+    .unit-btn,
+    .mode-btn {
+        flex: 1;
+    }
+
+}
+
+/* =========================================================
+   MOBILE FEE CONTROL
+========================================================= */
+
+@media(max-width:650px) {
+
+    .fee-control {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .fee-label {
+        justify-content: center;
+    }
+
+    .fee-hint {
+        text-align: center;
+    }
+
+}
 @media(max-width:850px){.app{padding:7px 9px 28px}.nav{top:7px;border-radius:35px;flex-wrap:wrap}.navlinks{order:3;flex-basis:100%;overflow:auto}.navlink{flex:1;white-space:nowrap;padding:10px 12px;font-size:13px}.brand{height:46px}.hero{padding:22px;border-radius:35px}.status{display:none}.stats{grid-template-columns:1fr}.savedcard{flex-direction:column;align-items:flex-start}}
 @media print{
  @page{size:A4 landscape;margin:4mm}
