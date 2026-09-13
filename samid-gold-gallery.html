@@ -1,0 +1,3471 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#eef3f8">
+
+    <title>Samid Gold Gallery</title>
+    <link rel="icon" href="samid.jpeg" style="border-radius: 50px;">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="samid.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <nav class="nav glass" dir="ltr">
+
+        <div class="brand" dir="ltr">
+            Samid <span>Gold Gallery</span>
+        </div>
+
+        <div class="navlinks">
+
+            <button
+                class="navlink active"
+                data-view="calculator"
+                data-i18n="navCalculator"
+            >
+                محاسبه
+            </button>
+
+            <button
+                class="navlink"
+                data-view="dashboard"
+                data-i18n="navDashboard"
+            >
+                داشبورد
+            </button>
+
+        </div>
+
+        <div class="navtools">
+
+            <!-- Language -->
+            <button
+                class="pill"
+                id="langBtn"
+                title="English / فارسی"
+                type="button"
+            >
+                EN
+            </button>
+
+            <!-- Theme -->
+            <button
+                class="pill"
+                id="themeBtn"
+                title="حالت روز/شب"
+                type="button"
+            >
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <!-- Save -->
+            <button
+                class="pill primary"
+                id="navSave"
+                type="button"
+            >
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span data-i18n="saveShort">ذخیره</span>
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         CALCULATOR
+    ====================================================== -->
+
+    <section
+        class="view active"
+        id="calculator"
+    >
+
+        <header class="hero glass">
+
+            <div>
+
+                <h1 data-i18n="title">
+                    محاسبه قیمت فروش طلا
+                </h1>
+
+                <p data-i18n="subtitle">
+                    وزن، عیار، وزن ۷۵۰، فی و قیمت را وارد کنید.
+                </p>
+
+            </div>
+
+            <div
+                class="status"
+                data-i18n="live"
+            >
+                محاسبه لحظه‌ای
+            </div>
+
+        </header>
+
+
+        <!-- TABLE -->
+
+        <main class="tablecard glass">
+
+            <div class="scroll">
+
+                <table id="goldTable">
+
+                    <thead>
+
+                    <tr>
+
+                        <th data-i18n="desc">
+                            شرح
+                        </th>
+
+                        <th data-i18n="weight">
+                            وزن
+                        </th>
+
+                        <th data-i18n="karat">
+                            عیار
+                        </th>
+
+                        <th data-i18n="w750">
+                            وزن ۷۵۰
+                        </th>
+
+                        <th data-i18n="fee">
+                            فی
+                        </th>
+
+                        <th data-i18n="price">
+                            قیمت
+                        </th>
+
+                        <th
+                            data-i18n="remove"
+                            title="Remove"
+                        >
+                            حذف
+                        </th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody id="tableBody">
+                    </tbody>
+
+
+                    <tfoot>
+
+                    <tr class="totalrow">
+
+                        <td>
+                            <div
+                                class="totalbox"
+                                data-i18n="total"
+                            >
+                                جمع کل
+                            </div>
+                        </td>
+
+                        <!-- Weight -->
+                        <td>
+                            <div
+                                class="totalbox"
+                                id="totalWeight"
+                            >
+                                0
+                            </div>
+                        </td>
+
+                        <!-- Karat is NOT summed -->
+                        <td>
+                            <div class="totalbox na">
+                                —
+                            </div>
+                        </td>
+
+                        <!-- 750 Weight -->
+                        <td>
+                            <div
+                                class="totalbox"
+                                id="total750"
+                            >
+                                0
+                            </div>
+                        </td>
+
+                        <!-- Fee is NOT summed -->
+                        <td>
+                            <div class="totalbox na">
+                                —
+                            </div>
+                        </td>
+
+                        <!-- Price -->
+                        <td>
+                            <div
+                                class="totalbox"
+                                id="totalPrice"
+                            >
+                                0
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="totalbox na">
+                                —
+                            </div>
+                        </td>
+
+                    </tr>
+
+
+                    <!-- Add row -->
+
+                    <tr class="addrow">
+
+                        <td colspan="7">
+
+                            <button
+                                id="addRow"
+                                type="button"
+                                aria-label="Add row"
+                                title="Add row"
+                            >
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    </tfoot>
+
+                </table>
+
+            </div>
+
+
+            <!-- TOOLBAR -->
+
+            <div class="toolbar">
+
+                <button
+                    class="pill primary"
+                    id="saveBtn"
+                    type="button"
+                >
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    <span data-i18n="saveDashboard">
+                        ذخیره در داشبورد
+                    </span>
+                </button>
+
+
+                <button
+                    class="pill"
+                    id="pdfBtn"
+                    type="button"
+                >
+                    <i class="fa-solid fa-file-pdf"></i>
+
+                    <span data-i18n="downloadPDF">
+                        دانلود PDF
+                    </span>
+                </button>
+
+
+                <button
+                    class="pill danger"
+                    id="clearBtn"
+                    type="button"
+                >
+                    <i class="fa-solid fa-trash-can"></i>
+
+                    <span data-i18n="clear">
+                        پاک کردن
+                    </span>
+                </button>
+
+            </div>
+
+        </main>
+
+
+        <!-- HINT -->
+
+        <div
+            class="hint glass"
+            data-i18n="hint"
+        >
+            مقدارهای مثبت به جمع اضافه و مقدارهای منفی از جمع کم می‌شوند.
+            عیار و فی در جمع کل محاسبه نمی‌شوند.
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DASHBOARD
+    ====================================================== -->
+
+    <section
+        class="view"
+        id="dashboard"
+    >
+
+        <header class="hero glass">
+
+            <div>
+
+                <h1 data-i18n="dashboardTitle">
+                    داشبورد
+                </h1>
+
+                <p data-i18n="dashboardSub">
+                    سندهای ذخیره‌شده را باز، ویرایش، حذف یا PDF کنید.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- Statistics -->
+
+        <div class="stats">
+
+            <div class="stat glass">
+
+                <div
+                    class="label"
+                    data-i18n="docCount"
+                >
+                    تعداد سندها
+                </div>
+
+                <div
+                    class="value"
+                    id="savedCount"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat glass">
+
+                <div
+                    class="label"
+                    data-i18n="currentWeight"
+                >
+                    جمع وزن فعلی
+                </div>
+
+                <div
+                    class="value"
+                    id="dashWeight"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat glass">
+
+                <div
+                    class="label"
+                    data-i18n="currentPrice"
+                >
+                    جمع قیمت فعلی
+                </div>
+
+                <div
+                    class="value"
+                    id="dashPrice"
+                >
+                    0
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <h2
+            class="sectiontitle"
+            data-i18n="savedDocs"
+        >
+            سندهای ذخیره‌شده
+        </h2>
+
+
+        <div
+            id="savedList"
+            class="savedlist"
+        >
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =========================================================
+     SAVE / EDIT MODAL
+========================================================== -->
+
+<div
+    class="modalback"
+    id="saveModal"
+>
+
+    <div class="modal glass">
+
+        <h2 id="modalTitle">
+            ذخیره اطلاعات جدول
+        </h2>
+
+        <p data-i18n="modalSub">
+            نام و جزئیات سند را وارد کنید.
+        </p>
+
+
+        <div class="group">
+
+            <label
+                for="saveName"
+                data-i18n="nameLabel"
+            >
+                نام جدول
+            </label>
+
+            <input
+                id="saveName"
+                type="text"
+                maxlength="80"
+                placeholder="مثلاً فروش طلای امروز"
+            >
+
+        </div>
+
+
+        <div class="group">
+
+            <label
+                for="saveDetail"
+                data-i18n="detailLabel"
+            >
+                جزئیات
+            </label>
+
+            <textarea
+                id="saveDetail"
+                maxlength="500"
+                placeholder="توضیحات این سند..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="modalactions">
+
+            <button
+                class="pill primary"
+                id="confirmSave"
+                type="button"
+            >
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span data-i18n="save">
+                    ذخیره
+                </span>
+            </button>
+
+
+            <button
+                class="pill"
+                id="cancelSave"
+                type="button"
+            >
+                <i class="fa-solid fa-xmark"></i>
+                <span data-i18n="cancel">
+                    انصراف
+                </span>
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CONFIRM MODAL
+========================================================== -->
+
+<div
+    class="modalback"
+    id="confirmModal"
+>
+
+    <div class="modal glass">
+
+        <h2 id="confirmTitle">
+            تأیید
+        </h2>
+
+        <p id="confirmText">
+        </p>
+
+
+        <div class="modalactions">
+
+            <button
+                class="pill danger"
+                id="confirmYes"
+                type="button"
+            >
+                <i class="fa-solid fa-check"></i>
+
+                <span data-i18n="confirm">
+                    تأیید
+                </span>
+            </button>
+
+
+            <button
+                class="pill"
+                id="confirmNo"
+                type="button"
+            >
+                <i class="fa-solid fa-xmark"></i>
+
+                <span data-i18n="cancel">
+                    انصراف
+                </span>
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     GLASS TOASTS
+========================================================== -->
+
+<div
+    class="toastwrap"
+    id="toastWrap"
+></div>
+
+
+<!-- =========================================================
+     PRINT / PDF AREA
+========================================================== -->
+
+<div
+    id="printArea"
+    class="print-only"
+>
+
+    <div class="print-head">
+
+        <!-- Actual logo -->
+        <img
+            id="printLogo"
+            class="print-logo"
+            src="img.PNG"
+            alt="Samid Gold Gallery"
+        >
+
+
+        <!-- Right side information -->
+
+        <div class="print-info">
+
+            <div
+                class="print-doc"
+                id="printDoc"
+            >
+                سند:1
+            </div>
+
+            <div>
+                <span data-print="phoneLabel">
+                    تلفن
+                </span>:
+
+                <span dir="ltr">
+                    09115054547
+                </span>
+            </div>
+
+            <div>
+                <span data-print="addressLabel">
+                    نشانی
+                </span>:
+
+                خیابان شیک، پاساژ آرسن، آبشده صمید
+            </div>
+
+        </div>
+
+
+        <!-- Title -->
+
+        <div
+            class="print-title"
+            id="printTitle"
+        >
+            محاسبه قیمت فروش طلا
+        </div>
+
+
+        <!-- Dates -->
+
+        <div
+            class="print-date"
+            id="printDate"
+        >
+        </div>
+
+    </div>
+
+
+    <!-- PDF TABLE -->
+
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th data-print="desc">
+                شرح
+            </th>
+
+            <th data-print="weight">
+                وزن
+            </th>
+
+            <th data-print="karat">
+                عیار
+            </th>
+
+            <th data-print="w750">
+                وزن ۷۵۰
+            </th>
+
+            <th data-print="fee">
+                فی
+            </th>
+
+            <th data-print="price">
+                قیمت
+            </th>
+
+        </tr>
+
+        </thead>
+
+
+        <tbody id="printBody">
+        </tbody>
+
+
+        <tfoot>
+
+        <tr class="sum">
+
+            <td id="printTotalText">
+                جمع کل
+            </td>
+
+            <td id="printWeight">
+            </td>
+
+            <td>
+                —
+            </td>
+
+            <td id="print750">
+            </td>
+
+            <td>
+                —
+            </td>
+
+            <td id="printPrice">
+            </td>
+
+        </tr>
+
+        </tfoot>
+
+    </table>
+
+
+    <!-- PDF calculated summary -->
+
+    <div class="print-summary">
+
+        <span id="printSummaryWeight"></span>
+
+        <span id="printSummary750"></span>
+
+        <span id="printSummaryPrice"></span>
+
+    </div>
+
+
+    <!-- Details -->
+
+    <div
+        class="print-detail"
+        id="printDetail"
+    >
+    </div>
+
+
+    <div class="print-footer">
+        Samid Gold Gallery
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   CONFIGURATION
+========================================================== */
+
+const INITIAL_ROWS = 10;
+
+const STORAGE_KEY = "samidGoldSavedTablesV6";
+const THEME_KEY = "samidGoldThemeV6";
+const LANG_KEY = "samidGoldLangV6";
+
+
+/* =========================================================
+   DOM
+========================================================== */
+
+const tableBody = document.getElementById("tableBody");
+
+let editingId = null;
+let confirmAction = null;
+
+
+/* =========================================================
+   TABLE COLUMNS
+========================================================== */
+
+const columns = [
+
+    {
+        key: "description",
+        type: "text",
+        placeholderFA: "شرح کالا",
+        placeholderEN: "Description"
+    },
+
+    {
+        key: "weight",
+        type: "number",
+        placeholderFA: "0",
+        placeholderEN: "0"
+    },
+
+    {
+        key: "karat",
+        type: "number",
+        placeholderFA: "0",
+        placeholderEN: "0"
+    },
+
+    {
+        key: "weight750",
+        type: "number",
+        placeholderFA: "0",
+        placeholderEN: "0"
+    },
+
+    {
+        key: "fee",
+        type: "number",
+        placeholderFA: "0",
+        placeholderEN: "0"
+    },
+
+    {
+        key: "price",
+        type: "number",
+        placeholderFA: "0",
+        placeholderEN: "0"
+    }
+
+];
+
+
+/* =========================================================
+   TRANSLATIONS
+========================================================== */
+
+const translations = {
+
+    fa: {
+
+        navCalculator: "محاسبه",
+        navDashboard: "داشبورد",
+
+        saveShort: "ذخیره",
+
+        title: "محاسبه قیمت فروش طلا",
+
+        subtitle:
+            "وزن، عیار، وزن ۷۵۰، فی و قیمت را وارد کنید.",
+
+        live:
+            "محاسبه لحظه‌ای",
+
+        desc:
+            "شرح",
+
+        weight:
+            "وزن",
+
+        karat:
+            "عیار",
+
+        w750:
+            "وزن ۷۵۰",
+
+        fee:
+            "فی",
+
+        price:
+            "قیمت",
+
+        remove:
+            "حذف",
+
+        total:
+            "جمع کل",
+
+        saveDashboard:
+            "ذخیره در داشبورد",
+
+        downloadPDF:
+            "دانلود PDF",
+
+        clear:
+            "پاک کردن",
+
+        hint:
+            "مقدارهای مثبت به جمع اضافه و مقدارهای منفی از جمع کم می‌شوند. عیار و فی در جمع کل محاسبه نمی‌شوند.",
+
+        dashboardTitle:
+            "داشبورد",
+
+        dashboardSub:
+            "سندهای ذخیره‌شده را باز، ویرایش، حذف یا PDF کنید.",
+
+        docCount:
+            "تعداد سندها",
+
+        currentWeight:
+            "جمع وزن فعلی",
+
+        currentPrice:
+            "جمع قیمت فعلی",
+
+        savedDocs:
+            "سندهای ذخیره‌شده",
+
+        modalSub:
+            "نام و جزئیات سند را وارد کنید.",
+
+        nameLabel:
+            "نام جدول",
+
+        detailLabel:
+            "جزئیات",
+
+        save:
+            "ذخیره",
+
+        cancel:
+            "انصراف",
+
+        confirm:
+            "تأیید",
+
+        open:
+            "باز کردن",
+
+        edit:
+            "ویرایش",
+
+        pdf:
+            "PDF",
+
+        delete:
+            "حذف",
+
+        noSaved:
+            "هنوز هیچ سندی ذخیره نشده است.",
+
+        saveOk:
+            "در داشبورد ذخیره شد.",
+
+        editOk:
+            "سند با موفقیت ویرایش شد.",
+
+        deleteOk:
+            "سند حذف شد.",
+
+        openOk:
+            "جدول ذخیره‌شده باز شد.",
+
+        rowAdded:
+            "ردیف جدید اضافه شد.",
+
+        rowDeleted:
+            "ردیف حذف شد.",
+
+        tableCleared:
+            "جدول پاک شد.",
+
+        needData:
+            "ابتدا حداقل یک مقدار وارد کنید.",
+
+        deleteAsk:
+            "این سند حذف شود؟",
+
+        clearAsk:
+            "تمام اطلاعات جدول فعلی پاک شود؟",
+
+        summaryWeight:
+            "جمع کل وزن",
+
+        summary750:
+            "جمع کل وزن ۷۵۰",
+
+        summaryPrice:
+            "جمع کل قیمت",
+
+        detailPrefix:
+            "جزئیات",
+
+        editTitle:
+            "ویرایش سند",
+
+        saveTitle:
+            "ذخیره اطلاعات جدول",
+
+        phone:
+            "تلفن",
+
+        address:
+            "نشانی",
+
+        document:
+            "سند",
+
+        day:
+            "روز",
+
+        languageChanged:
+            "زبان فارسی فعال شد.",
+
+        themeDay:
+            "حالت روز فعال شد.",
+
+        themeNight:
+            "حالت شب فعال شد."
+
+    },
+
+
+    en: {
+
+        navCalculator:
+            "Calculator",
+
+        navDashboard:
+            "Dashboard",
+
+        saveShort:
+            "Save",
+
+        title:
+            "Gold Sale Calculator",
+
+        subtitle:
+            "Enter weight, karat, 750 weight, rate and price.",
+
+        live:
+            "Live calculation",
+
+        desc:
+            "Description",
+
+        weight:
+            "Weight",
+
+        karat:
+            "Karat",
+
+        w750:
+            "750 Weight",
+
+        fee:
+            "Rate",
+
+        price:
+            "Price",
+
+        remove:
+            "Remove",
+
+        total:
+            "Total",
+
+        saveDashboard:
+            "Save to Dashboard",
+
+        downloadPDF:
+            "Download PDF",
+
+        clear:
+            "Clear",
+
+        hint:
+            "Positive values are added and negative values are subtracted. Karat and rate are not included in totals.",
+
+        dashboardTitle:
+            "Dashboard",
+
+        dashboardSub:
+            "Open, edit, delete or export your saved documents.",
+
+        docCount:
+            "Saved documents",
+
+        currentWeight:
+            "Current total weight",
+
+        currentPrice:
+            "Current total price",
+
+        savedDocs:
+            "Saved documents",
+
+        modalSub:
+            "Enter a name and details for this document.",
+
+        nameLabel:
+            "Table name",
+
+        detailLabel:
+            "Details",
+
+        save:
+            "Save",
+
+        cancel:
+            "Cancel",
+
+        confirm:
+            "Confirm",
+
+        open:
+            "Open",
+
+        edit:
+            "Edit",
+
+        pdf:
+            "PDF",
+
+        delete:
+            "Delete",
+
+        noSaved:
+            "No saved documents yet.",
+
+        saveOk:
+            "Saved to dashboard.",
+
+        editOk:
+            "Document updated successfully.",
+
+        deleteOk:
+            "Document deleted.",
+
+        openOk:
+            "Saved table opened.",
+
+        rowAdded:
+            "New row added.",
+
+        rowDeleted:
+            "Row deleted.",
+
+        tableCleared:
+            "Table cleared.",
+
+        needData:
+            "Enter at least one value first.",
+
+        deleteAsk:
+            "Delete this document?",
+
+        clearAsk:
+            "Clear all current table data?",
+
+        summaryWeight:
+            "Total weight",
+
+        summary750:
+            "Total 750 weight",
+
+        summaryPrice:
+            "Total price",
+
+        detailPrefix:
+            "Details",
+
+        editTitle:
+            "Edit document",
+
+        saveTitle:
+            "Save table",
+
+        phone:
+            "Phone",
+
+        address:
+            "Address",
+
+        document:
+            "Document",
+
+        day:
+            "Day",
+
+        languageChanged:
+            "English enabled.",
+
+        themeDay:
+            "Day mode enabled.",
+
+        themeNight:
+            "Night mode enabled."
+
+    }
+
+};
+
+
+/* =========================================================
+   LANGUAGE
+========================================================== */
+
+let currentLanguage =
+    localStorage.getItem(LANG_KEY) === "en"
+        ? "en"
+        : "fa";
+
+
+function translate(key) {
+
+    return (
+        translations[currentLanguage]?.[key]
+        || key
+    );
+
+}
+
+
+/* =========================================================
+   APPLY LANGUAGE
+========================================================== */
+
+function applyLanguage() {
+
+    document.documentElement.lang =
+        currentLanguage;
+
+    document.documentElement.dir =
+        currentLanguage === "fa"
+            ? "rtl"
+            : "ltr";
+
+
+    /* Standard i18n */
+
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach(element => {
+
+            element.textContent =
+                translate(
+                    element.dataset.i18n
+                );
+
+        });
+
+
+    /* Language button */
+
+    const langButton =
+        document.getElementById("langBtn");
+
+    langButton.textContent =
+        currentLanguage === "fa"
+            ? "EN"
+            : "FA";
+
+
+    langButton.title =
+        currentLanguage === "fa"
+            ? "English / فارسی"
+            : "فارسی / English";
+
+
+    /* Modal placeholders */
+
+    document.getElementById("saveName").placeholder =
+        currentLanguage === "fa"
+            ? "مثلاً فروش طلای امروز"
+            : "e.g. Today's gold sale";
+
+
+    document.getElementById("saveDetail").placeholder =
+        currentLanguage === "fa"
+            ? "توضیحات این سند..."
+            : "Details for this document...";
+
+
+    /* Dynamic row placeholders */
+
+    tableBody
+        .querySelectorAll("tr")
+        .forEach(row => {
+
+            row.querySelectorAll("input")
+                .forEach(input => {
+
+                    const column =
+                        columns.find(
+                            item =>
+                                item.key === input.dataset.key
+                        );
+
+                    if (!column) {
+                        return;
+                    }
+
+                    input.placeholder =
+                        currentLanguage === "fa"
+                            ? column.placeholderFA
+                            : column.placeholderEN;
+
+                });
+
+        });
+
+
+    /* Dynamic buttons */
+
+    tableBody
+        .querySelectorAll(".rowminus")
+        .forEach(button => {
+
+            button.title =
+                translate("remove");
+
+        });
+
+
+    /*
+      PDF labels
+    */
+
+    document
+        .querySelectorAll("[data-print]")
+        .forEach(element => {
+
+            const key =
+                element.dataset.print;
+
+            const translated =
+                translate(key);
+
+            if (translated !== key) {
+                element.textContent = translated;
+            }
+
+        });
+
+
+    /*
+      Saved documents
+    */
+
+    renderDashboard();
+
+}
+
+
+/* =========================================================
+   CREATE ROW
+========================================================== */
+
+function addRow(values = {}) {
+
+    /*
+      Important:
+      This variable is intentionally called rowElement
+      instead of "tr" so it can never conflict with
+      the translate() function.
+    */
+
+    const rowElement =
+        document.createElement("tr");
+
+
+    columns.forEach(column => {
+
+        const cell =
+            document.createElement("td");
+
+
+        const input =
+            document.createElement("input");
+
+
+        input.className =
+            "input" +
+            (
+                column.type === "number"
+                    ? " numeric"
+                    : ""
+            );
+
+
+        input.type = "text";
+
+
+        input.dataset.key =
+            column.key;
+
+
+        input.autocomplete =
+            "off";
+
+
+        if (column.type === "number") {
+
+            input.dataset.numeric =
+                "1";
+
+            input.inputMode =
+                "decimal";
+
+        }
+
+
+        input.placeholder =
+            currentLanguage === "fa"
+                ? column.placeholderFA
+                : column.placeholderEN;
+
+
+        if (
+            values[column.key] !== undefined
+            &&
+            values[column.key] !== null
+        ) {
+
+            input.value =
+                values[column.key];
+
+        }
+
+
+        cell.appendChild(input);
+
+        rowElement.appendChild(cell);
+
+    });
+
+
+    /*
+      Remove row
+    */
+
+    const actionCell =
+        document.createElement("td");
+
+
+    const removeButton =
+        document.createElement("button");
+
+
+    removeButton.type =
+        "button";
+
+
+    removeButton.className =
+        "rowminus";
+
+
+    removeButton.innerHTML =
+        '<i class="fa-solid fa-minus"></i>';
+
+
+    removeButton.title =
+        translate("remove");
+
+
+    removeButton.setAttribute(
+        "aria-label",
+        translate("remove")
+    );
+
+
+    removeButton.addEventListener(
+        "click",
+        () => {
+
+            rowElement.remove();
+
+            updateTotals();
+
+            toast(
+                translate("rowDeleted")
+            );
+
+        }
+    );
+
+
+    actionCell.appendChild(
+        removeButton
+    );
+
+
+    rowElement.appendChild(
+        actionCell
+    );
+
+
+    tableBody.appendChild(
+        rowElement
+    );
+
+}
+
+
+/* =========================================================
+   NUMBER PARSER
+========================================================== */
+
+function parseNumber(value) {
+
+    if (!value) {
+        return 0;
+    }
+
+
+    let normalized =
+        String(value)
+
+            /* Persian numbers */
+            .replace(
+                /[۰-۹]/g,
+                digit =>
+                    String(
+                        "۰۱۲۳۴۵۶۷۸۹"
+                            .indexOf(digit)
+                    )
+            )
+
+            /* Arabic numbers */
+            .replace(
+                /[٠-٩]/g,
+                digit =>
+                    String(
+                        "٠١٢٣٤٥٦٧٨٩"
+                            .indexOf(digit)
+                    )
+            )
+
+            /* separators */
+            .replace(/[,٬]/g, "")
+
+            .trim();
+
+
+    const validNumber =
+        /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/;
+
+
+    return validNumber.test(normalized)
+        ? Number(normalized)
+        : 0;
+
+}
+
+
+/* =========================================================
+   NUMBER FORMATTER
+========================================================== */
+
+function formatNumber(
+    number,
+    decimals = 3
+) {
+
+    if (
+        !Number.isFinite(number)
+        ||
+        Math.abs(number) < 0.0000001
+    ) {
+
+        return "0";
+
+    }
+
+
+    return number.toLocaleString(
+        "en-US",
+        {
+            maximumFractionDigits:
+                decimals,
+
+            useGrouping:
+                true
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SANITIZE NUMBER INPUT
+========================================================== */
+
+function sanitizeNumeric(input) {
+
+    let value =
+        input.value
+
+            .replace(
+                /[۰-۹]/g,
+                digit =>
+                    String(
+                        "۰۱۲۳۴۵۶۷۸۹"
+                            .indexOf(digit)
+                    )
+            )
+
+            .replace(
+                /[٠-٩]/g,
+                digit =>
+                    String(
+                        "٠١٢٣٤٥٦٧٨٩"
+                            .indexOf(digit)
+                    )
+            )
+
+            .replace(
+                /[^0-9.+-]/g,
+                ""
+            );
+
+
+    const sign =
+        value.startsWith("-")
+            ? "-"
+            : value.startsWith("+")
+                ? "+"
+                : "";
+
+
+    let rest =
+        value
+            .replace(
+                /^[+-]+/,
+                ""
+            )
+            .replace(
+                /[+-]/g,
+                ""
+            );
+
+
+    const decimalPosition =
+        rest.indexOf(".");
+
+
+    if (decimalPosition !== -1) {
+
+        rest =
+            rest.slice(
+                0,
+                decimalPosition + 1
+            )
+            +
+            rest
+                .slice(
+                    decimalPosition + 1
+                )
+                .replace(
+                    /\./g,
+                    ""
+                );
+
+    }
+
+
+    input.value =
+        sign + rest;
+
+}
+
+
+/* =========================================================
+   GET TABLE ROWS
+========================================================== */
+
+function getRows() {
+
+    return [
+        ...tableBody.querySelectorAll("tr")
+    ].map(row => {
+
+        const result = {};
+
+
+        row.querySelectorAll("input")
+            .forEach(input => {
+
+                result[input.dataset.key] =
+                    input.value;
+
+            });
+
+
+        return result;
+
+    });
+
+}
+
+
+/* =========================================================
+   GET TOTALS
+========================================================== */
+
+function getTotals() {
+
+    const totals = {
+
+        weight: 0,
+
+        weight750: 0,
+
+        price: 0
+
+    };
+
+
+    tableBody
+        .querySelectorAll("tr")
+        .forEach(row => {
+
+            row.querySelectorAll(
+                "input[data-numeric]"
+            ).forEach(input => {
+
+                const key =
+                    input.dataset.key;
+
+                const number =
+                    parseNumber(input.value);
+
+
+                /*
+                  Only these three columns
+                  are calculated.
+                */
+
+                if (key === "weight") {
+
+                    totals.weight +=
+                        number;
+
+                }
+
+
+                if (key === "weight750") {
+
+                    totals.weight750 +=
+                        number;
+
+                }
+
+
+                if (key === "price") {
+
+                    totals.price +=
+                        number;
+
+                }
+
+            });
+
+        });
+
+
+    return totals;
+
+}
+
+
+/* =========================================================
+   UPDATE TOTALS
+========================================================== */
+
+function updateTotals() {
+
+    const totals =
+        getTotals();
+
+
+    document.getElementById(
+        "totalWeight"
+    ).textContent =
+        formatNumber(
+            totals.weight
+        );
+
+
+    document.getElementById(
+        "total750"
+    ).textContent =
+        formatNumber(
+            totals.weight750
+        );
+
+
+    document.getElementById(
+        "totalPrice"
+    ).textContent =
+        formatNumber(
+            totals.price
+        );
+
+
+    document.getElementById(
+        "dashWeight"
+    ).textContent =
+        formatNumber(
+            totals.weight
+        );
+
+
+    document.getElementById(
+        "dashPrice"
+    ).textContent =
+        formatNumber(
+            totals.price
+        );
+
+}
+
+
+/* =========================================================
+   TABLE INPUT EVENT
+========================================================== */
+
+tableBody.addEventListener(
+    "input",
+    event => {
+
+        if (
+            event.target.dataset.numeric
+        ) {
+
+            sanitizeNumeric(
+                event.target
+            );
+
+        }
+
+        updateTotals();
+
+    }
+);
+
+
+/* =========================================================
+   ADD ROW
+========================================================== */
+
+document
+    .getElementById("addRow")
+    .addEventListener(
+        "click",
+        () => {
+
+            addRow();
+
+            toast(
+                translate("rowAdded")
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   LOAD ROWS
+========================================================== */
+
+function loadRows(rowsToLoad) {
+
+    tableBody.innerHTML = "";
+
+
+    const source =
+        Array.isArray(rowsToLoad)
+        &&
+        rowsToLoad.length
+            ? rowsToLoad
+            : Array.from(
+                {
+                    length:
+                        INITIAL_ROWS
+                },
+                () => ({})
+            );
+
+
+    source.forEach(
+        row => addRow(row)
+    );
+
+
+    updateTotals();
+
+}
+
+
+/* =========================================================
+   HAS DATA
+========================================================== */
+
+function hasData(rowsToCheck) {
+
+    return rowsToCheck.some(
+        row =>
+            Object.values(row).some(
+                value =>
+                    String(
+                        value ?? ""
+                    ).trim() !== ""
+            )
+    );
+
+}
+
+
+/* =========================================================
+   LOCAL STORAGE
+========================================================== */
+
+function getSavedDocuments() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(
+                STORAGE_KEY
+            )
+        ) || [];
+
+    } catch {
+
+        return [];
+
+    }
+
+}
+
+
+function saveDocuments(documents) {
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(documents)
+    );
+
+}
+
+
+/* =========================================================
+   DATE
+========================================================== */
+
+function getDateInfo() {
+
+    const now =
+        new Date();
+
+
+    return {
+
+        gregorian:
+            now.toLocaleDateString(
+                "en-US",
+                {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                }
+            ),
+
+        persian:
+            now.toLocaleDateString(
+                "fa-IR-u-ca-persian",
+                {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                }
+            ),
+
+        weekday:
+            now.toLocaleDateString(
+                "fa-IR-u-ca-persian",
+                {
+                    weekday: "long"
+                }
+            ),
+
+        time:
+            now.toLocaleTimeString(
+                "fa-IR",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            )
+
+    };
+
+}
+
+
+/* =========================================================
+   DOCUMENT NUMBER
+========================================================== */
+
+function getNextDocumentNumber() {
+
+    const documents =
+        getSavedDocuments();
+
+
+    return (
+        documents.reduce(
+            (
+                highest,
+                document
+            ) =>
+                Math.max(
+                    highest,
+                    Number(
+                        document.documentNumber
+                    ) || 0
+                ),
+            0
+        )
+        + 1
+    );
+
+}
+
+
+/* =========================================================
+   SAVE MODAL
+========================================================== */
+
+function openSaveModal(
+    documentId = null
+) {
+
+    const currentRows =
+        getRows();
+
+
+    if (!hasData(currentRows)) {
+
+        toast(
+            translate("needData"),
+            "error"
+        );
+
+        return;
+    }
+
+
+    editingId =
+        documentId;
+
+
+    const existingDocument =
+        documentId
+            ? getSavedDocuments().find(
+                document =>
+                    document.id ===
+                    documentId
+            )
+            : null;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        existingDocument
+            ? translate("editTitle")
+            : translate("saveTitle");
+
+
+    document.getElementById(
+        "saveName"
+    ).value =
+        existingDocument?.name || "";
+
+
+    document.getElementById(
+        "saveDetail"
+    ).value =
+        existingDocument?.detail || "";
+
+
+    document.getElementById(
+        "saveModal"
+    ).classList.add(
+        "open"
+    );
+
+}
+
+
+function closeSaveModal() {
+
+    document
+        .getElementById("saveModal")
+        .classList.remove("open");
+
+
+    editingId =
+        null;
+
+}
+
+
+/* =========================================================
+   SAVE BUTTONS
+========================================================== */
+
+document
+    .getElementById("saveBtn")
+    .addEventListener(
+        "click",
+        () =>
+            openSaveModal()
+    );
+
+
+document
+    .getElementById("navSave")
+    .addEventListener(
+        "click",
+        () =>
+            openSaveModal()
+    );
+
+
+document
+    .getElementById("cancelSave")
+    .addEventListener(
+        "click",
+        closeSaveModal
+    );
+
+
+document
+    .getElementById("saveModal")
+    .addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target.id ===
+                "saveModal"
+            ) {
+
+                closeSaveModal();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   CONFIRM SAVE
+========================================================== */
+
+document
+    .getElementById("confirmSave")
+    .addEventListener(
+        "click",
+        () => {
+
+            const documents =
+                getSavedDocuments();
+
+
+            const name =
+                document
+                    .getElementById(
+                        "saveName"
+                    )
+                    .value
+                    .trim()
+                ||
+                (
+                    currentLanguage === "fa"
+                        ? "فروش طلا"
+                        : "Gold sale"
+                );
+
+
+            const detail =
+                document
+                    .getElementById(
+                        "saveDetail"
+                    )
+                    .value
+                    .trim();
+
+
+            const currentRows =
+                getRows();
+
+
+            const currentTotals =
+                getTotals();
+
+
+            /*
+              EDIT
+            */
+
+            if (editingId !== null) {
+
+                const index =
+                    documents.findIndex(
+                        document =>
+                            document.id ===
+                            editingId
+                    );
+
+
+                if (index !== -1) {
+
+                    documents[index].name =
+                        name;
+
+                    documents[index].detail =
+                        detail;
+
+                    documents[index].rows =
+                        currentRows;
+
+                    documents[index].totals =
+                        currentTotals;
+
+
+                    saveDocuments(
+                        documents
+                    );
+
+
+                    closeSaveModal();
+
+                    renderDashboard();
+
+                    toast(
+                        translate("editOk")
+                    );
+
+                    return;
+
+                }
+
+            }
+
+
+            /*
+              NEW DOCUMENT
+            */
+
+            const newDocument = {
+
+                id:
+                    Date.now(),
+
+                documentNumber:
+                    getNextDocumentNumber(),
+
+                name,
+
+                detail,
+
+                date:
+                    getDateInfo(),
+
+                rows:
+                    currentRows,
+
+                totals:
+                    currentTotals
+
+            };
+
+
+            documents.unshift(
+                newDocument
+            );
+
+
+            saveDocuments(
+                documents
+            );
+
+
+            closeSaveModal();
+
+            renderDashboard();
+
+            showView(
+                "dashboard"
+            );
+
+
+            toast(
+                `${
+                    currentLanguage === "fa"
+                        ? "سند"
+                        : "Document"
+                }:${newDocument.documentNumber} ${
+                    translate("saveOk")
+                }`
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   DASHBOARD
+========================================================== */
+
+function renderDashboard() {
+
+    const documents =
+        getSavedDocuments();
+
+
+    document.getElementById(
+        "savedCount"
+    ).textContent =
+        documents.length;
+
+
+    const list =
+        document.getElementById(
+            "savedList"
+        );
+
+
+    if (!documents.length) {
+
+        list.innerHTML = `
+            <div class="empty glass">
+                ${escapeHtml(
+                    translate("noSaved")
+                )}
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        documents
+            .map(
+                document => {
+
+                    const documentNumber =
+                        escapeHtml(
+                            document.documentNumber
+                        );
+
+
+                    const documentName =
+                        escapeHtml(
+                            document.name
+                        );
+
+
+                    const detail =
+                        escapeHtml(
+                            document.detail ||
+                            "—"
+                        );
+
+
+                    const gregorian =
+                        escapeHtml(
+                            document
+                                .date
+                                ?.gregorian ||
+                            "—"
+                        );
+
+
+                    const persian =
+                        escapeHtml(
+                            document
+                                .date
+                                ?.persian ||
+                            "—"
+                        );
+
+
+                    const weekday =
+                        escapeHtml(
+                            document
+                                .date
+                                ?.weekday ||
+                            ""
+                        );
+
+
+                    const time =
+                        escapeHtml(
+                            document
+                                .date
+                                ?.time ||
+                            "—"
+                        );
+
+
+                    return `
+
+                        <article
+                            class="savedcard glass"
+                        >
+
+                            <div class="savedinfo">
+
+                                <h3>
+
+                                    ${
+                                        currentLanguage === "fa"
+                                            ? `سند:${documentNumber} · ${documentName}`
+                                            : `Document ${documentNumber} · ${documentName}`
+                                    }
+
+                                </h3>
+
+
+                                <p>
+                                    ${detail}
+                                </p>
+
+
+                                <p>
+
+                                    ${
+                                        currentLanguage === "fa"
+                                            ? "میلادی"
+                                            : "Gregorian"
+                                    }:
+                                    ${gregorian}
+
+                                    ·
+
+                                    ${
+                                        currentLanguage === "fa"
+                                            ? "شمسی"
+                                            : "Persian"
+                                    }:
+                                    ${persian}
+
+                                    ·
+
+                                    ${weekday}
+
+                                    ·
+
+                                    ${time}
+
+                                </p>
+
+
+                                <p>
+
+                                    ${translate("summaryWeight")}:
+                                    ${formatNumber(
+                                        document.totals?.weight || 0
+                                    )}
+
+                                    ·
+
+                                    ${translate("summary750")}:
+                                    ${formatNumber(
+                                        document.totals?.weight750 || 0
+                                    )}
+
+                                    ·
+
+                                    ${translate("summaryPrice")}:
+                                    ${formatNumber(
+                                        document.totals?.price || 0
+                                    )}
+
+                                </p>
+
+                            </div>
+
+
+                            <div class="savedactions">
+
+                                <button
+                                    class="pill small"
+                                    type="button"
+                                    onclick="loadSavedDocument(${document.id})"
+                                >
+                                    <i class="fa-solid fa-folder-open"></i>
+                                    ${translate("open")}
+                                </button>
+
+
+                                <button
+                                    class="pill small primary"
+                                    type="button"
+                                    onclick="editSavedDocument(${document.id})"
+                                >
+                                    <i class="fa-solid fa-pen"></i>
+                                    ${translate("edit")}
+                                </button>
+
+
+                                <button
+                                    class="pill small"
+                                    type="button"
+                                    onclick="downloadSavedPDF(${document.id})"
+                                >
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                    ${translate("pdf")}
+                                </button>
+
+
+                                <button
+                                    class="pill small danger"
+                                    type="button"
+                                    onclick="requestDeleteDocument(${document.id})"
+                                >
+                                    <i class="fa-solid fa-trash-can"></i>
+                                    ${translate("delete")}
+                                </button>
+
+                            </div>
+
+                        </article>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   LOAD SAVED DOCUMENT
+========================================================== */
+
+function loadSavedDocument(id) {
+
+    const document =
+        getSavedDocuments().find(
+            item =>
+                item.id === id
+        );
+
+
+    if (!document) {
+        return;
+    }
+
+
+    loadRows(
+        document.rows
+    );
+
+
+    showView(
+        "calculator"
+    );
+
+
+    toast(
+        `${
+            currentLanguage === "fa"
+                ? "سند"
+                : "Document"
+        }:${document.documentNumber} ${
+            translate("openOk")
+        }`
+    );
+
+}
+
+
+/* =========================================================
+   EDIT SAVED DOCUMENT
+========================================================== */
+
+function editSavedDocument(id) {
+
+    const document =
+        getSavedDocuments().find(
+            item =>
+                item.id === id
+        );
+
+
+    if (!document) {
+        return;
+    }
+
+
+    loadRows(
+        document.rows
+    );
+
+
+    showView(
+        "calculator"
+    );
+
+
+    openSaveModal(
+        id
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================== */
+
+function escapeHtml(value) {
+
+    return String(
+        value ?? ""
+    )
+        .replace(
+            /[&<>"']/g,
+            character => {
+
+                const map = {
+
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#039;"
+
+                };
+
+                return map[
+                    character
+                ];
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   CONFIRMATION MODAL
+========================================================== */
+
+function openConfirmModal(
+    title,
+    text,
+    action
+) {
+
+    document.getElementById(
+        "confirmTitle"
+    ).textContent =
+        title;
+
+
+    document.getElementById(
+        "confirmText"
+    ).textContent =
+        text;
+
+
+    confirmAction =
+        action;
+
+
+    document.getElementById(
+        "confirmModal"
+    ).classList.add(
+        "open"
+    );
+
+}
+
+
+function closeConfirmModal() {
+
+    document.getElementById(
+        "confirmModal"
+    ).classList.remove(
+        "open"
+    );
+
+
+    confirmAction =
+        null;
+
+}
+
+
+document
+    .getElementById("confirmYes")
+    .addEventListener(
+        "click",
+        () => {
+
+            const action =
+                confirmAction;
+
+
+            closeConfirmModal();
+
+
+            if (action) {
+                action();
+            }
+
+        }
+    );
+
+
+document
+    .getElementById("confirmNo")
+    .addEventListener(
+        "click",
+        closeConfirmModal
+    );
+
+
+document
+    .getElementById("confirmModal")
+    .addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target.id ===
+                "confirmModal"
+            ) {
+
+                closeConfirmModal();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   DELETE DOCUMENT
+========================================================== */
+
+function requestDeleteDocument(id) {
+
+    const document =
+        getSavedDocuments().find(
+            item =>
+                item.id === id
+        );
+
+
+    if (!document) {
+        return;
+    }
+
+
+    openConfirmModal(
+
+        currentLanguage === "fa"
+            ? "حذف سند"
+            : "Delete document",
+
+        `${
+            currentLanguage === "fa"
+                ? "سند"
+                : "Document"
+        }:${document.documentNumber} ${
+            translate("deleteAsk")
+        }`,
+
+        () => {
+
+            const remaining =
+                getSavedDocuments()
+                    .filter(
+                        item =>
+                            item.id !== id
+                    );
+
+
+            saveDocuments(
+                remaining
+            );
+
+
+            renderDashboard();
+
+
+            toast(
+                translate("deleteOk")
+            );
+
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   CLEAR TABLE
+========================================================== */
+
+document
+    .getElementById("clearBtn")
+    .addEventListener(
+        "click",
+        () => {
+
+            openConfirmModal(
+
+                currentLanguage === "fa"
+                    ? "پاک کردن جدول"
+                    : "Clear table",
+
+                translate(
+                    "clearAsk"
+                ),
+
+                () => {
+
+                    loadRows([]);
+
+                    toast(
+                        translate(
+                            "tableCleared"
+                        )
+                    );
+
+                }
+
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   PDF PREPARATION
+========================================================== */
+
+function preparePrint(
+    sourceRows,
+    sourceTotals,
+    title,
+    documentNumber,
+    savedDate = null,
+    detail = ""
+) {
+
+    /*
+      Only filled rows are printed.
+    */
+
+    const filledRows =
+        sourceRows.filter(
+            row =>
+                Object.values(row)
+                    .some(
+                        value =>
+                            String(
+                                value ?? ""
+                            ).trim() !== ""
+                    )
+        );
+
+
+    /*
+      Table body
+    */
+
+    document.getElementById(
+        "printBody"
+    ).innerHTML =
+
+        filledRows
+            .map(
+                row => `
+
+                    <tr>
+
+                        <td class="desc">
+                            ${escapeHtml(
+                                row.description || ""
+                            )}
+                        </td>
+
+                        <td dir="ltr">
+                            ${escapeHtml(
+                                row.weight || ""
+                            )}
+                        </td>
+
+                        <td dir="ltr">
+                            ${escapeHtml(
+                                row.karat || ""
+                            )}
+                        </td>
+
+                        <td dir="ltr">
+                            ${escapeHtml(
+                                row.weight750 || ""
+                            )}
+                        </td>
+
+                        <td dir="ltr">
+                            ${escapeHtml(
+                                row.fee || ""
+                            )}
+                        </td>
+
+                        <td dir="ltr">
+                            ${escapeHtml(
+                                row.price || ""
+                            )}
+                        </td>
+
+                    </tr>
+
+                `
+            )
+            .join("");
+
+
+    /*
+      Calculated totals
+    */
+
+    document.getElementById(
+        "printWeight"
+    ).textContent =
+        formatNumber(
+            sourceTotals.weight
+        );
+
+
+    document.getElementById(
+        "print750"
+    ).textContent =
+        formatNumber(
+            sourceTotals.weight750
+        );
+
+
+    document.getElementById(
+        "printPrice"
+    ).textContent =
+        formatNumber(
+            sourceTotals.price
+        );
+
+
+    document.getElementById(
+        "printSummaryWeight"
+    ).textContent =
+        `${translate(
+            "summaryWeight"
+        )}: ${
+            formatNumber(
+                sourceTotals.weight
+            )
+        }`;
+
+
+    document.getElementById(
+        "printSummary750"
+    ).textContent =
+        `${translate(
+            "summary750"
+        )}: ${
+            formatNumber(
+                sourceTotals.weight750
+            )
+        }`;
+
+
+    document.getElementById(
+        "printSummaryPrice"
+    ).textContent =
+        `${translate(
+            "summaryPrice"
+        )}: ${
+            formatNumber(
+                sourceTotals.price
+            )
+        }`;
+
+
+    /*
+      Document number
+    */
+
+    document.getElementById(
+        "printDoc"
+    ).textContent =
+        `${
+            currentLanguage === "fa"
+                ? "سند"
+                : "Document"
+        }:${documentNumber}`;
+
+
+    /*
+      Title
+    */
+
+    document.getElementById(
+        "printTitle"
+    ).textContent =
+        title;
+
+
+    /*
+      Date
+    */
+
+    const date =
+        savedDate || getDateInfo();
+
+
+    if (currentLanguage === "fa") {
+
+        document.getElementById(
+            "printDate"
+        ).textContent =
+            `${date.weekday} · ${date.gregorian} · ${date.persian} · ساعت ${date.time}`;
+
+    } else {
+
+        document.getElementById(
+            "printDate"
+        ).textContent =
+            `${date.gregorian} · ${date.persian} · ${date.time}`;
+
+    }
+
+
+    /*
+      Details
+    */
+
+    document.getElementById(
+        "printDetail"
+    ).textContent =
+        detail
+            ? `${translate(
+                "detailPrefix"
+            )}: ${detail}`
+            : "";
+
+
+    /*
+      Logo
+    */
+
+    document.getElementById(
+        "printLogo"
+    ).src =
+        "img.PNG";
+
+}
+
+
+/* =========================================================
+   CURRENT PDF
+========================================================== */
+
+function downloadCurrentPDF() {
+
+    const currentRows =
+        getRows();
+
+
+    if (!hasData(currentRows)) {
+
+        toast(
+            translate("needData"),
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    preparePrint(
+
+        currentRows,
+
+        getTotals(),
+
+        translate("title"),
+
+        getNextDocumentNumber()
+
+    );
+
+
+    setTimeout(
+        () => {
+            window.print();
+        },
+        80
+    );
+
+}
+
+
+/* =========================================================
+   SAVED PDF
+========================================================== */
+
+function downloadSavedPDF(id) {
+
+    const document =
+        getSavedDocuments().find(
+            item =>
+                item.id === id
+        );
+
+
+    if (!document) {
+        return;
+    }
+
+
+    preparePrint(
+
+        document.rows,
+
+        document.totals,
+
+        document.name,
+
+        document.documentNumber,
+
+        document.date,
+
+        document.detail
+
+    );
+
+
+    setTimeout(
+        () => {
+            window.print();
+        },
+        80
+    );
+
+}
+
+
+document
+    .getElementById("pdfBtn")
+    .addEventListener(
+        "click",
+        downloadCurrentPDF
+    );
+
+
+/* =========================================================
+   NAVIGATION
+========================================================== */
+
+function showView(
+    viewId
+) {
+
+    document
+        .querySelectorAll(".view")
+        .forEach(view => {
+
+            view.classList.toggle(
+                "active",
+                view.id === viewId
+            );
+
+        });
+
+
+    document
+        .querySelectorAll(".navlink")
+        .forEach(button => {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.view ===
+                viewId
+            );
+
+        });
+
+
+    if (viewId === "dashboard") {
+
+        renderDashboard();
+
+    }
+
+
+    window.scrollTo(
+        {
+            top: 0,
+            behavior: "smooth"
+        }
+    );
+
+}
+
+
+document
+    .querySelectorAll(".navlink")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                showView(
+                    button.dataset.view
+                );
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   THEME
+========================================================== */
+
+function applyTheme(
+    theme
+) {
+
+    document.documentElement
+        .classList
+        .toggle(
+            "dark",
+            theme === "dark"
+        );
+
+
+    document.getElementById(
+        "themeBtn"
+    ).innerHTML =
+
+        theme === "dark"
+
+            ? '<i class="fa-solid fa-sun"></i>'
+
+            : '<i class="fa-solid fa-moon"></i>';
+
+
+    document.querySelector(
+        'meta[name="theme-color"]'
+    ).setAttribute(
+        "content",
+        theme === "dark"
+            ? "#0b1016"
+            : "#eef3f8"
+    );
+
+
+    localStorage.setItem(
+        THEME_KEY,
+        theme
+    );
+
+}
+
+
+applyTheme(
+
+    localStorage.getItem(
+        THEME_KEY
+    ) === "dark"
+
+        ? "dark"
+
+        : "light"
+
+);
+
+
+document
+    .getElementById("themeBtn")
+    .addEventListener(
+        "click",
+        () => {
+
+            const dark =
+                document.documentElement
+                    .classList
+                    .contains("dark");
+
+
+            const newTheme =
+                dark
+                    ? "light"
+                    : "dark";
+
+
+            applyTheme(
+                newTheme
+            );
+
+
+            toast(
+                newTheme === "dark"
+                    ? translate("themeNight")
+                    : translate("themeDay")
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   LANGUAGE SWITCH
+========================================================== */
+
+document
+    .getElementById("langBtn")
+    .addEventListener(
+        "click",
+        () => {
+
+            currentLanguage =
+                currentLanguage === "fa"
+                    ? "en"
+                    : "fa";
+
+
+            localStorage.setItem(
+                LANG_KEY,
+                currentLanguage
+            );
+
+
+            applyLanguage();
+
+
+            toast(
+                translate(
+                    "languageChanged"
+                )
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   GLASS TOAST
+========================================================== */
+
+function toast(
+    message,
+    type = "ok"
+) {
+
+    const toastElement =
+        document.createElement(
+            "div"
+        );
+
+
+    toastElement.className =
+        `toast ${type}`;
+
+
+    const iconClass =
+        type === "error"
+
+            ? "fa-solid fa-triangle-exclamation"
+
+            : "fa-solid fa-circle-check";
+
+
+    toastElement.innerHTML = `
+
+        <i class="${iconClass}"></i>
+
+        <span>
+            ${escapeHtml(message)}
+        </span>
+
+    `;
+
+
+    document
+        .getElementById("toastWrap")
+        .appendChild(
+            toastElement
+        );
+
+
+    setTimeout(
+        () => {
+
+            toastElement.remove();
+
+        },
+        2700
+    );
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================== */
+
+/*
+  Create exactly 10 initial rows.
+*/
+
+for (
+    let index = 0;
+    index < INITIAL_ROWS;
+    index++
+) {
+
+    addRow();
+
+}
+
+
+updateTotals();
+
+applyLanguage();
+
+
+/* =========================================================
+   GLOBAL FUNCTIONS FOR INLINE BUTTONS
+========================================================== */
+
+window.loadSavedDocument =
+    loadSavedDocument;
+
+window.editSavedDocument =
+    editSavedDocument;
+
+window.requestDeleteDocument =
+    requestDeleteDocument;
+
+window.downloadSavedPDF =
+    downloadSavedPDF;
+
+</script>
+
+</body>
+</html>
