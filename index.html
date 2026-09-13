@@ -2,92 +2,160 @@
 <html lang="fa" dir="rtl">
 
 <head>
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#eef3f8">
 
-    <title>Samid Gold Gallery</title>
-    <link rel="icon" href="samid.jpeg" style="border-radius: 50px;">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
 
-    <!-- Font Awesome -->
+    <meta
+        name="theme-color"
+        content="#eef3f8"
+    >
+
+    <title>
+        Samid Gold Gallery
+    </title>
+
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     >
 
-    <!-- Your CSS -->
-    <link rel="stylesheet" href="samid.css">
+
+    <!-- =====================================================
+         YOUR CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="samid.css"
+    >
+
 </head>
+
 
 <body>
 
 <div class="app">
 
+
     <!-- =====================================================
          NAVBAR
     ====================================================== -->
 
-    <nav class="nav glass" dir="ltr">
+    <nav
+        class="nav glass"
+        dir="ltr"
+    >
 
-        <div class="brand" dir="ltr">
-            Samid <span>Gold Gallery</span>
+
+        <div
+            class="brand"
+            dir="ltr"
+        >
+
+            Samid
+            <span>
+                Gold Gallery
+            </span>
+
         </div>
+
 
         <div class="navlinks">
 
+
             <button
                 class="navlink active"
+                type="button"
                 data-view="calculator"
                 data-i18n="navCalculator"
             >
+
                 محاسبه
+
             </button>
+
 
             <button
                 class="navlink"
+                type="button"
                 data-view="dashboard"
                 data-i18n="navDashboard"
             >
+
                 داشبورد
+
             </button>
+
 
         </div>
 
+
         <div class="navtools">
 
+
             <!-- Language -->
+
             <button
                 class="pill"
                 id="langBtn"
-                title="English / فارسی"
                 type="button"
+                title="English / فارسی"
             >
+
                 EN
+
             </button>
 
+
             <!-- Theme -->
+
             <button
                 class="pill"
                 id="themeBtn"
-                title="حالت روز/شب"
                 type="button"
+                title="حالت روز/شب"
             >
-                <i class="fa-solid fa-moon"></i>
+
+                <i
+                    class="fa-solid fa-moon"
+                ></i>
+
             </button>
 
+
             <!-- Save -->
+
             <button
                 class="pill primary"
                 id="navSave"
                 type="button"
             >
-                <i class="fa-solid fa-floppy-disk"></i>
-                <span data-i18n="saveShort">ذخیره</span>
+
+                <i
+                    class="fa-solid fa-floppy-disk"
+                ></i>
+
+                <span data-i18n="saveShort">
+                    ذخیره
+                </span>
+
             </button>
+
 
         </div>
 
     </nav>
+
 
 
     <!-- =====================================================
@@ -99,6 +167,9 @@
         id="calculator"
     >
 
+
+        <!-- HERO -->
+
         <header class="hero glass">
 
             <div>
@@ -107,145 +178,456 @@
                     محاسبه قیمت فروش طلا
                 </h1>
 
+
                 <p data-i18n="subtitle">
-                    وزن، عیار، وزن ۷۵۰، فی و قیمت را وارد کنید.
+                    وزن، عیار و وزن ۷۵۰ را وارد کنید.
                 </p>
 
             </div>
+
 
             <div
                 class="status"
                 data-i18n="live"
             >
+
                 محاسبه لحظه‌ای
+
             </div>
 
         </header>
 
 
-        <!-- TABLE -->
+
+        <!-- =================================================
+             RATE CARD
+        ================================================== -->
+
+        <section
+            class="rate-card glass"
+        >
+
+
+            <div class="rate-top">
+
+
+                <div class="rate-title">
+
+
+                    <i
+                        class="fa-solid fa-coins"
+                    ></i>
+
+
+                    <div>
+
+                        <strong data-i18n="gold18">
+                            طلای ۱۸ عیار / ۷۵۰
+                        </strong>
+
+
+                        <small data-i18n="perGram">
+                            قیمت هر گرم
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="rate-status"
+                    id="rateStatus"
+                >
+
+                    <span
+                        class="rate-dot"
+                    ></span>
+
+
+                    <span
+                        id="rateStatusText"
+                        data-i18n="rateFallback"
+                    >
+                        نرخ پیش‌فرض
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CURRENT RATE -->
+
+            <div class="rate-main">
+
+                <div class="rate-price">
+
+                    <span
+                        id="liveRateDisplay"
+                    >
+                        0
+                    </span>
+
+
+                    <span
+                        id="currencyLabel"
+                        class="currency-label"
+                    >
+                        ریال
+                    </span>
+
+                </div>
+
+
+                <div class="rate-meta">
+
+                    <span data-i18n="source">
+                        منبع
+                    </span>
+
+                    :
+
+                    <a
+                        href="https://www.tgju.org/profile/geram18"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        TGJU
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONTROLS -->
+
+            <div class="rate-controls">
+
+
+                <!-- Unit -->
+
+                <div class="unit-switch">
+
+
+                    <button
+                        class="unit-btn active"
+                        id="rialBtn"
+                        type="button"
+                    >
+
+                        ریال
+
+                    </button>
+
+
+                    <button
+                        class="unit-btn"
+                        id="tomanBtn"
+                        type="button"
+                    >
+
+                        تومان
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- Mode -->
+
+                <div class="rate-mode">
+
+
+                    <button
+                        class="mode-btn active"
+                        id="liveModeBtn"
+                        type="button"
+                    >
+
+                        <i
+                            class="fa-solid fa-signal"
+                        ></i>
+
+                        <span data-i18n="liveRate">
+                            نرخ پیش‌فرض
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="mode-btn"
+                        id="manualModeBtn"
+                        type="button"
+                    >
+
+                        <i
+                            class="fa-solid fa-pen"
+                        ></i>
+
+                        <span data-i18n="manualRate">
+                            ورود دستی
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- Refresh -->
+
+                <button
+                    class="pill"
+                    id="refreshRateBtn"
+                    type="button"
+                >
+
+                    <i
+                        class="fa-solid fa-rotate"
+                    ></i>
+
+                    <span data-i18n="refresh">
+                        بروزرسانی
+                    </span>
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- MANUAL RATE -->
+
+            <div
+                class="manual-rate-area"
+                id="manualRateArea"
+            >
+
+
+                <label
+                    for="globalFee"
+                    data-i18n="manualRateLabel"
+                >
+
+                    فی دستی
+
+                </label>
+
+
+                <input
+                    id="globalFee"
+                    class="fee-input"
+                    type="text"
+                    inputmode="decimal"
+                    autocomplete="off"
+                    placeholder="0"
+                >
+
+            </div>
+
+
+            <div
+                class="rate-updated"
+                id="rateUpdated"
+            ></div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             TABLE
+        ================================================== -->
 
         <main class="tablecard glass">
 
+
             <div class="scroll">
 
-                <table id="goldTable">
+
+                <table
+                    id="goldTable"
+                >
+
 
                     <thead>
 
+
                     <tr>
 
-                        <th data-i18n="desc">
+
+                        <th
+                            data-i18n="desc"
+                            style="width:24%"
+                        >
+
                             شرح
+
                         </th>
+
 
                         <th data-i18n="weight">
+
                             وزن
+
                         </th>
+
 
                         <th data-i18n="karat">
+
                             عیار
+
                         </th>
+
 
                         <th data-i18n="w750">
+
                             وزن ۷۵۰
+
                         </th>
 
-                        <th data-i18n="fee">
-                            فی
-                        </th>
 
                         <th data-i18n="price">
+
                             قیمت
+
                         </th>
+
 
                         <th
                             data-i18n="remove"
-                            title="Remove"
+                            style="width:62px"
                         >
+
                             حذف
+
                         </th>
 
+
                     </tr>
+
 
                     </thead>
 
 
-                    <tbody id="tableBody">
-                    </tbody>
+                    <tbody
+                        id="tableBody"
+                    ></tbody>
 
 
                     <tfoot>
 
+
+                    <!-- TOTAL -->
+
                     <tr class="totalrow">
 
+
                         <td>
+
                             <div
                                 class="totalbox"
                                 data-i18n="total"
                             >
+
                                 جمع کل
+
                             </div>
+
                         </td>
 
-                        <!-- Weight -->
+
                         <td>
+
                             <div
                                 class="totalbox"
                                 id="totalWeight"
                             >
+
                                 0
+
                             </div>
+
                         </td>
 
-                        <!-- Karat is NOT summed -->
+
+                        <!-- Karat NOT summed -->
+
                         <td>
-                            <div class="totalbox na">
+
+                            <div
+                                class="totalbox na"
+                            >
+
                                 —
+
                             </div>
+
                         </td>
 
-                        <!-- 750 Weight -->
+
                         <td>
+
                             <div
                                 class="totalbox"
                                 id="total750"
                             >
+
                                 0
+
                             </div>
+
                         </td>
 
-                        <!-- Fee is NOT summed -->
-                        <td>
-                            <div class="totalbox na">
-                                —
-                            </div>
-                        </td>
 
-                        <!-- Price -->
                         <td>
+
                             <div
                                 class="totalbox"
                                 id="totalPrice"
                             >
+
                                 0
+
                             </div>
+
                         </td>
 
+
                         <td>
-                            <div class="totalbox na">
+
+                            <div
+                                class="totalbox na"
+                            >
+
                                 —
+
                             </div>
+
                         </td>
+
 
                     </tr>
 
 
-                    <!-- Add row -->
+
+                    <!-- ADD ROW -->
 
                     <tr class="addrow">
 
-                        <td colspan="7">
+
+                        <td colspan="6">
+
 
                             <button
                                 id="addRow"
@@ -253,35 +635,54 @@
                                 aria-label="Add row"
                                 title="Add row"
                             >
-                                <i class="fa-solid fa-plus"></i>
+
+                                <i
+                                    class="fa-solid fa-plus"
+                                ></i>
+
                             </button>
+
 
                         </td>
 
+
                     </tr>
+
 
                     </tfoot>
 
+
                 </table>
+
 
             </div>
 
 
-            <!-- TOOLBAR -->
+
+            <!-- ACTIONS -->
 
             <div class="toolbar">
+
 
                 <button
                     class="pill primary"
                     id="saveBtn"
                     type="button"
                 >
-                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    <i
+                        class="fa-solid fa-floppy-disk"
+                    ></i>
+
 
                     <span data-i18n="saveDashboard">
+
                         ذخیره در داشبورد
+
                     </span>
+
                 </button>
+
 
 
                 <button
@@ -289,12 +690,20 @@
                     id="pdfBtn"
                     type="button"
                 >
-                    <i class="fa-solid fa-file-pdf"></i>
+
+                    <i
+                        class="fa-solid fa-file-pdf"
+                    ></i>
+
 
                     <span data-i18n="downloadPDF">
+
                         دانلود PDF
+
                     </span>
+
                 </button>
+
 
 
                 <button
@@ -302,16 +711,26 @@
                     id="clearBtn"
                     type="button"
                 >
-                    <i class="fa-solid fa-trash-can"></i>
+
+                    <i
+                        class="fa-solid fa-trash-can"
+                    ></i>
+
 
                     <span data-i18n="clear">
+
                         پاک کردن
+
                     </span>
+
                 </button>
+
 
             </div>
 
+
         </main>
+
 
 
         <!-- HINT -->
@@ -320,11 +739,15 @@
             class="hint glass"
             data-i18n="hint"
         >
-            مقدارهای مثبت به جمع اضافه و مقدارهای منفی از جمع کم می‌شوند.
-            عیار و فی در جمع کل محاسبه نمی‌شوند.
+
+            قیمت = وزن ۷۵۰ × فی.
+            مقدارهای مثبت اضافه و مقدارهای منفی کم می‌شوند.
+
         </div>
 
+
     </section>
+
 
 
     <!-- =====================================================
@@ -336,26 +759,36 @@
         id="dashboard"
     >
 
+
         <header class="hero glass">
+
 
             <div>
 
+
                 <h1 data-i18n="dashboardTitle">
+
                     داشبورد
+
                 </h1>
 
+
                 <p data-i18n="dashboardSub">
+
                     سندهای ذخیره‌شده را باز، ویرایش، حذف یا PDF کنید.
+
                 </p>
 
+
             </div>
+
 
         </header>
 
 
-        <!-- Statistics -->
 
         <div class="stats">
+
 
             <div class="stat glass">
 
@@ -363,17 +796,23 @@
                     class="label"
                     data-i18n="docCount"
                 >
+
                     تعداد سندها
+
                 </div>
+
 
                 <div
                     class="value"
                     id="savedCount"
                 >
+
                     0
+
                 </div>
 
             </div>
+
 
 
             <div class="stat glass">
@@ -382,17 +821,23 @@
                     class="label"
                     data-i18n="currentWeight"
                 >
+
                     جمع وزن فعلی
+
                 </div>
+
 
                 <div
                     class="value"
                     id="dashWeight"
                 >
+
                     0
+
                 </div>
 
             </div>
+
 
 
             <div class="stat glass">
@@ -401,42 +846,52 @@
                     class="label"
                     data-i18n="currentPrice"
                 >
+
                     جمع قیمت فعلی
+
                 </div>
+
 
                 <div
                     class="value"
                     id="dashPrice"
                 >
+
                     0
+
                 </div>
 
             </div>
 
+
         </div>
+
 
 
         <h2
             class="sectiontitle"
             data-i18n="savedDocs"
         >
+
             سندهای ذخیره‌شده
+
         </h2>
 
 
         <div
-            id="savedList"
             class="savedlist"
-        >
-        </div>
+            id="savedList"
+        ></div>
+
 
     </section>
 
 </div>
 
 
+
 <!-- =========================================================
-     SAVE / EDIT MODAL
+     SAVE MODAL
 ========================================================== -->
 
 <div
@@ -444,66 +899,95 @@
     id="saveModal"
 >
 
+
     <div class="modal glass">
 
+
         <h2 id="modalTitle">
+
             ذخیره اطلاعات جدول
+
         </h2>
 
+
         <p data-i18n="modalSub">
+
             نام و جزئیات سند را وارد کنید.
+
         </p>
 
 
+
         <div class="group">
+
 
             <label
                 for="saveName"
                 data-i18n="nameLabel"
             >
+
                 نام جدول
+
             </label>
+
 
             <input
                 id="saveName"
                 type="text"
                 maxlength="80"
-                placeholder="مثلاً فروش طلای امروز"
             >
+
 
         </div>
 
 
+
         <div class="group">
+
 
             <label
                 for="saveDetail"
                 data-i18n="detailLabel"
             >
+
                 جزئیات
+
             </label>
+
 
             <textarea
                 id="saveDetail"
                 maxlength="500"
-                placeholder="توضیحات این سند..."
             ></textarea>
+
 
         </div>
 
 
+
         <div class="modalactions">
+
 
             <button
                 class="pill primary"
                 id="confirmSave"
                 type="button"
             >
-                <i class="fa-solid fa-floppy-disk"></i>
+
+                <i
+                    class="fa-solid fa-floppy-disk"
+                ></i>
+
+
                 <span data-i18n="save">
+
                     ذخیره
+
                 </span>
+
+
             </button>
+
 
 
             <button
@@ -511,17 +995,30 @@
                 id="cancelSave"
                 type="button"
             >
-                <i class="fa-solid fa-xmark"></i>
+
+                <i
+                    class="fa-solid fa-xmark"
+                ></i>
+
+
                 <span data-i18n="cancel">
+
                     انصراف
+
                 </span>
+
+
             </button>
+
 
         </div>
 
+
     </div>
 
+
 </div>
+
 
 
 <!-- =========================================================
@@ -533,29 +1030,45 @@
     id="confirmModal"
 >
 
+
     <div class="modal glass">
 
-        <h2 id="confirmTitle">
+
+        <h2
+            id="confirmTitle"
+        >
             تأیید
         </h2>
 
-        <p id="confirmText">
-        </p>
+
+        <p
+            id="confirmText"
+        ></p>
 
 
         <div class="modalactions">
+
 
             <button
                 class="pill danger"
                 id="confirmYes"
                 type="button"
             >
-                <i class="fa-solid fa-check"></i>
+
+                <i
+                    class="fa-solid fa-check"
+                ></i>
+
 
                 <span data-i18n="confirm">
+
                     تأیید
+
                 </span>
+
+
             </button>
+
 
 
             <button
@@ -563,22 +1076,34 @@
                 id="confirmNo"
                 type="button"
             >
-                <i class="fa-solid fa-xmark"></i>
+
+                <i
+                    class="fa-solid fa-xmark"
+                ></i>
+
 
                 <span data-i18n="cancel">
+
                     انصراف
+
                 </span>
+
+
             </button>
+
 
         </div>
 
+
     </div>
+
 
 </div>
 
 
+
 <!-- =========================================================
-     GLASS TOASTS
+     TOASTS
 ========================================================== -->
 
 <div
@@ -587,8 +1112,9 @@
 ></div>
 
 
+
 <!-- =========================================================
-     PRINT / PDF AREA
+     PRINT AREA
 ========================================================== -->
 
 <div
@@ -596,9 +1122,10 @@
     class="print-only"
 >
 
+
     <div class="print-head">
 
-        <!-- Actual logo -->
+
         <img
             id="printLogo"
             class="print-logo"
@@ -607,9 +1134,8 @@
         >
 
 
-        <!-- Right side information -->
-
         <div class="print-info">
+
 
             <div
                 class="print-doc"
@@ -618,148 +1144,187 @@
                 سند:1
             </div>
 
+
             <div>
-                <span data-print="phoneLabel">
+
+                <span data-print="phone">
                     تلفن
                 </span>:
 
                 <span dir="ltr">
                     09115054547
                 </span>
+
             </div>
 
+
             <div>
-                <span data-print="addressLabel">
+
+                <span data-print="address">
                     نشانی
                 </span>:
 
                 خیابان شیک، پاساژ آرسن، آبشده صمید
+
             </div>
+
 
         </div>
 
-
-        <!-- Title -->
 
         <div
             class="print-title"
             id="printTitle"
         >
+
             محاسبه قیمت فروش طلا
+
         </div>
 
-
-        <!-- Dates -->
 
         <div
             class="print-date"
             id="printDate"
-        >
-        </div>
+        ></div>
+
 
     </div>
 
 
-    <!-- PDF TABLE -->
+
+    <!-- PRINT RATE -->
+
+    <div
+        class="print-fee"
+        id="printFee"
+    ></div>
+
+
+
+    <!-- PRINT TABLE -->
 
     <table>
+
 
         <thead>
 
         <tr>
 
-            <th data-print="desc">
+
+            <th>
                 شرح
             </th>
 
-            <th data-print="weight">
+
+            <th>
                 وزن
             </th>
 
-            <th data-print="karat">
+
+            <th>
                 عیار
             </th>
 
-            <th data-print="w750">
+
+            <th>
                 وزن ۷۵۰
             </th>
 
-            <th data-print="fee">
-                فی
-            </th>
 
-            <th data-print="price">
+            <th>
                 قیمت
             </th>
+
 
         </tr>
 
         </thead>
 
 
-        <tbody id="printBody">
-        </tbody>
+        <tbody
+            id="printBody"
+        ></tbody>
 
 
         <tfoot>
 
         <tr class="sum">
 
-            <td id="printTotalText">
+
+            <td>
                 جمع کل
             </td>
 
-            <td id="printWeight">
-            </td>
+
+            <td
+                id="printWeight"
+            ></td>
+
 
             <td>
                 —
             </td>
 
-            <td id="print750">
-            </td>
 
-            <td>
-                —
-            </td>
+            <td
+                id="print750"
+            ></td>
 
-            <td id="printPrice">
-            </td>
+
+            <td
+                id="printPrice"
+            ></td>
+
 
         </tr>
 
+
         </tfoot>
+
 
     </table>
 
 
-    <!-- PDF calculated summary -->
+
+    <!-- CALCULATED SUMMARY -->
 
     <div class="print-summary">
 
-        <span id="printSummaryWeight"></span>
 
-        <span id="printSummary750"></span>
+        <span
+            id="printSummaryWeight"
+        ></span>
 
-        <span id="printSummaryPrice"></span>
+
+        <span
+            id="printSummary750"
+        ></span>
+
+
+        <span
+            id="printSummaryPrice"
+        ></span>
+
 
     </div>
 
 
-    <!-- Details -->
 
     <div
         class="print-detail"
         id="printDetail"
-    >
-    </div>
+    ></div>
 
 
     <div class="print-footer">
+
         Samid Gold Gallery
+
     </div>
 
+
 </div>
+
 
 
 <script>
@@ -770,70 +1335,101 @@
 
 const INITIAL_ROWS = 10;
 
-const STORAGE_KEY = "samidGoldSavedTablesV6";
-const THEME_KEY = "samidGoldThemeV6";
-const LANG_KEY = "samidGoldLangV6";
+
+/*
+    Storage keys
+*/
+
+const STORAGE_KEY =
+    "samidGoldSavedTablesV9";
+
+const THEME_KEY =
+    "samidGoldThemeV9";
+
+const LANG_KEY =
+    "samidGoldLangV9";
+
+
+/*
+    Default 18K / 750 rate.
+
+    This is only a fallback.
+    It prevents the site from breaking
+    when no backend is configured.
+*/
+
+const FALLBACK_RATE =
+    239168000;
+
+
+/*
+    Leave empty while using Live Server.
+
+    Do NOT use:
+
+    "/api/gold-rate"
+
+    until you actually create that
+    backend endpoint.
+
+    Example later:
+
+    const RATE_API_URL =
+        "https://yourdomain.com/api/gold-rate";
+*/
+
+const RATE_API_URL =
+    "";
+
+
+/* =========================================================
+   STATE
+========================================================== */
+
+let currentLanguage =
+    localStorage.getItem(
+        LANG_KEY
+    ) === "en"
+        ? "en"
+        : "fa";
+
+
+let currentTheme =
+    localStorage.getItem(
+        THEME_KEY
+    ) === "dark"
+        ? "dark"
+        : "light";
+
+
+let currentUnit =
+    "rial";
+
+
+let rateMode =
+    "live";
+
+
+let currentRate =
+    FALLBACK_RATE;
+
+
+let editingId =
+    null;
+
+
+let confirmAction =
+    null;
 
 
 /* =========================================================
    DOM
 ========================================================== */
 
-const tableBody = document.getElementById("tableBody");
-
-let editingId = null;
-let confirmAction = null;
-
-
-/* =========================================================
-   TABLE COLUMNS
-========================================================== */
-
-const columns = [
-
-    {
-        key: "description",
-        type: "text",
-        placeholderFA: "شرح کالا",
-        placeholderEN: "Description"
-    },
-
-    {
-        key: "weight",
-        type: "number",
-        placeholderFA: "0",
-        placeholderEN: "0"
-    },
-
-    {
-        key: "karat",
-        type: "number",
-        placeholderFA: "0",
-        placeholderEN: "0"
-    },
-
-    {
-        key: "weight750",
-        type: "number",
-        placeholderFA: "0",
-        placeholderEN: "0"
-    },
-
-    {
-        key: "fee",
-        type: "number",
-        placeholderFA: "0",
-        placeholderEN: "0"
-    },
-
-    {
-        key: "price",
-        type: "number",
-        placeholderFA: "0",
-        placeholderEN: "0"
-    }
-
-];
+const tableBody =
+    document.getElementById(
+        "tableBody"
+    );
 
 
 /* =========================================================
@@ -842,20 +1438,60 @@ const columns = [
 
 const translations = {
 
+
     fa: {
 
-        navCalculator: "محاسبه",
-        navDashboard: "داشبورد",
 
-        saveShort: "ذخیره",
+        navCalculator:
+            "محاسبه",
 
-        title: "محاسبه قیمت فروش طلا",
+        navDashboard:
+            "داشبورد",
+
+        saveShort:
+            "ذخیره",
+
+        title:
+            "محاسبه قیمت فروش طلا",
 
         subtitle:
-            "وزن، عیار، وزن ۷۵۰، فی و قیمت را وارد کنید.",
+            "وزن، عیار و وزن ۷۵۰ را وارد کنید.",
 
         live:
             "محاسبه لحظه‌ای",
+
+        gold18:
+            "طلای ۱۸ عیار / ۷۵۰",
+
+        perGram:
+            "قیمت هر گرم",
+
+        source:
+            "منبع",
+
+        liveRate:
+            "نرخ زنده",
+
+        manualRate:
+            "ورود دستی",
+
+        refresh:
+            "بروزرسانی",
+
+        manualRateLabel:
+            "فی دستی",
+
+        rateFallback:
+            "نرخ پیش‌فرض",
+
+        rateLoading:
+            "در حال دریافت نرخ",
+
+        rateError:
+            "اتصال به منبع ناموفق بود",
+
+        rateUpdated:
+            "آخرین بروزرسانی",
 
         desc:
             "شرح",
@@ -868,9 +1504,6 @@ const translations = {
 
         w750:
             "وزن ۷۵۰",
-
-        fee:
-            "فی",
 
         price:
             "قیمت",
@@ -891,7 +1524,7 @@ const translations = {
             "پاک کردن",
 
         hint:
-            "مقدارهای مثبت به جمع اضافه و مقدارهای منفی از جمع کم می‌شوند. عیار و فی در جمع کل محاسبه نمی‌شوند.",
+            "قیمت = وزن ۷۵۰ × فی. مقدارهای مثبت به جمع اضافه و مقدارهای منفی از جمع کم می‌شوند. عیار در جمع کل محاسبه نمی‌شود.",
 
         dashboardTitle:
             "داشبورد",
@@ -992,6 +1625,12 @@ const translations = {
         saveTitle:
             "ذخیره اطلاعات جدول",
 
+        rial:
+            "ریال",
+
+        toman:
+            "تومان",
+
         phone:
             "تلفن",
 
@@ -1000,9 +1639,6 @@ const translations = {
 
         document:
             "سند",
-
-        day:
-            "روز",
 
         languageChanged:
             "زبان فارسی فعال شد.",
@@ -1018,6 +1654,7 @@ const translations = {
 
     en: {
 
+
         navCalculator:
             "Calculator",
 
@@ -1031,10 +1668,43 @@ const translations = {
             "Gold Sale Calculator",
 
         subtitle:
-            "Enter weight, karat, 750 weight, rate and price.",
+            "Enter weight, karat and 750 weight.",
 
         live:
             "Live calculation",
+
+        gold18:
+            "18K / 750 Gold",
+
+        perGram:
+            "Price per gram",
+
+        source:
+            "Source",
+
+        liveRate:
+            "Live rate",
+
+        manualRate:
+            "Manual",
+
+        refresh:
+            "Refresh",
+
+        manualRateLabel:
+            "Manual rate",
+
+        rateFallback:
+            "Default rate",
+
+        rateLoading:
+            "Loading rate",
+
+        rateError:
+            "Source connection failed",
+
+        rateUpdated:
+            "Last updated",
 
         desc:
             "Description",
@@ -1047,9 +1717,6 @@ const translations = {
 
         w750:
             "750 Weight",
-
-        fee:
-            "Rate",
 
         price:
             "Price",
@@ -1070,7 +1737,7 @@ const translations = {
             "Clear",
 
         hint:
-            "Positive values are added and negative values are subtracted. Karat and rate are not included in totals.",
+            "Price = 750 weight × rate. Positive values are added and negative values are subtracted. Karat is not included in totals.",
 
         dashboardTitle:
             "Dashboard",
@@ -1171,6 +1838,12 @@ const translations = {
         saveTitle:
             "Save table",
 
+        rial:
+            "Rial",
+
+        toman:
+            "Toman",
+
         phone:
             "Phone",
 
@@ -1179,9 +1852,6 @@ const translations = {
 
         document:
             "Document",
-
-        day:
-            "Day",
 
         languageChanged:
             "English enabled.",
@@ -1198,19 +1868,17 @@ const translations = {
 
 
 /* =========================================================
-   LANGUAGE
+   TRANSLATE
 ========================================================== */
 
-let currentLanguage =
-    localStorage.getItem(LANG_KEY) === "en"
-        ? "en"
-        : "fa";
-
-
-function translate(key) {
+function tr(
+    key
+) {
 
     return (
-        translations[currentLanguage]?.[key]
+        translations[
+            currentLanguage
+        ]?.[key]
         || key
     );
 
@@ -1218,350 +1886,119 @@ function translate(key) {
 
 
 /* =========================================================
-   APPLY LANGUAGE
+   ESCAPE HTML
 ========================================================== */
 
-function applyLanguage() {
+function escapeHtml(
+    value
+) {
 
-    document.documentElement.lang =
-        currentLanguage;
+    return String(
+        value ?? ""
+    )
+        .replace(
+            /[&<>"']/g,
+            character => {
 
-    document.documentElement.dir =
-        currentLanguage === "fa"
-            ? "rtl"
-            : "ltr";
+                const map = {
 
+                    "&":
+                        "&amp;",
 
-    /* Standard i18n */
+                    "<":
+                        "&lt;",
 
-    document
-        .querySelectorAll("[data-i18n]")
-        .forEach(element => {
+                    ">":
+                        "&gt;",
 
-            element.textContent =
-                translate(
-                    element.dataset.i18n
-                );
+                    '"':
+                        "&quot;",
 
-        });
+                    "'":
+                        "&#039;"
 
-
-    /* Language button */
-
-    const langButton =
-        document.getElementById("langBtn");
-
-    langButton.textContent =
-        currentLanguage === "fa"
-            ? "EN"
-            : "FA";
+                };
 
 
-    langButton.title =
-        currentLanguage === "fa"
-            ? "English / فارسی"
-            : "فارسی / English";
+                return map[
+                    character
+                ];
 
-
-    /* Modal placeholders */
-
-    document.getElementById("saveName").placeholder =
-        currentLanguage === "fa"
-            ? "مثلاً فروش طلای امروز"
-            : "e.g. Today's gold sale";
-
-
-    document.getElementById("saveDetail").placeholder =
-        currentLanguage === "fa"
-            ? "توضیحات این سند..."
-            : "Details for this document...";
-
-
-    /* Dynamic row placeholders */
-
-    tableBody
-        .querySelectorAll("tr")
-        .forEach(row => {
-
-            row.querySelectorAll("input")
-                .forEach(input => {
-
-                    const column =
-                        columns.find(
-                            item =>
-                                item.key === input.dataset.key
-                        );
-
-                    if (!column) {
-                        return;
-                    }
-
-                    input.placeholder =
-                        currentLanguage === "fa"
-                            ? column.placeholderFA
-                            : column.placeholderEN;
-
-                });
-
-        });
-
-
-    /* Dynamic buttons */
-
-    tableBody
-        .querySelectorAll(".rowminus")
-        .forEach(button => {
-
-            button.title =
-                translate("remove");
-
-        });
-
-
-    /*
-      PDF labels
-    */
-
-    document
-        .querySelectorAll("[data-print]")
-        .forEach(element => {
-
-            const key =
-                element.dataset.print;
-
-            const translated =
-                translate(key);
-
-            if (translated !== key) {
-                element.textContent = translated;
             }
-
-        });
-
-
-    /*
-      Saved documents
-    */
-
-    renderDashboard();
+        );
 
 }
 
 
 /* =========================================================
-   CREATE ROW
+   PARSE NUMBER
 ========================================================== */
 
-function addRow(values = {}) {
-
-    /*
-      Important:
-      This variable is intentionally called rowElement
-      instead of "tr" so it can never conflict with
-      the translate() function.
-    */
-
-    const rowElement =
-        document.createElement("tr");
-
-
-    columns.forEach(column => {
-
-        const cell =
-            document.createElement("td");
-
-
-        const input =
-            document.createElement("input");
-
-
-        input.className =
-            "input" +
-            (
-                column.type === "number"
-                    ? " numeric"
-                    : ""
-            );
-
-
-        input.type = "text";
-
-
-        input.dataset.key =
-            column.key;
-
-
-        input.autocomplete =
-            "off";
-
-
-        if (column.type === "number") {
-
-            input.dataset.numeric =
-                "1";
-
-            input.inputMode =
-                "decimal";
-
-        }
-
-
-        input.placeholder =
-            currentLanguage === "fa"
-                ? column.placeholderFA
-                : column.placeholderEN;
-
-
-        if (
-            values[column.key] !== undefined
-            &&
-            values[column.key] !== null
-        ) {
-
-            input.value =
-                values[column.key];
-
-        }
-
-
-        cell.appendChild(input);
-
-        rowElement.appendChild(cell);
-
-    });
-
-
-    /*
-      Remove row
-    */
-
-    const actionCell =
-        document.createElement("td");
-
-
-    const removeButton =
-        document.createElement("button");
-
-
-    removeButton.type =
-        "button";
-
-
-    removeButton.className =
-        "rowminus";
-
-
-    removeButton.innerHTML =
-        '<i class="fa-solid fa-minus"></i>';
-
-
-    removeButton.title =
-        translate("remove");
-
-
-    removeButton.setAttribute(
-        "aria-label",
-        translate("remove")
-    );
-
-
-    removeButton.addEventListener(
-        "click",
-        () => {
-
-            rowElement.remove();
-
-            updateTotals();
-
-            toast(
-                translate("rowDeleted")
-            );
-
-        }
-    );
-
-
-    actionCell.appendChild(
-        removeButton
-    );
-
-
-    rowElement.appendChild(
-        actionCell
-    );
-
-
-    tableBody.appendChild(
-        rowElement
-    );
-
-}
-
-
-/* =========================================================
-   NUMBER PARSER
-========================================================== */
-
-function parseNumber(value) {
+function parseNumber(
+    value
+) {
 
     if (!value) {
         return 0;
     }
 
 
-    let normalized =
+    const normalized =
         String(value)
 
-            /* Persian numbers */
             .replace(
                 /[۰-۹]/g,
                 digit =>
                     String(
                         "۰۱۲۳۴۵۶۷۸۹"
-                            .indexOf(digit)
+                            .indexOf(
+                                digit
+                            )
                     )
             )
 
-            /* Arabic numbers */
             .replace(
                 /[٠-٩]/g,
                 digit =>
                     String(
                         "٠١٢٣٤٥٦٧٨٩"
-                            .indexOf(digit)
+                            .indexOf(
+                                digit
+                            )
                     )
             )
 
-            /* separators */
-            .replace(/[,٬]/g, "")
+            .replace(
+                /[,٬]/g,
+                ""
+            )
 
             .trim();
 
 
-    const validNumber =
-        /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/;
-
-
-    return validNumber.test(normalized)
-        ? Number(normalized)
+    return /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(
+        normalized
+    )
+        ? Number(
+            normalized
+        )
         : 0;
 
 }
 
 
 /* =========================================================
-   NUMBER FORMATTER
+   FORMAT NUMBER
 ========================================================== */
 
 function formatNumber(
-    number,
-    decimals = 3
+    number
 ) {
 
     if (
-        !Number.isFinite(number)
-        ||
-        Math.abs(number) < 0.0000001
+        !Number.isFinite(
+            number
+        )
     ) {
 
         return "0";
@@ -1573,7 +2010,7 @@ function formatNumber(
         "en-US",
         {
             maximumFractionDigits:
-                decimals,
+                3,
 
             useGrouping:
                 true
@@ -1587,7 +2024,9 @@ function formatNumber(
    SANITIZE NUMBER INPUT
 ========================================================== */
 
-function sanitizeNumeric(input) {
+function sanitizeNumeric(
+    input
+) {
 
     let value =
         input.value
@@ -1597,7 +2036,9 @@ function sanitizeNumeric(input) {
                 digit =>
                     String(
                         "۰۱۲۳۴۵۶۷۸۹"
-                            .indexOf(digit)
+                            .indexOf(
+                                digit
+                            )
                     )
             )
 
@@ -1606,7 +2047,9 @@ function sanitizeNumeric(input) {
                 digit =>
                     String(
                         "٠١٢٣٤٥٦٧٨٩"
-                            .indexOf(digit)
+                            .indexOf(
+                                digit
+                            )
                     )
             )
 
@@ -1636,21 +2079,23 @@ function sanitizeNumeric(input) {
             );
 
 
-    const decimalPosition =
+    const decimal =
         rest.indexOf(".");
 
 
-    if (decimalPosition !== -1) {
+    if (
+        decimal !== -1
+    ) {
 
         rest =
             rest.slice(
                 0,
-                decimalPosition + 1
+                decimal + 1
             )
             +
             rest
                 .slice(
-                    decimalPosition + 1
+                    decimal + 1
                 )
                 .replace(
                     /\./g,
@@ -1661,103 +2106,500 @@ function sanitizeNumeric(input) {
 
 
     input.value =
-        sign + rest;
+        sign +
+        rest;
 
 }
 
 
 /* =========================================================
-   GET TABLE ROWS
+   GET RATE IN RIAL
 ========================================================== */
 
-function getRows() {
+function getRateInRial() {
 
-    return [
-        ...tableBody.querySelectorAll("tr")
-    ].map(row => {
+    if (
+        rateMode ===
+        "manual"
+    ) {
 
-        const result = {};
-
-
-        row.querySelectorAll("input")
-            .forEach(input => {
-
-                result[input.dataset.key] =
-                    input.value;
-
-            });
+        const inputValue =
+            parseNumber(
+                document.getElementById(
+                    "globalFee"
+                ).value
+            );
 
 
-        return result;
+        if (
+            currentUnit ===
+            "toman"
+        ) {
 
-    });
+            return (
+                inputValue *
+                10
+            );
+
+        }
+
+
+        return inputValue;
+
+    }
+
+
+    return currentRate;
 
 }
 
 
 /* =========================================================
-   GET TOTALS
+   GET RATE IN SELECTED UNIT
+========================================================== */
+
+function getRateInSelectedUnit() {
+
+    const rate =
+        getRateInRial();
+
+
+    return currentUnit ===
+        "toman"
+
+        ? rate / 10
+
+        : rate;
+
+}
+
+
+/* =========================================================
+   CREATE ROW
+========================================================== */
+
+function addRow(
+    values = {}
+) {
+
+    const rowElement =
+        document.createElement(
+            "tr"
+        );
+
+
+    columnsForRows.forEach(
+        column => {
+
+            const cell =
+                document.createElement(
+                    "td"
+                );
+
+
+            const input =
+                document.createElement(
+                    "input"
+                );
+
+
+            input.className =
+                "input" +
+                (
+                    column.key ===
+                    "price"
+                        ? " price-input"
+                        : ""
+                ) +
+                (
+                    column.type ===
+                    "number"
+                        ? " numeric"
+                        : ""
+                );
+
+
+            input.type =
+                "text";
+
+
+            input.dataset.key =
+                column.key;
+
+
+            input.autocomplete =
+                "off";
+
+
+            if (
+                column.type ===
+                "number"
+            ) {
+
+                input.dataset.numeric =
+                    "1";
+
+                input.inputMode =
+                    "decimal";
+
+            }
+
+
+            /*
+                Price must never be typed
+                manually.
+            */
+
+            if (
+                column.key ===
+                "price"
+            ) {
+
+                input.readOnly =
+                    true;
+
+            }
+
+
+            input.placeholder =
+                currentLanguage ===
+                    "fa"
+
+                    ? column.placeholderFA
+
+                    : column.placeholderEN;
+
+
+            if (
+                values[
+                    column.key
+                ] !== undefined
+            ) {
+
+                input.value =
+                    values[
+                        column.key
+                    ];
+
+            }
+
+
+            cell.appendChild(
+                input
+            );
+
+
+            rowElement.appendChild(
+                cell
+            );
+
+        }
+    );
+
+
+    /*
+        Remove row button
+    */
+
+    const actionCell =
+        document.createElement(
+            "td"
+        );
+
+
+    const removeButton =
+        document.createElement(
+            "button"
+        );
+
+
+    removeButton.type =
+        "button";
+
+
+    removeButton.className =
+        "rowminus";
+
+
+    removeButton.innerHTML =
+        '<i class="fa-solid fa-minus"></i>';
+
+
+    removeButton.title =
+        tr("remove");
+
+
+    removeButton.setAttribute(
+        "aria-label",
+        tr("remove")
+    );
+
+
+    removeButton.addEventListener(
+        "click",
+        () => {
+
+            rowElement.remove();
+
+            updateTotals();
+
+            toast(
+                tr(
+                    "rowDeleted"
+                )
+            );
+
+        }
+    );
+
+
+    actionCell.appendChild(
+        removeButton
+    );
+
+
+    rowElement.appendChild(
+        actionCell
+    );
+
+
+    tableBody.appendChild(
+        rowElement
+    );
+
+}
+
+
+/* =========================================================
+   ROW DEFINITIONS
+========================================================== */
+
+const columnsForRows = [
+
+    {
+        key:
+            "description",
+
+        type:
+            "text",
+
+        placeholderFA:
+            "شرح کالا",
+
+        placeholderEN:
+            "Description"
+
+    },
+
+
+    {
+        key:
+            "weight",
+
+        type:
+            "number",
+
+        placeholderFA:
+            "0",
+
+        placeholderEN:
+            "0"
+
+    },
+
+
+    {
+        key:
+            "karat",
+
+        type:
+            "number",
+
+        placeholderFA:
+            "0",
+
+        placeholderEN:
+            "0"
+
+    },
+
+
+    {
+        key:
+            "weight750",
+
+        type:
+            "number",
+
+        placeholderFA:
+            "0",
+
+        placeholderEN:
+            "0"
+
+    },
+
+
+    {
+        key:
+            "price",
+
+        type:
+            "number",
+
+        placeholderFA:
+            "محاسبه می‌شود",
+
+        placeholderEN:
+            "Calculated"
+
+    }
+
+];
+
+
+/* =========================================================
+   PRICE CALCULATION
+========================================================== */
+
+function calculatePrices() {
+
+    const fee =
+        getRateInSelectedUnit();
+
+
+    tableBody
+        .querySelectorAll(
+            "tr"
+        )
+        .forEach(
+            row => {
+
+                const weight750Input =
+                    row.querySelector(
+                        'input[data-key="weight750"]'
+                    );
+
+
+                const priceInput =
+                    row.querySelector(
+                        'input[data-key="price"]'
+                    );
+
+
+                if (
+                    !weight750Input ||
+                    !priceInput
+                ) {
+
+                    return;
+
+                }
+
+
+                const weight750 =
+                    parseNumber(
+                        weight750Input.value
+                    );
+
+
+                const price =
+                    weight750 *
+                    fee;
+
+
+                priceInput.value =
+                    price === 0
+                        ? ""
+                        : String(
+                            price
+                        );
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   TOTALS
 ========================================================== */
 
 function getTotals() {
 
+    calculatePrices();
+
+
     const totals = {
 
-        weight: 0,
+        weight:
+            0,
 
-        weight750: 0,
+        weight750:
+            0,
 
-        price: 0
+        price:
+            0
 
     };
 
 
     tableBody
-        .querySelectorAll("tr")
-        .forEach(row => {
+        .querySelectorAll(
+            "tr"
+        )
+        .forEach(
+            row => {
 
-            row.querySelectorAll(
-                "input[data-numeric]"
-            ).forEach(input => {
-
-                const key =
-                    input.dataset.key;
-
-                const number =
-                    parseNumber(input.value);
+                const weight =
+                    row.querySelector(
+                        'input[data-key="weight"]'
+                    );
 
 
-                /*
-                  Only these three columns
-                  are calculated.
-                */
+                const weight750 =
+                    row.querySelector(
+                        'input[data-key="weight750"]'
+                    );
 
-                if (key === "weight") {
+
+                const price =
+                    row.querySelector(
+                        'input[data-key="price"]'
+                    );
+
+
+                if (weight) {
 
                     totals.weight +=
-                        number;
+                        parseNumber(
+                            weight.value
+                        );
 
                 }
 
 
-                if (key === "weight750") {
+                if (weight750) {
 
                     totals.weight750 +=
-                        number;
+                        parseNumber(
+                            weight750.value
+                        );
 
                 }
 
 
-                if (key === "price") {
+                if (price) {
 
                     totals.price +=
-                        number;
+                        parseNumber(
+                            price.value
+                        );
 
                 }
 
-            });
-
-        });
+            }
+        );
 
 
     return totals;
@@ -1766,7 +2608,7 @@ function getTotals() {
 
 
 /* =========================================================
-   UPDATE TOTALS
+   UPDATE UI TOTALS
 ========================================================== */
 
 function updateTotals() {
@@ -1814,11 +2656,546 @@ function updateTotals() {
             totals.price
         );
 
+
+    updateRateUI();
+
 }
 
 
 /* =========================================================
-   TABLE INPUT EVENT
+   RATE UI
+========================================================== */
+
+function updateRateUI() {
+
+    const display =
+        document.getElementById(
+            "liveRateDisplay"
+        );
+
+
+    const statusText =
+        document.getElementById(
+            "rateStatusText"
+        );
+
+
+    const currency =
+        document.getElementById(
+            "currencyLabel"
+        );
+
+
+    currency.textContent =
+        currentUnit ===
+            "rial"
+                ? tr("rial")
+                : tr("toman");
+
+
+    if (
+        rateMode ===
+        "manual"
+    ) {
+
+        display.textContent =
+            formatNumber(
+                getRateInSelectedUnit()
+            );
+
+
+        statusText.textContent =
+            tr("manualRate");
+
+
+        return;
+
+    }
+
+
+    display.textContent =
+        formatNumber(
+            currentRate /
+            (
+                currentUnit ===
+                "toman"
+                    ? 10
+                    : 1
+            )
+        );
+
+}
+
+
+/* =========================================================
+   RATE MODE
+========================================================== */
+/* =========================================================
+   RATE MODE
+========================================================= */
+
+function setRateMode(
+    mode,
+    notify = true
+) {
+
+    rateMode = mode;
+
+    const liveButton =
+        document.getElementById(
+            "liveModeBtn"
+        );
+
+    const manualButton =
+        document.getElementById(
+            "manualModeBtn"
+        );
+
+    const manualArea =
+        document.getElementById(
+            "manualRateArea"
+        );
+
+    const feeInput =
+        document.getElementById(
+            "globalFee"
+        );
+
+
+    /* -----------------------------------------
+       BUTTON STATE
+    ----------------------------------------- */
+
+    liveButton.classList.toggle(
+        "active",
+        mode === "live"
+    );
+
+    manualButton.classList.toggle(
+        "active",
+        mode === "manual"
+    );
+
+
+    /* -----------------------------------------
+       SHOW / HIDE MANUAL INPUT
+    ----------------------------------------- */
+
+    manualArea.classList.toggle(
+        "active",
+        mode === "manual"
+    );
+
+
+    /* -----------------------------------------
+       MANUAL MODE
+    ----------------------------------------- */
+
+    if (mode === "manual") {
+
+        /*
+            When entering manual mode,
+            put the current rate inside the input.
+
+            Important:
+            currentRate is always stored in Rial.
+        */
+
+        if (
+            !feeInput.value.trim()
+        ) {
+
+            feeInput.value =
+                formatNumber(
+                    currentUnit === "toman"
+                        ? currentRate / 10
+                        : currentRate
+                );
+
+        }
+
+
+        document.getElementById(
+            "rateStatusText"
+        ).textContent =
+            tr("manualRate");
+
+
+        document.getElementById(
+            "rateUpdated"
+        ).textContent =
+            currentLanguage === "fa"
+                ? "فی دستی فعال است"
+                : "Manual rate is active";
+
+
+        /*
+            Immediately recalculate
+            using the manual value.
+        */
+
+        calculatePrices();
+
+        updateTotals();
+
+
+        if (notify) {
+
+            toast(
+                currentLanguage === "fa"
+                    ? "ورود دستی فعال شد."
+                    : "Manual rate enabled."
+            );
+
+        }
+
+        return;
+    }
+
+
+    /* -----------------------------------------
+       LIVE MODE
+    ----------------------------------------- */
+
+    document.getElementById(
+        "rateStatusText"
+    ).textContent =
+        tr("liveRate");
+
+
+    if (notify) {
+
+        toast(
+            currentLanguage === "fa"
+                ? "نرخ پیش‌فرض فعال شد."
+                : "Default rate enabled."
+        );
+
+    }
+
+
+    fetchGoldRate();
+
+}
+
+/* =========================================================
+   RATE MODE BUTTON EVENTS
+========================================================= */
+
+document
+    .getElementById("manualModeBtn")
+    .addEventListener(
+        "click",
+        () => {
+
+            setRateMode(
+                "manual"
+            );
+
+        }
+    );
+
+
+document
+    .getElementById("liveModeBtn")
+    .addEventListener(
+        "click",
+        () => {
+
+            setRateMode(
+                "live"
+            );
+
+        }
+    );
+
+/* =========================================================
+   FETCH LIVE RATE
+========================================================== */
+
+async function fetchGoldRate() {
+
+    const statusText =
+        document.getElementById(
+            "rateStatusText"
+        );
+
+
+    const updatedText =
+        document.getElementById(
+            "rateUpdated"
+        );
+
+
+    /*
+        If no backend endpoint exists,
+        do not make any HTTP request.
+    */
+
+    if (
+        !RATE_API_URL
+    ) {
+
+        currentRate =
+            FALLBACK_RATE;
+
+
+        statusText.textContent =
+            tr(
+                "rateFallback"
+            );
+
+
+        updatedText.textContent =
+            currentLanguage ===
+                "fa"
+
+                ? "نرخ پیش‌فرض فعال است"
+
+                : "Default rate is active";
+
+
+        updateRateUI();
+
+        calculatePrices();
+
+        updateTotals();
+
+        return;
+
+    }
+
+
+    statusText.textContent =
+        tr(
+            "rateLoading"
+        );
+
+
+    try {
+
+        const response =
+            await fetch(
+                RATE_API_URL,
+                {
+                    cache:
+                        "no-store",
+
+                    headers:
+                        {
+                            Accept:
+                                "application/json"
+                        }
+                }
+            );
+
+
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+                "Request failed"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const price =
+            Number(
+                data.price
+            );
+
+
+        if (
+            !Number.isFinite(
+                price
+            )
+            ||
+            price <= 0
+        ) {
+
+            throw new Error(
+                "Invalid price"
+            );
+
+        }
+
+
+        if (
+            data.currency ===
+            "IRT"
+        ) {
+
+            currentRate =
+                price *
+                10;
+
+        } else {
+
+            currentRate =
+                price;
+
+        }
+
+
+        statusText.textContent =
+            tr(
+                "liveRate"
+            );
+
+
+        const updatedDate =
+            data.updatedAt
+                ? new Date(
+                    data.updatedAt
+                )
+                : new Date();
+
+
+        updatedText.textContent =
+            `${
+                tr("rateUpdated")
+            }: ${
+                updatedDate.toLocaleString(
+                    currentLanguage ===
+                        "fa"
+
+                        ? "fa-IR"
+
+                        : "en-US"
+                )
+            }`;
+
+
+        updateRateUI();
+
+        calculatePrices();
+
+        updateTotals();
+
+
+    } catch (
+        error
+    ) {
+
+        currentRate =
+            FALLBACK_RATE;
+
+
+        statusText.textContent =
+            tr(
+                "rateFallback"
+            );
+
+
+        updatedText.textContent =
+            tr(
+                "rateError"
+            );
+
+
+        updateRateUI();
+
+        calculatePrices();
+
+        updateTotals();
+
+
+        toast(
+            tr(
+                "rateError"
+            ),
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   MANUAL RATE
+========================================================== */
+
+document
+    .getElementById(
+        "globalFee"
+    )
+    .addEventListener(
+        "input",
+        event => {
+
+            /* =========================================================
+   MANUAL RATE INPUT
+========================================================= */
+
+document
+    .getElementById("globalFee")
+    .addEventListener(
+        "input",
+        event => {
+
+            /*
+                Keep only valid numeric characters.
+            */
+
+            sanitizeNumeric(
+                event.target
+            );
+
+
+            /*
+                Manual mode is required.
+            */
+
+            if (
+                rateMode !== "manual"
+            ) {
+                return;
+            }
+
+
+            /*
+                Recalculate everything immediately.
+            */
+
+            calculatePrices();
+
+            updateTotals();
+
+
+            /*
+                Update the displayed rate too.
+            */
+
+            updateRateUI();
+
+        }
+    );
+
+
+            if (
+                rateMode ===
+                "manual"
+            ) {
+
+                calculatePrices();
+
+                updateTotals();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   TABLE INPUT
 ========================================================== */
 
 tableBody.addEventListener(
@@ -1835,6 +3212,9 @@ tableBody.addEventListener(
 
         }
 
+
+        calculatePrices();
+
         updateTotals();
 
     }
@@ -1846,7 +3226,9 @@ tableBody.addEventListener(
 ========================================================== */
 
 document
-    .getElementById("addRow")
+    .getElementById(
+        "addRow"
+    )
     .addEventListener(
         "click",
         () => {
@@ -1854,7 +3236,9 @@ document
             addRow();
 
             toast(
-                translate("rowAdded")
+                tr(
+                    "rowAdded"
+                )
             );
 
         }
@@ -1862,59 +3246,226 @@ document
 
 
 /* =========================================================
-   LOAD ROWS
+   UNIT SWITCH
 ========================================================== */
 
-function loadRows(rowsToLoad) {
+/* =========================================================
+   UNIT SWITCH
+========================================================= */
 
-    tableBody.innerHTML = "";
+function setUnit(
+    unit
+) {
+
+    const feeInput =
+        document.getElementById(
+            "globalFee"
+        );
 
 
-    const source =
-        Array.isArray(rowsToLoad)
-        &&
-        rowsToLoad.length
-            ? rowsToLoad
-            : Array.from(
-                {
-                    length:
-                        INITIAL_ROWS
-                },
-                () => ({})
+    /*
+        If manual mode is active,
+        convert the currently entered rate
+        from the OLD unit to the NEW unit.
+    */
+
+    if (
+        rateMode === "manual"
+    ) {
+
+        const value =
+            parseNumber(
+                feeInput.value
             );
 
 
-    source.forEach(
-        row => addRow(row)
-    );
+        if (
+            value > 0
+        ) {
 
+            /*
+                First convert the old input
+                to Rial.
+            */
+
+            const rialValue =
+                currentUnit === "toman"
+                    ? value * 10
+                    : value;
+
+
+            /*
+                Then convert Rial
+                to the NEW unit.
+            */
+
+            const newValue =
+                unit === "toman"
+                    ? rialValue / 10
+                    : rialValue;
+
+
+            feeInput.value =
+                formatNumber(
+                    newValue
+                );
+
+        }
+
+    }
+
+
+    /*
+        Now change the actual unit.
+    */
+
+    currentUnit =
+        unit;
+
+
+    syncUnitButtons();
+
+
+    /*
+        Recalculate everything.
+    */
+
+    calculatePrices();
 
     updateTotals();
 
+    updateRateUI();
+
 }
 
-
-/* =========================================================
-   HAS DATA
-========================================================== */
-
-function hasData(rowsToCheck) {
-
-    return rowsToCheck.some(
-        row =>
-            Object.values(row).some(
-                value =>
-                    String(
-                        value ?? ""
-                    ).trim() !== ""
+document
+    .getElementById(
+        "rialBtn"
+    )
+    .addEventListener(
+        "click",
+        () =>
+            setUnit(
+                "rial"
             )
     );
 
+
+document
+    .getElementById(
+        "tomanBtn"
+    )
+    .addEventListener(
+        "click",
+        () =>
+            setUnit(
+                "toman"
+            )
+    );
+
+
+/* =========================================================
+   REFRESH
+========================================================== */
+
+document
+    .getElementById(
+        "refreshRateBtn"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            if (
+                rateMode ===
+                "live"
+            ) {
+
+                fetchGoldRate();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   DATE
+========================================================== */
+
+function getDateInfo() {
+
+    const now =
+        new Date();
+
+
+    return {
+
+        gregorian:
+
+            now.toLocaleDateString(
+                "en-US",
+                {
+                    year:
+                        "numeric",
+
+                    month:
+                        "long",
+
+                    day:
+                        "numeric"
+                }
+            ),
+
+
+        persian:
+
+            now.toLocaleDateString(
+                "fa-IR-u-ca-persian",
+                {
+                    year:
+                        "numeric",
+
+                    month:
+                        "long",
+
+                    day:
+                        "numeric"
+                }
+            ),
+
+
+        weekday:
+
+            now.toLocaleDateString(
+                "fa-IR-u-ca-persian",
+                {
+                    weekday:
+                        "long"
+                }
+            ),
+
+
+        time:
+
+            now.toLocaleTimeString(
+                "fa-IR",
+                {
+                    hour:
+                        "2-digit",
+
+                    minute:
+                        "2-digit"
+                }
+            )
+
+    };
+
 }
 
 
 /* =========================================================
-   LOCAL STORAGE
+   STORAGE
 ========================================================== */
 
 function getSavedDocuments() {
@@ -1936,66 +3487,16 @@ function getSavedDocuments() {
 }
 
 
-function saveDocuments(documents) {
+function saveDocuments(
+    documents
+) {
 
     localStorage.setItem(
         STORAGE_KEY,
-        JSON.stringify(documents)
+        JSON.stringify(
+            documents
+        )
     );
-
-}
-
-
-/* =========================================================
-   DATE
-========================================================== */
-
-function getDateInfo() {
-
-    const now =
-        new Date();
-
-
-    return {
-
-        gregorian:
-            now.toLocaleDateString(
-                "en-US",
-                {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric"
-                }
-            ),
-
-        persian:
-            now.toLocaleDateString(
-                "fa-IR-u-ca-persian",
-                {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric"
-                }
-            ),
-
-        weekday:
-            now.toLocaleDateString(
-                "fa-IR-u-ca-persian",
-                {
-                    weekday: "long"
-                }
-            ),
-
-        time:
-            now.toLocaleTimeString(
-                "fa-IR",
-                {
-                    hour: "2-digit",
-                    minute: "2-digit"
-                }
-            )
-
-    };
 
 }
 
@@ -2006,24 +3507,21 @@ function getDateInfo() {
 
 function getNextDocumentNumber() {
 
-    const documents =
-        getSavedDocuments();
-
-
     return (
-        documents.reduce(
-            (
-                highest,
-                document
-            ) =>
-                Math.max(
+        getSavedDocuments()
+            .reduce(
+                (
                     highest,
-                    Number(
-                        document.documentNumber
-                    ) || 0
-                ),
-            0
-        )
+                    item
+                ) =>
+                    Math.max(
+                        highest,
+                        Number(
+                            item.documentNumber
+                        ) || 0
+                    ),
+                0
+            )
         + 1
     );
 
@@ -2035,21 +3533,29 @@ function getNextDocumentNumber() {
 ========================================================== */
 
 function openSaveModal(
-    documentId = null
+    documentId =
+        null
 ) {
 
     const currentRows =
         getRows();
 
 
-    if (!hasData(currentRows)) {
+    if (
+        !hasData(
+            currentRows
+        )
+    ) {
 
         toast(
-            translate("needData"),
+            tr(
+                "needData"
+            ),
             "error"
         );
 
         return;
+
     }
 
 
@@ -2057,50 +3563,68 @@ function openSaveModal(
         documentId;
 
 
-    const existingDocument =
+    const existing =
         documentId
-            ? getSavedDocuments().find(
-                document =>
-                    document.id ===
-                    documentId
-            )
+            ? getSavedDocuments()
+                .find(
+                    item =>
+                        item.id ===
+                        documentId
+                )
             : null;
 
 
     document.getElementById(
         "modalTitle"
     ).textContent =
-        existingDocument
-            ? translate("editTitle")
-            : translate("saveTitle");
+
+        existing
+
+            ? tr("editTitle")
+
+            : tr("saveTitle");
 
 
     document.getElementById(
         "saveName"
     ).value =
-        existingDocument?.name || "";
+        existing?.name ||
+        "";
 
 
     document.getElementById(
         "saveDetail"
     ).value =
-        existingDocument?.detail || "";
+        existing?.detail ||
+        "";
 
 
-    document.getElementById(
-        "saveModal"
-    ).classList.add(
-        "open"
-    );
+    document
+        .getElementById(
+            "saveModal"
+        )
+        .classList
+        .add(
+            "open"
+        );
 
 }
 
 
+/* =========================================================
+   CLOSE SAVE MODAL
+========================================================== */
+
 function closeSaveModal() {
 
     document
-        .getElementById("saveModal")
-        .classList.remove("open");
+        .getElementById(
+            "saveModal"
+        )
+        .classList
+        .remove(
+            "open"
+        );
 
 
     editingId =
@@ -2109,12 +3633,10 @@ function closeSaveModal() {
 }
 
 
-/* =========================================================
-   SAVE BUTTONS
-========================================================== */
-
 document
-    .getElementById("saveBtn")
+    .getElementById(
+        "saveBtn"
+    )
     .addEventListener(
         "click",
         () =>
@@ -2123,7 +3645,9 @@ document
 
 
 document
-    .getElementById("navSave")
+    .getElementById(
+        "navSave"
+    )
     .addEventListener(
         "click",
         () =>
@@ -2132,7 +3656,9 @@ document
 
 
 document
-    .getElementById("cancelSave")
+    .getElementById(
+        "cancelSave"
+    )
     .addEventListener(
         "click",
         closeSaveModal
@@ -2140,7 +3666,9 @@ document
 
 
 document
-    .getElementById("saveModal")
+    .getElementById(
+        "saveModal"
+    )
     .addEventListener(
         "click",
         event => {
@@ -2159,11 +3687,13 @@ document
 
 
 /* =========================================================
-   CONFIRM SAVE
+   SAVE DOCUMENT
 ========================================================== */
 
 document
-    .getElementById("confirmSave")
+    .getElementById(
+        "confirmSave"
+    )
     .addEventListener(
         "click",
         () => {
@@ -2180,9 +3710,13 @@ document
                     .value
                     .trim()
                 ||
+
                 (
-                    currentLanguage === "fa"
+                    currentLanguage ===
+                        "fa"
+
                         ? "فروش طلا"
+
                         : "Gold sale"
                 );
 
@@ -2196,6 +3730,9 @@ document
                     .trim();
 
 
+            calculatePrices();
+
+
             const currentRows =
                 getRows();
 
@@ -2204,33 +3741,78 @@ document
                 getTotals();
 
 
+            const currentRateRial =
+                getRateInRial();
+
+
             /*
-              EDIT
+                EDIT EXISTING
             */
 
-            if (editingId !== null) {
+            if (
+                editingId !==
+                null
+            ) {
 
                 const index =
                     documents.findIndex(
-                        document =>
-                            document.id ===
+                        item =>
+                            item.id ===
                             editingId
                     );
 
 
-                if (index !== -1) {
+                if (
+                    index !==
+                    -1
+                ) {
 
-                    documents[index].name =
+                    documents[
+                        index
+                    ].name =
                         name;
 
-                    documents[index].detail =
+
+                    documents[
+                        index
+                    ].detail =
                         detail;
 
-                    documents[index].rows =
+
+                    documents[
+                        index
+                    ].rows =
                         currentRows;
 
-                    documents[index].totals =
+
+                    documents[
+                        index
+                    ].totals =
                         currentTotals;
+
+
+                    documents[
+                        index
+                    ].rateRial =
+                        currentRateRial;
+
+
+                    documents[
+                        index
+                    ].fee =
+                        currentRateRial;
+
+
+                    documents[
+                        index
+                    ].unit =
+                        currentUnit;
+
+
+                    documents[
+                        index
+                    ].rateMode =
+                        rateMode;
 
 
                     saveDocuments(
@@ -2243,8 +3825,11 @@ document
                     renderDashboard();
 
                     toast(
-                        translate("editOk")
+                        tr(
+                            "editOk"
+                        )
                     );
+
 
                     return;
 
@@ -2254,7 +3839,7 @@ document
 
 
             /*
-              NEW DOCUMENT
+                NEW DOCUMENT
             */
 
             const newDocument = {
@@ -2269,14 +3854,26 @@ document
 
                 detail,
 
-                date:
-                    getDateInfo(),
-
                 rows:
                     currentRows,
 
                 totals:
-                    currentTotals
+                    currentTotals,
+
+                fee:
+                    currentRateRial,
+
+                rateRial:
+                    currentRateRial,
+
+                unit:
+                    currentUnit,
+
+                rateMode:
+                    rateMode,
+
+                date:
+                    getDateInfo()
 
             };
 
@@ -2293,7 +3890,9 @@ document
 
             closeSaveModal();
 
+
             renderDashboard();
+
 
             showView(
                 "dashboard"
@@ -2302,11 +3901,14 @@ document
 
             toast(
                 `${
-                    currentLanguage === "fa"
-                        ? "سند"
-                        : "Document"
+                    currentLanguage ===
+                        "fa"
+                            ? "سند"
+                            : "Document"
                 }:${newDocument.documentNumber} ${
-                    translate("saveOk")
+                    tr(
+                        "saveOk"
+                    )
                 }`
             );
 
@@ -2336,14 +3938,22 @@ function renderDashboard() {
         );
 
 
-    if (!documents.length) {
+    if (
+        !documents.length
+    ) {
 
         list.innerHTML = `
+
             <div class="empty glass">
+
                 ${escapeHtml(
-                    translate("noSaved")
+                    tr(
+                        "noSaved"
+                    )
                 )}
+
             </div>
+
         `;
 
         return;
@@ -2352,63 +3962,31 @@ function renderDashboard() {
 
 
     list.innerHTML =
+
         documents
             .map(
                 document => {
 
-                    const documentNumber =
-                        escapeHtml(
-                            document.documentNumber
+                    const unit =
+                        document.unit ||
+                        "rial";
+
+
+                    const rate =
+                        Number(
+                            document.rateRial ||
+                            document.fee ||
+                            0
                         );
 
 
-                    const documentName =
-                        escapeHtml(
-                            document.name
-                        );
+                    const displayRate =
+                        unit ===
+                            "toman"
 
+                            ? rate / 10
 
-                    const detail =
-                        escapeHtml(
-                            document.detail ||
-                            "—"
-                        );
-
-
-                    const gregorian =
-                        escapeHtml(
-                            document
-                                .date
-                                ?.gregorian ||
-                            "—"
-                        );
-
-
-                    const persian =
-                        escapeHtml(
-                            document
-                                .date
-                                ?.persian ||
-                            "—"
-                        );
-
-
-                    const weekday =
-                        escapeHtml(
-                            document
-                                .date
-                                ?.weekday ||
-                            ""
-                        );
-
-
-                    const time =
-                        escapeHtml(
-                            document
-                                .date
-                                ?.time ||
-                            "—"
-                        );
+                            : rate;
 
 
                     return `
@@ -2417,89 +3995,227 @@ function renderDashboard() {
                             class="savedcard glass"
                         >
 
-                            <div class="savedinfo">
+
+                            <div
+                                class="savedinfo"
+                            >
+
 
                                 <h3>
 
                                     ${
-                                        currentLanguage === "fa"
-                                            ? `سند:${documentNumber} · ${documentName}`
-                                            : `Document ${documentNumber} · ${documentName}`
+                                        currentLanguage ===
+                                            "fa"
+
+                                            ? `سند:${escapeHtml(
+                                                document.documentNumber
+                                            )} · ${escapeHtml(
+                                                document.name
+                                            )}`
+
+                                            : `Document ${escapeHtml(
+                                                document.documentNumber
+                                            )} · ${escapeHtml(
+                                                document.name
+                                            )}`
+
                                     }
 
                                 </h3>
 
 
                                 <p>
-                                    ${detail}
+
+                                    ${
+                                        escapeHtml(
+                                            document.detail ||
+                                            "—"
+                                        )
+                                    }
+
                                 </p>
 
 
                                 <p>
 
                                     ${
-                                        currentLanguage === "fa"
+                                        currentLanguage ===
+                                            "fa"
+
+                                            ? "فی"
+
+                                            : "Rate"
+                                    }:
+
+                                    ${
+                                        formatNumber(
+                                            displayRate
+                                        )
+                                    }
+
+                                    ${
+                                        unit ===
+                                            "toman"
+
+                                            ? tr("toman")
+
+                                            : tr("rial")
+                                    }
+
+                                </p>
+
+
+                                <p>
+
+                                    ${
+                                        currentLanguage ===
+                                            "fa"
+
                                             ? "میلادی"
+
                                             : "Gregorian"
                                     }:
-                                    ${gregorian}
+
+                                    ${
+                                        escapeHtml(
+                                            document.date
+                                                ?.gregorian ||
+                                            "—"
+                                        )
+                                    }
 
                                     ·
 
                                     ${
-                                        currentLanguage === "fa"
+                                        currentLanguage ===
+                                            "fa"
+
                                             ? "شمسی"
+
                                             : "Persian"
                                     }:
-                                    ${persian}
+
+                                    ${
+                                        escapeHtml(
+                                            document.date
+                                                ?.persian ||
+                                            "—"
+                                        )
+                                    }
 
                                     ·
 
-                                    ${weekday}
+                                    ${
+                                        escapeHtml(
+                                            document.date
+                                                ?.weekday ||
+                                            ""
+                                        )
+                                    }
 
                                     ·
 
-                                    ${time}
+                                    ${
+                                        escapeHtml(
+                                            document.date
+                                                ?.time ||
+                                            "—"
+                                        )
+                                    }
 
                                 </p>
 
 
                                 <p>
 
-                                    ${translate("summaryWeight")}:
-                                    ${formatNumber(
-                                        document.totals?.weight || 0
-                                    )}
+                                    ${
+                                        tr(
+                                            "summaryWeight"
+                                        )
+                                    }:
+
+                                    ${
+                                        formatNumber(
+                                            document
+                                                .totals
+                                                ?.weight ||
+                                            0
+                                        )
+                                    }
 
                                     ·
 
-                                    ${translate("summary750")}:
-                                    ${formatNumber(
-                                        document.totals?.weight750 || 0
-                                    )}
+                                    ${
+                                        tr(
+                                            "summary750"
+                                        )
+                                    }:
+
+                                    ${
+                                        formatNumber(
+                                            document
+                                                .totals
+                                                ?.weight750 ||
+                                            0
+                                        )
+                                    }
 
                                     ·
 
-                                    ${translate("summaryPrice")}:
-                                    ${formatNumber(
-                                        document.totals?.price || 0
-                                    )}
+                                    ${
+                                        tr(
+                                            "summaryPrice"
+                                        )
+                                    }:
+
+                                    ${
+                                        formatNumber(
+                                            document
+                                                .totals
+                                                ?.price ||
+                                            0
+                                        )
+                                    }
+
+                                    ${
+                                        unit ===
+                                            "toman"
+
+                                            ? tr("toman")
+
+                                            : tr("rial")
+                                    }
 
                                 </p>
+
 
                             </div>
 
 
-                            <div class="savedactions">
+
+                            <div
+                                class="savedactions"
+                            >
+
 
                                 <button
                                     class="pill small"
                                     type="button"
                                     onclick="loadSavedDocument(${document.id})"
                                 >
-                                    <i class="fa-solid fa-folder-open"></i>
-                                    ${translate("open")}
+
+                                    <i
+                                        class="fa-solid fa-folder-open"
+                                    ></i>
+
+                                    ${
+                                        tr(
+                                            "open"
+                                        )
+                                    }
+
                                 </button>
+
 
 
                                 <button
@@ -2507,9 +4223,19 @@ function renderDashboard() {
                                     type="button"
                                     onclick="editSavedDocument(${document.id})"
                                 >
-                                    <i class="fa-solid fa-pen"></i>
-                                    ${translate("edit")}
+
+                                    <i
+                                        class="fa-solid fa-pen"
+                                    ></i>
+
+                                    ${
+                                        tr(
+                                            "edit"
+                                        )
+                                    }
+
                                 </button>
+
 
 
                                 <button
@@ -2517,9 +4243,19 @@ function renderDashboard() {
                                     type="button"
                                     onclick="downloadSavedPDF(${document.id})"
                                 >
-                                    <i class="fa-solid fa-file-pdf"></i>
-                                    ${translate("pdf")}
+
+                                    <i
+                                        class="fa-solid fa-file-pdf"
+                                    ></i>
+
+                                    ${
+                                        tr(
+                                            "pdf"
+                                        )
+                                    }
+
                                 </button>
+
 
 
                                 <button
@@ -2527,11 +4263,22 @@ function renderDashboard() {
                                     type="button"
                                     onclick="requestDeleteDocument(${document.id})"
                                 >
-                                    <i class="fa-solid fa-trash-can"></i>
-                                    ${translate("delete")}
+
+                                    <i
+                                        class="fa-solid fa-trash-can"
+                                    ></i>
+
+                                    ${
+                                        tr(
+                                            "delete"
+                                        )
+                                    }
+
                                 </button>
 
+
                             </div>
+
 
                         </article>
 
@@ -2545,16 +4292,20 @@ function renderDashboard() {
 
 
 /* =========================================================
-   LOAD SAVED DOCUMENT
+   LOAD SAVED
 ========================================================== */
 
-function loadSavedDocument(id) {
+function loadSavedDocument(
+    id
+) {
 
     const document =
-        getSavedDocuments().find(
-            item =>
-                item.id === id
-        );
+        getSavedDocuments()
+            .find(
+                item =>
+                    item.id ===
+                    id
+            );
 
 
     if (!document) {
@@ -2565,6 +4316,60 @@ function loadSavedDocument(id) {
     loadRows(
         document.rows
     );
+
+
+    currentUnit =
+        document.unit ||
+        "rial";
+
+
+    currentRate =
+        Number(
+            document.rateRial ||
+            document.fee
+        ) ||
+        FALLBACK_RATE;
+
+
+    rateMode =
+        document.rateMode ||
+        "manual";
+
+
+    syncUnitButtons();
+
+
+    if (
+        rateMode ===
+        "manual"
+    ) {
+
+        document
+            .getElementById(
+                "globalFee"
+            )
+            .value =
+
+            currentUnit ===
+                "toman"
+
+                ? formatNumber(
+                    currentRate /
+                    10
+                )
+
+                : formatNumber(
+                    currentRate
+                );
+
+    }
+
+
+    updateRateUI();
+
+    calculatePrices();
+
+    updateTotals();
 
 
     showView(
@@ -2574,11 +4379,14 @@ function loadSavedDocument(id) {
 
     toast(
         `${
-            currentLanguage === "fa"
-                ? "سند"
-                : "Document"
+            currentLanguage ===
+                "fa"
+                    ? "سند"
+                    : "Document"
         }:${document.documentNumber} ${
-            translate("openOk")
+            tr(
+                "openOk"
+            )
         }`
     );
 
@@ -2586,16 +4394,20 @@ function loadSavedDocument(id) {
 
 
 /* =========================================================
-   EDIT SAVED DOCUMENT
+   EDIT SAVED
 ========================================================== */
 
-function editSavedDocument(id) {
+function editSavedDocument(
+    id
+) {
 
     const document =
-        getSavedDocuments().find(
-            item =>
-                item.id === id
-        );
+        getSavedDocuments()
+            .find(
+                item =>
+                    item.id ===
+                    id
+            );
 
 
     if (!document) {
@@ -2606,6 +4418,58 @@ function editSavedDocument(id) {
     loadRows(
         document.rows
     );
+
+
+    currentUnit =
+        document.unit ||
+        "rial";
+
+
+    currentRate =
+        Number(
+            document.rateRial ||
+            document.fee
+        ) ||
+        FALLBACK_RATE;
+
+
+    rateMode =
+        document.rateMode ||
+        "manual";
+
+
+    syncUnitButtons();
+
+
+    if (
+        rateMode ===
+        "manual"
+    ) {
+
+        document
+            .getElementById(
+                "globalFee"
+            )
+            .value =
+
+            currentUnit ===
+                "toman"
+
+                ? formatNumber(
+                    currentRate /
+                    10
+                )
+
+                : formatNumber(
+                    currentRate
+                );
+
+    }
+
+
+    calculatePrices();
+
+    updateTotals();
 
 
     showView(
@@ -2621,34 +4485,156 @@ function editSavedDocument(id) {
 
 
 /* =========================================================
-   ESCAPE HTML
+   LOAD ROWS
 ========================================================== */
 
-function escapeHtml(value) {
+function loadRows(
+    rowsToLoad
+) {
 
-    return String(
-        value ?? ""
-    )
-        .replace(
-            /[&<>"']/g,
-            character => {
+    tableBody.innerHTML =
+        "";
 
-                const map = {
 
-                    "&": "&amp;",
-                    "<": "&lt;",
-                    ">": "&gt;",
-                    '"': "&quot;",
-                    "'": "&#039;"
+    const source =
+        Array.isArray(
+            rowsToLoad
+        )
+        &&
+        rowsToLoad.length
 
-                };
+            ? rowsToLoad
 
-                return map[
-                    character
-                ];
+            : Array.from(
+                {
+                    length:
+                        INITIAL_ROWS
+                },
+                () => ({})
+            );
 
-            }
+
+    source.forEach(
+        row =>
+            addRow(
+                row
+            )
+    );
+
+
+    calculatePrices();
+
+    updateTotals();
+
+}
+
+
+/* =========================================================
+   GET ROWS
+========================================================== */
+
+function getRows() {
+
+    return [
+        ...tableBody.querySelectorAll(
+            "tr"
+        )
+    ].map(
+        row => {
+
+            const result = {};
+
+
+            row
+                .querySelectorAll(
+                    "input"
+                )
+                .forEach(
+                    input => {
+
+                        result[
+                            input.dataset.key
+                        ] =
+                            input.value;
+
+                    }
+                );
+
+
+            return result;
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   DATA CHECK
+========================================================== */
+
+function hasData(
+    rows
+) {
+
+    return rows.some(
+        row =>
+            Object.values(
+                row
+            ).some(
+                value =>
+                    String(
+                        value ??
+                        ""
+                    ).trim() !== ""
+            )
+    );
+
+}
+
+
+/* =========================================================
+   UNIT BUTTON UI
+========================================================== */
+
+function syncUnitButtons() {
+
+    document
+        .getElementById(
+            "rialBtn"
+        )
+        .classList
+        .toggle(
+            "active",
+            currentUnit ===
+                "rial"
         );
+
+
+    document
+        .getElementById(
+            "tomanBtn"
+        )
+        .classList
+        .toggle(
+            "active",
+            currentUnit ===
+                "toman"
+        );
+
+
+    document
+        .getElementById(
+            "currencyLabel"
+        )
+        .textContent =
+
+        currentUnit ===
+            "rial"
+
+            ? tr("rial")
+
+            : tr("toman");
 
 }
 
@@ -2679,22 +4665,28 @@ function openConfirmModal(
         action;
 
 
-    document.getElementById(
-        "confirmModal"
-    ).classList.add(
-        "open"
-    );
+    document
+        .getElementById(
+            "confirmModal"
+        )
+        .classList
+        .add(
+            "open"
+        );
 
 }
 
 
 function closeConfirmModal() {
 
-    document.getElementById(
-        "confirmModal"
-    ).classList.remove(
-        "open"
-    );
+    document
+        .getElementById(
+            "confirmModal"
+        )
+        .classList
+        .remove(
+            "open"
+        );
 
 
     confirmAction =
@@ -2704,7 +4696,9 @@ function closeConfirmModal() {
 
 
 document
-    .getElementById("confirmYes")
+    .getElementById(
+        "confirmYes"
+    )
     .addEventListener(
         "click",
         () => {
@@ -2717,7 +4711,9 @@ document
 
 
             if (action) {
+
                 action();
+
             }
 
         }
@@ -2725,7 +4721,9 @@ document
 
 
 document
-    .getElementById("confirmNo")
+    .getElementById(
+        "confirmNo"
+    )
     .addEventListener(
         "click",
         closeConfirmModal
@@ -2733,7 +4731,9 @@ document
 
 
 document
-    .getElementById("confirmModal")
+    .getElementById(
+        "confirmModal"
+    )
     .addEventListener(
         "click",
         event => {
@@ -2752,16 +4752,20 @@ document
 
 
 /* =========================================================
-   DELETE DOCUMENT
+   DELETE
 ========================================================== */
 
-function requestDeleteDocument(id) {
+function requestDeleteDocument(
+    id
+) {
 
     const document =
-        getSavedDocuments().find(
-            item =>
-                item.id === id
-        );
+        getSavedDocuments()
+            .find(
+                item =>
+                    item.id ===
+                    id
+            );
 
 
     if (!document) {
@@ -2771,30 +4775,39 @@ function requestDeleteDocument(id) {
 
     openConfirmModal(
 
-        currentLanguage === "fa"
+        currentLanguage ===
+            "fa"
+
             ? "حذف سند"
+
             : "Delete document",
 
+
         `${
-            currentLanguage === "fa"
-                ? "سند"
-                : "Document"
+            currentLanguage ===
+                "fa"
+
+                    ? "سند"
+
+                    : "Document"
         }:${document.documentNumber} ${
-            translate("deleteAsk")
+            tr(
+                "deleteAsk"
+            )
         }`,
+
 
         () => {
 
-            const remaining =
+            saveDocuments(
+
                 getSavedDocuments()
                     .filter(
                         item =>
-                            item.id !== id
-                    );
+                            item.id !==
+                            id
+                    )
 
-
-            saveDocuments(
-                remaining
             );
 
 
@@ -2802,7 +4815,9 @@ function requestDeleteDocument(id) {
 
 
             toast(
-                translate("deleteOk")
+                tr(
+                    "deleteOk"
+                )
             );
 
         }
@@ -2813,31 +4828,59 @@ function requestDeleteDocument(id) {
 
 
 /* =========================================================
-   CLEAR TABLE
+   CLEAR
 ========================================================== */
 
 document
-    .getElementById("clearBtn")
+    .getElementById(
+        "clearBtn"
+    )
     .addEventListener(
         "click",
         () => {
 
             openConfirmModal(
 
-                currentLanguage === "fa"
-                    ? "پاک کردن جدول"
-                    : "Clear table",
+                currentLanguage ===
+                    "fa"
 
-                translate(
+                        ? "پاک کردن جدول"
+
+                        : "Clear table",
+
+
+                tr(
                     "clearAsk"
                 ),
+
 
                 () => {
 
                     loadRows([]);
 
+
+                    document.getElementById(
+                        "globalFee"
+                    ).value =
+                        "";
+
+
+                    rateMode =
+                        "live";
+
+
+                    currentRate =
+                        FALLBACK_RATE;
+
+
+                    setRateMode(
+                        "live",
+                        false
+                    );
+
+
                     toast(
-                        translate(
+                        tr(
                             "tableCleared"
                         )
                     );
@@ -2851,7 +4894,7 @@ document
 
 
 /* =========================================================
-   PDF PREPARATION
+   PDF
 ========================================================== */
 
 function preparePrint(
@@ -2859,30 +4902,27 @@ function preparePrint(
     sourceTotals,
     title,
     documentNumber,
-    savedDate = null,
-    detail = ""
+    date,
+    detail,
+    fee,
+    unit
 ) {
 
-    /*
-      Only filled rows are printed.
-    */
 
     const filledRows =
         sourceRows.filter(
             row =>
-                Object.values(row)
-                    .some(
-                        value =>
-                            String(
-                                value ?? ""
-                            ).trim() !== ""
-                    )
+                Object.values(
+                    row
+                ).some(
+                    value =>
+                        String(
+                            value ??
+                            ""
+                        ).trim() !== ""
+                )
         );
 
-
-    /*
-      Table body
-    */
 
     document.getElementById(
         "printBody"
@@ -2895,39 +4935,52 @@ function preparePrint(
                     <tr>
 
                         <td class="desc">
+
                             ${escapeHtml(
-                                row.description || ""
+                                row.description ||
+                                ""
                             )}
+
                         </td>
 
-                        <td dir="ltr">
-                            ${escapeHtml(
-                                row.weight || ""
-                            )}
-                        </td>
 
                         <td dir="ltr">
+
                             ${escapeHtml(
-                                row.karat || ""
+                                row.weight ||
+                                ""
                             )}
+
                         </td>
 
-                        <td dir="ltr">
-                            ${escapeHtml(
-                                row.weight750 || ""
-                            )}
-                        </td>
 
                         <td dir="ltr">
+
                             ${escapeHtml(
-                                row.fee || ""
+                                row.karat ||
+                                ""
                             )}
+
                         </td>
 
+
                         <td dir="ltr">
+
                             ${escapeHtml(
-                                row.price || ""
+                                row.weight750 ||
+                                ""
                             )}
+
+                        </td>
+
+
+                        <td dir="ltr">
+
+                            ${escapeHtml(
+                                row.price ||
+                                ""
+                            )}
+
                         </td>
 
                     </tr>
@@ -2936,10 +4989,6 @@ function preparePrint(
             )
             .join("");
 
-
-    /*
-      Calculated totals
-    */
 
     document.getElementById(
         "printWeight"
@@ -2968,7 +5017,7 @@ function preparePrint(
     document.getElementById(
         "printSummaryWeight"
     ).textContent =
-        `${translate(
+        `${tr(
             "summaryWeight"
         )}: ${
             formatNumber(
@@ -2980,7 +5029,7 @@ function preparePrint(
     document.getElementById(
         "printSummary750"
     ).textContent =
-        `${translate(
+        `${tr(
             "summary750"
         )}: ${
             formatNumber(
@@ -2992,32 +5041,63 @@ function preparePrint(
     document.getElementById(
         "printSummaryPrice"
     ).textContent =
-        `${translate(
+        `${tr(
             "summaryPrice"
         )}: ${
             formatNumber(
                 sourceTotals.price
             )
+        } ${
+            unit ===
+                "toman"
+
+                ? tr("toman")
+
+                : tr("rial")
         }`;
 
 
-    /*
-      Document number
-    */
+/* =========================================================
+   PRINT FEE / RATE
+========================================================= */
+
+const feeInSelectedUnit =
+    unit === "toman"
+        ? Number(fee) / 10
+        : Number(fee);
+
+document.getElementById(
+    "printFee"
+).textContent =
+
+    `${
+        currentLanguage === "fa"
+            ? "فی"
+            : "Rate"
+    }: ${
+        formatNumber(
+            feeInSelectedUnit
+        )
+    } ${
+        unit === "toman"
+            ? tr("toman")
+            : tr("rial")
+    }`;
+
 
     document.getElementById(
         "printDoc"
     ).textContent =
+
         `${
-            currentLanguage === "fa"
-                ? "سند"
-                : "Document"
+            currentLanguage ===
+                "fa"
+
+                    ? "سند"
+
+                    : "Document"
         }:${documentNumber}`;
 
-
-    /*
-      Title
-    */
 
     document.getElementById(
         "printTitle"
@@ -3025,48 +5105,34 @@ function preparePrint(
         title;
 
 
-    /*
-      Date
-    */
-
-    const date =
-        savedDate || getDateInfo();
+    const printDate =
+        date ||
+        getDateInfo();
 
 
-    if (currentLanguage === "fa") {
+    document.getElementById(
+        "printDate"
+    ).textContent =
 
-        document.getElementById(
-            "printDate"
-        ).textContent =
-            `${date.weekday} · ${date.gregorian} · ${date.persian} · ساعت ${date.time}`;
+        currentLanguage ===
+            "fa"
 
-    } else {
+            ? `${printDate.weekday} · ${printDate.gregorian} · ${printDate.persian} · ساعت ${printDate.time}`
 
-        document.getElementById(
-            "printDate"
-        ).textContent =
-            `${date.gregorian} · ${date.persian} · ${date.time}`;
+            : `${printDate.gregorian} · ${printDate.persian} · ${printDate.time}`;
 
-    }
-
-
-    /*
-      Details
-    */
 
     document.getElementById(
         "printDetail"
     ).textContent =
+
         detail
-            ? `${translate(
+            ? `${tr(
                 "detailPrefix"
             )}: ${detail}`
+
             : "";
 
-
-    /*
-      Logo
-    */
 
     document.getElementById(
         "printLogo"
@@ -3077,7 +5143,7 @@ function preparePrint(
 
 
 /* =========================================================
-   CURRENT PDF
+   PDF CURRENT
 ========================================================== */
 
 function downloadCurrentPDF() {
@@ -3086,10 +5152,16 @@ function downloadCurrentPDF() {
         getRows();
 
 
-    if (!hasData(currentRows)) {
+    if (
+        !hasData(
+            currentRows
+        )
+    ) {
 
         toast(
-            translate("needData"),
+            tr(
+                "needData"
+            ),
             "error"
         );
 
@@ -3098,40 +5170,56 @@ function downloadCurrentPDF() {
     }
 
 
+    calculatePrices();
+
+
+    const currentTotals =
+        getTotals();
+
+
     preparePrint(
 
-        currentRows,
+        getRows(),
 
-        getTotals(),
+        currentTotals,
 
-        translate("title"),
+        tr(
+            "title"
+        ),
 
-        getNextDocumentNumber()
+        getNextDocumentNumber(),
+
+        null,
+
+        "",
+
+        getRateInRial(),
+
+        currentUnit
 
     );
 
 
     setTimeout(
-        () => {
-            window.print();
-        },
+        () =>
+            window.print(),
         80
     );
 
 }
 
 
-/* =========================================================
-   SAVED PDF
-========================================================== */
-
-function downloadSavedPDF(id) {
+function downloadSavedPDF(
+    id
+) {
 
     const document =
-        getSavedDocuments().find(
-            item =>
-                item.id === id
-        );
+        getSavedDocuments()
+            .find(
+                item =>
+                    item.id ===
+                    id
+            );
 
 
     if (!document) {
@@ -3151,15 +5239,21 @@ function downloadSavedPDF(id) {
 
         document.date,
 
-        document.detail
+        document.detail,
+
+        document.rateRial ||
+            document.fee ||
+            0,
+
+        document.unit ||
+            "rial"
 
     );
 
 
     setTimeout(
-        () => {
-            window.print();
-        },
+        () =>
+            window.print(),
         80
     );
 
@@ -3167,7 +5261,9 @@ function downloadSavedPDF(id) {
 
 
 document
-    .getElementById("pdfBtn")
+    .getElementById(
+        "pdfBtn"
+    )
     .addEventListener(
         "click",
         downloadCurrentPDF
@@ -3183,31 +5279,43 @@ function showView(
 ) {
 
     document
-        .querySelectorAll(".view")
-        .forEach(view => {
+        .querySelectorAll(
+            ".view"
+        )
+        .forEach(
+            view => {
 
-            view.classList.toggle(
-                "active",
-                view.id === viewId
-            );
+                view.classList.toggle(
+                    "active",
+                    view.id ===
+                        viewId
+                );
 
-        });
+            }
+        );
 
 
     document
-        .querySelectorAll(".navlink")
-        .forEach(button => {
+        .querySelectorAll(
+            ".navlink"
+        )
+        .forEach(
+            button => {
 
-            button.classList.toggle(
-                "active",
-                button.dataset.view ===
-                viewId
-            );
+                button.classList.toggle(
+                    "active",
+                    button.dataset.view ===
+                        viewId
+                );
 
-        });
+            }
+        );
 
 
-    if (viewId === "dashboard") {
+    if (
+        viewId ===
+        "dashboard"
+    ) {
 
         renderDashboard();
 
@@ -3216,8 +5324,11 @@ function showView(
 
     window.scrollTo(
         {
-            top: 0,
-            behavior: "smooth"
+            top:
+                0,
+
+            behavior:
+                "smooth"
         }
     );
 
@@ -3225,21 +5336,22 @@ function showView(
 
 
 document
-    .querySelectorAll(".navlink")
-    .forEach(button => {
+    .querySelectorAll(
+        ".navlink"
+    )
+    .forEach(
+        button => {
 
-        button.addEventListener(
-            "click",
-            () => {
+            button.addEventListener(
+                "click",
+                () =>
+                    showView(
+                        button.dataset.view
+                    )
+            );
 
-                showView(
-                    button.dataset.view
-                );
-
-            }
-        );
-
-    });
+        }
+    );
 
 
 /* =========================================================
@@ -3254,7 +5366,8 @@ function applyTheme(
         .classList
         .toggle(
             "dark",
-            theme === "dark"
+            theme ===
+                "dark"
         );
 
 
@@ -3262,21 +5375,27 @@ function applyTheme(
         "themeBtn"
     ).innerHTML =
 
-        theme === "dark"
+        theme ===
+            "dark"
 
             ? '<i class="fa-solid fa-sun"></i>'
 
             : '<i class="fa-solid fa-moon"></i>';
 
 
-    document.querySelector(
-        'meta[name="theme-color"]'
-    ).setAttribute(
-        "content",
-        theme === "dark"
-            ? "#0b1016"
-            : "#eef3f8"
-    );
+    document
+        .querySelector(
+            'meta[name="theme-color"]'
+        )
+        .setAttribute(
+            "content",
+            theme ===
+                "dark"
+
+                ? "#0b1016"
+
+                : "#eef3f8"
+        );
 
 
     localStorage.setItem(
@@ -3288,45 +5407,43 @@ function applyTheme(
 
 
 applyTheme(
-
-    localStorage.getItem(
-        THEME_KEY
-    ) === "dark"
-
-        ? "dark"
-
-        : "light"
-
+    currentTheme
 );
 
 
 document
-    .getElementById("themeBtn")
+    .getElementById(
+        "themeBtn"
+    )
     .addEventListener(
         "click",
         () => {
 
-            const dark =
-                document.documentElement
-                    .classList
-                    .contains("dark");
+            currentTheme =
+                currentTheme ===
+                    "dark"
 
-
-            const newTheme =
-                dark
                     ? "light"
+
                     : "dark";
 
 
             applyTheme(
-                newTheme
+                currentTheme
             );
 
 
             toast(
-                newTheme === "dark"
-                    ? translate("themeNight")
-                    : translate("themeDay")
+                currentTheme ===
+                    "dark"
+
+                    ? tr(
+                        "themeNight"
+                    )
+
+                    : tr(
+                        "themeDay"
+                    )
             );
 
         }
@@ -3334,18 +5451,23 @@ document
 
 
 /* =========================================================
-   LANGUAGE SWITCH
+   LANGUAGE
 ========================================================== */
 
 document
-    .getElementById("langBtn")
+    .getElementById(
+        "langBtn"
+    )
     .addEventListener(
         "click",
         () => {
 
             currentLanguage =
-                currentLanguage === "fa"
+                currentLanguage ===
+                    "fa"
+
                     ? "en"
+
                     : "fa";
 
 
@@ -3359,7 +5481,7 @@ document
 
 
             toast(
-                translate(
+                tr(
                     "languageChanged"
                 )
             );
@@ -3368,8 +5490,134 @@ document
     );
 
 
+function applyLanguage() {
+
+    document.documentElement.lang =
+        currentLanguage;
+
+
+    document.documentElement.dir =
+        currentLanguage ===
+            "fa"
+
+            ? "rtl"
+
+            : "ltr";
+
+
+    document
+        .querySelectorAll(
+            "[data-i18n]"
+        )
+        .forEach(
+            element => {
+
+                element.textContent =
+                    tr(
+                        element.dataset.i18n
+                    );
+
+            }
+        );
+
+
+    document.getElementById(
+        "langBtn"
+    ).textContent =
+
+        currentLanguage ===
+            "fa"
+
+            ? "EN"
+
+            : "FA";
+
+
+    document.getElementById(
+        "saveName"
+    ).placeholder =
+
+        currentLanguage ===
+            "fa"
+
+            ? "مثلاً فروش طلای امروز"
+
+            : "e.g. Today's gold sale";
+
+
+    document.getElementById(
+        "saveDetail"
+    ).placeholder =
+
+        currentLanguage ===
+            "fa"
+
+            ? "توضیحات این سند..."
+
+            : "Details for this document...";
+
+
+    tableBody
+        .querySelectorAll(
+            "input"
+        )
+        .forEach(
+            input => {
+
+                const column =
+                    columnsForRows
+                        .find(
+                            item =>
+                                item.key ===
+                                input.dataset.key
+                        );
+
+
+                if (!column) {
+                    return;
+                }
+
+
+                input.placeholder =
+
+                    currentLanguage ===
+                        "fa"
+
+                        ? column.placeholderFA
+
+                        : column.placeholderEN;
+
+            }
+        );
+
+
+    tableBody
+        .querySelectorAll(
+            ".rowminus"
+        )
+        .forEach(
+            button => {
+
+                button.title =
+                    tr(
+                        "remove"
+                    );
+
+            }
+        );
+
+
+    syncUnitButtons();
+
+    updateRateUI();
+
+    renderDashboard();
+
+}
+
+
 /* =========================================================
-   GLASS TOAST
+   TOAST
 ========================================================== */
 
 function toast(
@@ -3377,17 +5625,18 @@ function toast(
     type = "ok"
 ) {
 
-    const toastElement =
+    const element =
         document.createElement(
             "div"
         );
 
 
-    toastElement.className =
+    element.className =
         `toast ${type}`;
 
 
     const iconClass =
+
         type === "error"
 
             ? "fa-solid fa-triangle-exclamation"
@@ -3395,30 +5644,35 @@ function toast(
             : "fa-solid fa-circle-check";
 
 
-    toastElement.innerHTML = `
+    element.innerHTML = `
 
-        <i class="${iconClass}"></i>
+        <i
+            class="${iconClass}"
+        ></i>
 
         <span>
-            ${escapeHtml(message)}
+
+            ${escapeHtml(
+                message
+            )}
+
         </span>
 
     `;
 
 
     document
-        .getElementById("toastWrap")
+        .getElementById(
+            "toastWrap"
+        )
         .appendChild(
-            toastElement
+            element
         );
 
 
     setTimeout(
-        () => {
-
-            toastElement.remove();
-
-        },
+        () =>
+            element.remove(),
         2700
     );
 
@@ -3428,10 +5682,6 @@ function toast(
 /* =========================================================
    INITIALIZE
 ========================================================== */
-
-/*
-  Create exactly 10 initial rows.
-*/
 
 for (
     let index = 0;
@@ -3444,13 +5694,18 @@ for (
 }
 
 
+applyLanguage();
+
 updateTotals();
 
-applyLanguage();
+setRateMode(
+    "live",
+    false
+);
 
 
 /* =========================================================
-   GLOBAL FUNCTIONS FOR INLINE BUTTONS
+   GLOBAL FUNCTIONS
 ========================================================== */
 
 window.loadSavedDocument =
@@ -3468,4 +5723,5 @@ window.downloadSavedPDF =
 </script>
 
 </body>
+
 </html>
