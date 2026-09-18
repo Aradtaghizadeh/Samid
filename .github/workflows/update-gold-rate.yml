@@ -1,0 +1,88 @@
+name: Update gold rate
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-rate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Start TGJU reader service
+        run: |
+          docker run -d \
+            --name tgju-api \
+            -p 8080:8080 \
+            ghcr.io/amiranmanesh/tgju-api-go:latest
+
+      - name: Wait for service
+        shell: bash
+        run: |
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:8080/readyz >/dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "TGJU service did not become ready"
+          docker logs tgju-api || true
+          exit 1
+
+      - name: Fetch 18K / 750 price
+        shell: bash
+        run: |
+          curl -fsS http://127.0.0.1:8080/v1/items/geram18 > /tmp/geram18.json
+          cat /tmp/geram18.json
+
+      - name: Build same-origin rate file
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const item = JSON.parse(fs.readFileSync('/tmp/geram18.json', 'utf8'));
+          const price = Number(item?.price?.value);
+
+          if (!Number.isFinite(price) || price <= 0) {
+            throw new Error('Invalid geram18 price returned by TGJU reader service');
+          }
+
+          const payload = {
+            price: Math.round(price),
+            currency: 'IRR',
+            source: 'TGJU',
+            instrument: 'geram18',
+            updatedAt: new Date().toISOString(),
+            marketTime: item?.time || null
+          };
+
+          fs.mkdirSync('data', { recursive: true });
+          fs.writeFileSync(
+            'data/gold-rate.json',
+            JSON.stringify(payload, null, 2) + '\\n'
+          );
+          NODE
+
+      - name: Stop service
+        if: always()
+        run: docker rm -f tgju-api >/dev/null 2>&1 || true
+
+      - name: Commit updated rate
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/gold-rate.json
+          if git diff --cached --quiet; then
+            echo "Rate did not change."
+            exit 0
+          fi
+          git commit -m "chore: update gold rate"
+          git push
