@@ -39,6 +39,45 @@
         href="samid.css"
     >
 
+    <link rel="icon" href="img.PNG">
+
+
+<style>
+.weight750-cell{min-width:190px;}
+.weight750-wrap{display:flex;align-items:center;gap:7px;width:100%;}
+.weight750-wrap .weight750-input{flex:1;min-width:0;}
+.weight750-minus{width:42px;min-width:42px;height:42px;border:0;border-radius:999px;background:var(--glass);color:var(--txt);cursor:pointer;box-shadow:var(--shadow);display:inline-flex;align-items:center;justify-content:center;}
+.weight750-minus:hover{transform:translateY(-1px);}
+.row-fee-input{text-align:center;}
+.print-logo-block{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px;}
+.print-logo-caption{font-weight:700;font-size:12px;white-space:nowrap;}
+@media print{
+ @page{size:A4 landscape;margin:7mm;}
+ body *{visibility:hidden !important;}
+ #printArea,#printArea *{visibility:visible !important;}
+ #printArea{display:block !important;position:absolute !important;top:0 !important;left:0 !important;width:100% !important;margin:0 !important;padding:0 !important;color:#111 !important;background:#fff !important;font-size:12px !important;line-height:1.45 !important;}
+ #printArea .print-head{font-size:12px !important;margin-bottom:10px !important;}
+ #printArea .print-logo{width:88px !important;height:auto !important;}
+ #printArea .print-logo-caption{font-size:12px !important;font-weight:700 !important;}
+ #printArea .print-doc,#printArea .print-title{font-size:15px !important;font-weight:800 !important;}
+ #printArea .print-date,#printArea .print-info,#printArea .print-fee,#printArea .print-detail{font-size:12px !important;}
+ #printArea .print-fee{margin:8px 0 10px !important;padding:7px 9px !important;border:1px solid #bbb !important;font-weight:700 !important;}
+ #printArea .print-table{width:100% !important;border-collapse:separate !important;border-spacing:0 !important;border:1.5px solid #888 !important;border-radius:18px !important;overflow:hidden !important;background:#fff !important;font-size:12px !important;table-layout:fixed !important;}
+ #printArea .print-table th,#printArea .print-table td{border:0 !important;border-left:1px solid #aaa !important;border-bottom:1px solid #aaa !important;padding:8px 9px !important;text-align:center !important;font-size:12px !important;line-height:1.4 !important;}
+ #printArea .print-table th:last-child,#printArea .print-table td:last-child{border-left:0 !important;}
+ #printArea .print-table thead tr:last-child th{border-bottom:1px solid #888 !important;}
+ #printArea .print-table tbody tr:last-child td{border-bottom:1px solid #888 !important;}
+ #printArea .print-table thead tr:first-child th:first-child{border-top-right-radius:18px !important;}
+ #printArea .print-table thead tr:first-child th:last-child{border-top-left-radius:18px !important;}
+ #printArea .print-table tfoot tr:last-child td:first-child{border-bottom-right-radius:18px !important;}
+ #printArea .print-table tfoot tr:last-child td:last-child{border-bottom-left-radius:18px !important;}
+ #printArea .print-table th{font-weight:800 !important;}
+ #printArea .print-summary{margin-top:10px !important;font-size:12px !important;font-weight:700 !important;}
+ #printArea .print-summary span{font-size:12px !important;}
+ #printArea .print-footer{font-size:11px !important;margin-top:8px !important;}
+ #printArea tr,#printArea td,#printArea th{break-inside:avoid !important;page-break-inside:avoid !important;}
+}
+</style>
 </head>
 
 
@@ -177,12 +216,6 @@
                 <h1 data-i18n="title">
                     محاسبه قیمت فروش طلا
                 </h1>
-
-
-                <p data-i18n="subtitle">
-                    وزن، عیار و وزن ۷۵۰ را وارد کنید.
-                </p>
-
             </div>
 
 
@@ -290,7 +323,7 @@
                     :
 
                     <a
-                        href="https://www.tgju.org/profile/geram18"
+                        href="https://github.com/HosseinOdd/Navasan-API"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -468,7 +501,7 @@
 
                         <th
                             data-i18n="desc"
-                            style="width:24%"
+                            style="width:30%"
                         >
 
                             شرح
@@ -476,28 +509,30 @@
                         </th>
 
 
-                        <th data-i18n="weight">
-
-                            وزن
-
-                        </th>
-
-
-                        <th data-i18n="karat">
-
-                            عیار
-
-                        </th>
-
-
-                        <th data-i18n="w750">
+                        <th
+                            data-i18n="w750"
+                            style="width:22%"
+                        >
 
                             وزن ۷۵۰
 
                         </th>
 
 
-                        <th data-i18n="price">
+                        <th
+                            data-i18n="fee"
+                            style="width:20%"
+                        >
+
+                            فی
+
+                        </th>
+
+
+                        <th
+                            data-i18n="price"
+                            style="width:24%"
+                        >
 
                             قیمت
 
@@ -551,7 +586,7 @@
 
                             <div
                                 class="totalbox"
-                                id="totalWeight"
+                                id="total750"
                             >
 
                                 0
@@ -560,8 +595,6 @@
 
                         </td>
 
-
-                        <!-- Karat NOT summed -->
 
                         <td>
 
@@ -570,20 +603,6 @@
                             >
 
                                 —
-
-                            </div>
-
-                        </td>
-
-
-                        <td>
-
-                            <div
-                                class="totalbox"
-                                id="total750"
-                            >
-
-                                0
 
                             </div>
 
@@ -604,17 +623,7 @@
                         </td>
 
 
-                        <td>
-
-                            <div
-                                class="totalbox na"
-                            >
-
-                                —
-
-                            </div>
-
-                        </td>
+                        <td></td>
 
 
                     </tr>
@@ -626,7 +635,7 @@
                     <tr class="addrow">
 
 
-                        <td colspan="6">
+                        <td colspan="5">
 
 
                             <button
@@ -730,22 +739,6 @@
 
 
         </main>
-
-
-
-        <!-- HINT -->
-
-        <div
-            class="hint glass"
-            data-i18n="hint"
-        >
-
-            قیمت = وزن ۷۵۰ × فی.
-            مقدارهای مثبت اضافه و مقدارهای منفی کم می‌شوند.
-
-        </div>
-
-
     </section>
 
 
@@ -819,7 +812,7 @@
 
                 <div
                     class="label"
-                    data-i18n="currentWeight"
+                    data-i18n="currentWeight750"
                 >
 
                     جمع وزن فعلی
@@ -829,7 +822,7 @@
 
                 <div
                     class="value"
-                    id="dashWeight"
+                    id="dash750"
                 >
 
                     0
@@ -1126,12 +1119,20 @@
     <div class="print-head">
 
 
-        <img
-            id="printLogo"
-            class="print-logo"
-            src="img.PNG"
-            alt="Samid Gold Gallery"
-        >
+        <div class="print-logo-block">
+
+            <img
+                id="printLogo"
+                class="print-logo"
+                src="img.PNG"
+                alt="Samid Gold Gallery"
+            >
+
+            <div class="print-logo-caption">
+                طلای آبشده صمید
+            </div>
+
+        </div>
 
 
         <div class="print-info">
@@ -1152,7 +1153,7 @@
                 </span>:
 
                 <span dir="ltr">
-                    09115054547
+                    013 3322 7567
                 </span>
 
             </div>
@@ -1164,7 +1165,7 @@
                     نشانی
                 </span>:
 
-                خیابان شیک، پاساژ آرسن، آبشده صمید
+                خیابان شریعتی، پاساژ آرسن، طبقه 1
 
             </div>
 
@@ -1203,7 +1204,7 @@
 
     <!-- PRINT TABLE -->
 
-    <table>
+    <table class="print-table">
 
 
         <thead>
@@ -1217,17 +1218,12 @@
 
 
             <th>
-                وزن
-            </th>
-
-
-            <th>
-                عیار
-            </th>
-
-
-            <th>
                 وزن ۷۵۰
+            </th>
+
+
+            <th>
+                فی
             </th>
 
 
@@ -1257,7 +1253,7 @@
 
 
             <td
-                id="printWeight"
+                id="print750"
             ></td>
 
 
@@ -1267,17 +1263,11 @@
 
 
             <td
-                id="print750"
-            ></td>
-
-
-            <td
                 id="printPrice"
             ></td>
 
 
         </tr>
-
 
         </tfoot>
 
@@ -1289,11 +1279,6 @@
     <!-- CALCULATED SUMMARY -->
 
     <div class="print-summary">
-
-
-        <span
-            id="printSummaryWeight"
-        ></span>
 
 
         <span
@@ -1359,28 +1344,25 @@ const LANG_KEY =
 */
 
 const FALLBACK_RATE =
-    239168000;
+    233630000;
 
 
 /*
-    Leave empty while using Live Server.
-
-    Do NOT use:
-
-    "/api/gold-rate"
-
-    until you actually create that
-    backend endpoint.
-
-    Example later:
-
-    const RATE_API_URL =
-        "https://yourdomain.com/api/gold-rate";
+    Live-rate architecture:
+    The browser reads only ./data/gold-rate.json from the same
+    GitHub Pages origin. A GitHub Actions workflow updates that
+    file from TGJU server-side, avoiding browser CORS, proxy, and
+    ISP connectivity problems.
 */
 
-const RATE_API_URL =
-    "";
+const RATE_FILE_URL =
+    "./data/gold-rate.json";
 
+const LAST_RATE_KEY =
+    "samidGoldLastLiveRateRialV10";
+
+const LAST_RATE_TIME_KEY =
+    "samidGoldLastLiveRateTimeV10";
 
 /* =========================================================
    STATE
@@ -1411,7 +1393,11 @@ let rateMode =
 
 
 let currentRate =
-    FALLBACK_RATE;
+    Number(
+        localStorage.getItem(
+            LAST_RATE_KEY
+        )
+    ) || FALLBACK_RATE;
 
 
 let editingId =
@@ -1455,7 +1441,7 @@ const translations = {
             "محاسبه قیمت فروش طلا",
 
         subtitle:
-            "وزن، عیار و وزن ۷۵۰ را وارد کنید.",
+            "وزن ۷۵۰ و فی را وارد کنید.",
 
         live:
             "محاسبه لحظه‌ای",
@@ -1470,7 +1456,7 @@ const translations = {
             "منبع",
 
         liveRate:
-            "نرخ زنده",
+            "نرخ آنلاین",
 
         manualRate:
             "ورود دستی",
@@ -1505,6 +1491,9 @@ const translations = {
         w750:
             "وزن ۷۵۰",
 
+        fee:
+            "فی",
+
         price:
             "قیمت",
 
@@ -1524,7 +1513,7 @@ const translations = {
             "پاک کردن",
 
         hint:
-            "قیمت = وزن ۷۵۰ × فی. مقدارهای مثبت به جمع اضافه و مقدارهای منفی از جمع کم می‌شوند. عیار در جمع کل محاسبه نمی‌شود.",
+            "قیمت = وزن ۷۵۰ × فی همان ردیف. اگر فی ردیف خالی باشد، فی پیش‌فرض استفاده می‌شود. وزن ۷۵۰ منفی، قیمت منفی ایجاد می‌کند.",
 
         dashboardTitle:
             "داشبورد",
@@ -1535,8 +1524,8 @@ const translations = {
         docCount:
             "تعداد سندها",
 
-        currentWeight:
-            "جمع وزن فعلی",
+        currentWeight750:
+            "جمع وزن ۷۵۰ فعلی",
 
         currentPrice:
             "جمع قیمت فعلی",
@@ -1668,7 +1657,7 @@ const translations = {
             "Gold Sale Calculator",
 
         subtitle:
-            "Enter weight, karat and 750 weight.",
+            "Enter 750 weight and rate.",
 
         live:
             "Live calculation",
@@ -1683,7 +1672,7 @@ const translations = {
             "Source",
 
         liveRate:
-            "Live rate",
+            "Online rate",
 
         manualRate:
             "Manual",
@@ -1718,6 +1707,9 @@ const translations = {
         w750:
             "750 Weight",
 
+        fee:
+            "Rate",
+
         price:
             "Price",
 
@@ -1737,7 +1729,7 @@ const translations = {
             "Clear",
 
         hint:
-            "Price = 750 weight × rate. Positive values are added and negative values are subtracted. Karat is not included in totals.",
+            "Price = 750 weight × the row rate. If the row rate is blank, the default rate is used. Negative 750 weight creates a negative price.",
 
         dashboardTitle:
             "Dashboard",
@@ -1748,8 +1740,8 @@ const translations = {
         docCount:
             "Saved documents",
 
-        currentWeight:
-            "Current total weight",
+        currentWeight750:
+            "Current 750 weight",
 
         currentPrice:
             "Current total price",
@@ -2197,175 +2189,202 @@ function addRow(
                 );
 
 
+            if (
+                column.key ===
+                "weight750"
+            ) {
+
+                cell.className =
+                    "weight750-cell";
+
+                const wrapper =
+                    document.createElement(
+                        "div"
+                    );
+
+                wrapper.className =
+                    "weight750-wrap";
+
+                const input =
+                    document.createElement(
+                        "input"
+                    );
+
+                input.className =
+                    "input numeric weight750-input";
+                input.type = "text";
+                input.dataset.key = "weight750";
+                input.dataset.numeric = "1";
+                input.inputMode = "decimal";
+                input.autocomplete = "off";
+                input.placeholder =
+                    currentLanguage === "fa"
+                        ? column.placeholderFA
+                        : column.placeholderEN;
+
+                if (
+                    values.weight750 !==
+                    undefined
+                ) {
+                    input.value =
+                        values.weight750;
+                }
+
+                const signButton =
+                    document.createElement(
+                        "button"
+                    );
+
+                signButton.type = "button";
+                signButton.className =
+                    "weight750-minus";
+                signButton.innerHTML =
+                    '<i class="fa-solid fa-minus"></i>';
+                signButton.title =
+                    currentLanguage === "fa"
+                        ? "تغییر علامت وزن ۷۵۰"
+                        : "Toggle 750 weight sign";
+                signButton.setAttribute(
+                    "aria-label",
+                    signButton.title
+                );
+
+                signButton.addEventListener(
+                    "click",
+                    () => {
+
+                        const value =
+                            parseNumber(
+                                input.value
+                            );
+
+                        if (value === 0) {
+
+                            toast(
+                                currentLanguage === "fa"
+                                    ? "ابتدا وزن ۷۵۰ را وارد کنید."
+                                    : "Enter a 750 weight first.",
+                                "error"
+                            );
+
+                            return;
+                        }
+
+                        input.value =
+                            value > 0
+                                ? String(-Math.abs(value))
+                                : String(Math.abs(value));
+
+                        calculatePrices();
+                        updateTotals();
+
+                    }
+                );
+
+                wrapper.appendChild(input);
+                wrapper.appendChild(signButton);
+                cell.appendChild(wrapper);
+                rowElement.appendChild(cell);
+                return;
+            }
+
+
             const input =
                 document.createElement(
                     "input"
                 );
 
-
             input.className =
                 "input" +
                 (
-                    column.key ===
-                    "price"
+                    column.key === "price"
                         ? " price-input"
                         : ""
                 ) +
                 (
-                    column.type ===
-                    "number"
+                    column.key === "fee"
+                        ? " row-fee-input"
+                        : ""
+                ) +
+                (
+                    column.type === "number"
                         ? " numeric"
                         : ""
                 );
 
-
-            input.type =
-                "text";
-
-
+            input.type = "text";
             input.dataset.key =
                 column.key;
-
-
-            input.autocomplete =
-                "off";
-
+            input.autocomplete = "off";
 
             if (
-                column.type ===
-                "number"
+                column.type === "number"
             ) {
-
-                input.dataset.numeric =
-                    "1";
-
-                input.inputMode =
-                    "decimal";
-
+                input.dataset.numeric = "1";
+                input.inputMode = "decimal";
             }
-
-
-            /*
-                Price must never be typed
-                manually.
-            */
 
             if (
-                column.key ===
-                "price"
+                column.key === "price"
             ) {
-
-                input.readOnly =
-                    true;
-
+                input.readOnly = true;
             }
-
 
             input.placeholder =
-                currentLanguage ===
-                    "fa"
-
+                currentLanguage === "fa"
                     ? column.placeholderFA
-
                     : column.placeholderEN;
-
 
             if (
                 values[
                     column.key
                 ] !== undefined
             ) {
-
                 input.value =
                     values[
                         column.key
                     ];
-
             }
 
-
-            cell.appendChild(
-                input
-            );
-
-
-            rowElement.appendChild(
-                cell
-            );
+            cell.appendChild(input);
+            rowElement.appendChild(cell);
 
         }
     );
 
-
-    /*
-        Remove row button
-    */
 
     const actionCell =
         document.createElement(
             "td"
         );
 
-
     const removeButton =
         document.createElement(
             "button"
         );
 
-
-    removeButton.type =
-        "button";
-
-
-    removeButton.className =
-        "rowminus";
-
-
+    removeButton.type = "button";
+    removeButton.className = "rowminus";
     removeButton.innerHTML =
         '<i class="fa-solid fa-minus"></i>';
-
-
-    removeButton.title =
-        tr("remove");
-
-
+    removeButton.title = tr("remove");
     removeButton.setAttribute(
         "aria-label",
         tr("remove")
     );
 
-
     removeButton.addEventListener(
         "click",
         () => {
-
             rowElement.remove();
-
             updateTotals();
-
-            toast(
-                tr(
-                    "rowDeleted"
-                )
-            );
-
+            toast(tr("rowDeleted"));
         }
     );
 
-
-    actionCell.appendChild(
-        removeButton
-    );
-
-
-    rowElement.appendChild(
-        actionCell
-    );
-
-
-    tableBody.appendChild(
-        rowElement
-    );
+    actionCell.appendChild(removeButton);
+    rowElement.appendChild(actionCell);
+    tableBody.appendChild(rowElement);
 
 }
 
@@ -2379,80 +2398,48 @@ const columnsForRows = [
     {
         key:
             "description",
-
         type:
             "text",
-
         placeholderFA:
             "شرح کالا",
-
         placeholderEN:
             "Description"
-
-    },
-
-
-    {
-        key:
-            "weight",
-
-        type:
-            "number",
-
-        placeholderFA:
-            "0",
-
-        placeholderEN:
-            "0"
-
-    },
-
-
-    {
-        key:
-            "karat",
-
-        type:
-            "number",
-
-        placeholderFA:
-            "0",
-
-        placeholderEN:
-            "0"
-
     },
 
 
     {
         key:
             "weight750",
-
         type:
             "number",
-
         placeholderFA:
             "0",
-
         placeholderEN:
             "0"
+    },
 
+
+    {
+        key:
+            "fee",
+        type:
+            "number",
+        placeholderFA:
+            "پیش‌فرض",
+        placeholderEN:
+            "Default"
     },
 
 
     {
         key:
             "price",
-
         type:
             "number",
-
         placeholderFA:
             "محاسبه می‌شود",
-
         placeholderEN:
             "Calculated"
-
     }
 
 ];
@@ -2464,14 +2451,11 @@ const columnsForRows = [
 
 function calculatePrices() {
 
-    const fee =
+    const defaultFee =
         getRateInSelectedUnit();
 
-
     tableBody
-        .querySelectorAll(
-            "tr"
-        )
+        .querySelectorAll("tr")
         .forEach(
             row => {
 
@@ -2480,40 +2464,45 @@ function calculatePrices() {
                         'input[data-key="weight750"]'
                     );
 
+                const rowFeeInput =
+                    row.querySelector(
+                        'input[data-key="fee"]'
+                    );
 
                 const priceInput =
                     row.querySelector(
                         'input[data-key="price"]'
                     );
 
-
                 if (
                     !weight750Input ||
                     !priceInput
                 ) {
-
                     return;
-
                 }
-
 
                 const weight750 =
                     parseNumber(
                         weight750Input.value
                     );
 
+                const rowFeeText =
+                    rowFeeInput
+                        ? rowFeeInput.value.trim()
+                        : "";
+
+                const rowFee =
+                    rowFeeText !== ""
+                        ? parseNumber(rowFeeText)
+                        : defaultFee;
 
                 const price =
-                    weight750 *
-                    fee;
-
+                    weight750 * rowFee;
 
                 priceInput.value =
                     price === 0
                         ? ""
-                        : String(
-                            price
-                        );
+                        : String(price);
 
             }
         );
@@ -2529,78 +2518,38 @@ function getTotals() {
 
     calculatePrices();
 
-
     const totals = {
-
-        weight:
-            0,
-
-        weight750:
-            0,
-
-        price:
-            0
-
+        weight750: 0,
+        price: 0
     };
 
-
     tableBody
-        .querySelectorAll(
-            "tr"
-        )
+        .querySelectorAll("tr")
         .forEach(
             row => {
-
-                const weight =
-                    row.querySelector(
-                        'input[data-key="weight"]'
-                    );
-
 
                 const weight750 =
                     row.querySelector(
                         'input[data-key="weight750"]'
                     );
 
-
                 const price =
                     row.querySelector(
                         'input[data-key="price"]'
                     );
 
-
-                if (weight) {
-
-                    totals.weight +=
-                        parseNumber(
-                            weight.value
-                        );
-
-                }
-
-
                 if (weight750) {
-
                     totals.weight750 +=
-                        parseNumber(
-                            weight750.value
-                        );
-
+                        parseNumber(weight750.value);
                 }
-
 
                 if (price) {
-
                     totals.price +=
-                        parseNumber(
-                            price.value
-                        );
-
+                        parseNumber(price.value);
                 }
 
             }
         );
-
 
     return totals;
 
@@ -2616,22 +2565,12 @@ function updateTotals() {
     const totals =
         getTotals();
 
-
-    document.getElementById(
-        "totalWeight"
-    ).textContent =
-        formatNumber(
-            totals.weight
-        );
-
-
     document.getElementById(
         "total750"
     ).textContent =
         formatNumber(
             totals.weight750
         );
-
 
     document.getElementById(
         "totalPrice"
@@ -2640,14 +2579,12 @@ function updateTotals() {
             totals.price
         );
 
-
     document.getElementById(
-        "dashWeight"
+        "dash750"
     ).textContent =
         formatNumber(
-            totals.weight
+            totals.weight750
         );
-
 
     document.getElementById(
         "dashPrice"
@@ -2655,7 +2592,6 @@ function updateTotals() {
         formatNumber(
             totals.price
         );
-
 
     updateRateUI();
 
@@ -2730,9 +2666,6 @@ function updateRateUI() {
 /* =========================================================
    RATE MODE
 ========================================================== */
-/* =========================================================
-   RATE MODE
-========================================================= */
 
 function setRateMode(
     mode,
@@ -2761,11 +2694,6 @@ function setRateMode(
             "globalFee"
         );
 
-
-    /* -----------------------------------------
-       BUTTON STATE
-    ----------------------------------------- */
-
     liveButton.classList.toggle(
         "active",
         mode === "live"
@@ -2776,34 +2704,16 @@ function setRateMode(
         mode === "manual"
     );
 
-
-    /* -----------------------------------------
-       SHOW / HIDE MANUAL INPUT
-    ----------------------------------------- */
-
     manualArea.classList.toggle(
         "active",
         mode === "manual"
     );
 
+    if (
+        mode === "manual"
+    ) {
 
-    /* -----------------------------------------
-       MANUAL MODE
-    ----------------------------------------- */
-
-    if (mode === "manual") {
-
-        /*
-            When entering manual mode,
-            put the current rate inside the input.
-
-            Important:
-            currentRate is always stored in Rial.
-        */
-
-        if (
-            !feeInput.value.trim()
-        ) {
+        if (!feeInput.value.trim()) {
 
             feeInput.value =
                 formatNumber(
@@ -2814,12 +2724,10 @@ function setRateMode(
 
         }
 
-
         document.getElementById(
             "rateStatusText"
         ).textContent =
             tr("manualRate");
-
 
         document.getElementById(
             "rateUpdated"
@@ -2828,90 +2736,143 @@ function setRateMode(
                 ? "فی دستی فعال است"
                 : "Manual rate is active";
 
-
-        /*
-            Immediately recalculate
-            using the manual value.
-        */
-
         calculatePrices();
-
         updateTotals();
 
-
         if (notify) {
-
             toast(
                 currentLanguage === "fa"
                     ? "ورود دستی فعال شد."
                     : "Manual rate enabled."
             );
-
         }
 
         return;
     }
-
-
-    /* -----------------------------------------
-       LIVE MODE
-    ----------------------------------------- */
 
     document.getElementById(
         "rateStatusText"
     ).textContent =
         tr("liveRate");
 
-
     if (notify) {
-
         toast(
             currentLanguage === "fa"
                 ? "نرخ پیش‌فرض فعال شد."
                 : "Default rate enabled."
         );
-
     }
-
 
     fetchGoldRate();
 
 }
+
 
 /* =========================================================
    RATE MODE BUTTON EVENTS
 ========================================================= */
 
 document
-    .getElementById("manualModeBtn")
+    .getElementById(
+        "manualModeBtn"
+    )
     .addEventListener(
         "click",
         () => {
-
-            setRateMode(
-                "manual"
-            );
-
+            setRateMode("manual");
         }
     );
 
 
 document
-    .getElementById("liveModeBtn")
+    .getElementById(
+        "liveModeBtn"
+    )
     .addEventListener(
         "click",
         () => {
-
-            setRateMode(
-                "live"
-            );
-
+            setRateMode("live");
         }
     );
+
 
 /* =========================================================
    FETCH LIVE RATE
 ========================================================== */
+
+async function fetchJSON(url, timeout = 8000) {
+
+    const controller = new AbortController();
+
+    const timer = setTimeout(
+        () => controller.abort(),
+        timeout
+    );
+
+    try {
+
+        const response = await fetch(
+            `${url}${url.includes("?") ? "&" : "?"}_=${Date.now()}`,
+            {
+                method: "GET",
+                cache: "no-store",
+                signal: controller.signal,
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                `HTTP ${response.status}`
+            );
+        }
+
+        return await response.json();
+
+    } finally {
+
+        clearTimeout(timer);
+
+    }
+}
+
+
+function normalizeLiveRate(data) {
+
+    const rawPrice = Number(
+        data?.price ??
+        data?.value ??
+        data?.rate
+    );
+
+    if (!Number.isFinite(rawPrice) || rawPrice <= 0) {
+        return null;
+    }
+
+    const currency = String(
+        data?.currency || "IRR"
+    ).toUpperCase();
+
+    const rial =
+        currency === "IRT" || currency === "TOMAN"
+            ? Math.round(rawPrice * 10)
+            : Math.round(rawPrice);
+
+    if (!Number.isFinite(rial) || rial <= 0) {
+        return null;
+    }
+
+    return {
+        rial,
+        updatedAt:
+            data?.updatedAt ||
+            data?.updated_at ||
+            null,
+        source:
+            data?.source ||
+            "TGJU"
+    };
+}
+
 
 async function fetchGoldRate() {
 
@@ -2920,201 +2881,151 @@ async function fetchGoldRate() {
             "rateStatusText"
         );
 
-
     const updatedText =
         document.getElementById(
             "rateUpdated"
         );
 
+    statusText.textContent =
+        tr("rateLoading");
 
-    /*
-        If no backend endpoint exists,
-        do not make any HTTP request.
-    */
+    try {
 
-    if (
-        !RATE_API_URL
-    ) {
+        /*
+            IMPORTANT:
+            The browser only talks to our own GitHub Pages file.
+            GitHub Actions updates this file from TGJU in the
+            background, so there is no CORS/proxy dependency here.
+        */
 
-        currentRate =
-            FALLBACK_RATE;
+        const data = await fetchJSON(
+            RATE_FILE_URL,
+            8000
+        );
 
+        const result =
+            normalizeLiveRate(data);
+
+        if (!result) {
+            throw new Error(
+                "Invalid local gold-rate.json"
+            );
+        }
+
+        currentRate = result.rial;
+
+        localStorage.setItem(
+            LAST_RATE_KEY,
+            String(currentRate)
+        );
+
+        const timestamp =
+            result.updatedAt ||
+            new Date().toISOString();
+
+        localStorage.setItem(
+            LAST_RATE_TIME_KEY,
+            timestamp
+        );
 
         statusText.textContent =
-            tr(
-                "rateFallback"
-            );
+            currentLanguage === "fa"
+                ? `نرخ همگام‌شده · ${result.source}`
+                : `Synced rate · ${result.source}`;
 
+        const updatedDate =
+            new Date(timestamp);
 
         updatedText.textContent =
-            currentLanguage ===
-                "fa"
-
-                ? "نرخ پیش‌فرض فعال است"
-
-                : "Default rate is active";
-
+            `${tr("rateUpdated")}: ${
+                Number.isNaN(updatedDate.getTime())
+                    ? timestamp
+                    : updatedDate.toLocaleString(
+                        currentLanguage === "fa"
+                            ? "fa-IR"
+                            : "en-US"
+                    )
+            }`;
 
         updateRateUI();
-
         calculatePrices();
-
         updateTotals();
 
         return;
 
+    } catch (error) {
+
+        console.error(
+            "Gold rate file failed:",
+            error
+        );
+
     }
 
 
-    statusText.textContent =
-        tr(
-            "rateLoading"
-        );
+    /*
+        Network/file failure:
+        keep the last successful live rate instead of replacing it.
+    */
 
+    const cachedRate = Number(
+        localStorage.getItem(
+            LAST_RATE_KEY
+        )
+    );
 
-    try {
+    if (
+        Number.isFinite(cachedRate) &&
+        cachedRate > 0
+    ) {
 
-        const response =
-            await fetch(
-                RATE_API_URL,
-                {
-                    cache:
-                        "no-store",
-
-                    headers:
-                        {
-                            Accept:
-                                "application/json"
-                        }
-                }
-            );
-
-
-        if (
-            !response.ok
-        ) {
-
-            throw new Error(
-                "Request failed"
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        const price =
-            Number(
-                data.price
-            );
-
-
-        if (
-            !Number.isFinite(
-                price
-            )
-            ||
-            price <= 0
-        ) {
-
-            throw new Error(
-                "Invalid price"
-            );
-
-        }
-
-
-        if (
-            data.currency ===
-            "IRT"
-        ) {
-
-            currentRate =
-                price *
-                10;
-
-        } else {
-
-            currentRate =
-                price;
-
-        }
-
+        currentRate = cachedRate;
 
         statusText.textContent =
-            tr(
-                "liveRate"
+            currentLanguage === "fa"
+                ? "آخرین نرخ ذخیره‌شده"
+                : "Last saved rate";
+
+        const cachedTime =
+            localStorage.getItem(
+                LAST_RATE_TIME_KEY
             );
 
-
-        const updatedDate =
-            data.updatedAt
-                ? new Date(
-                    data.updatedAt
-                )
-                : new Date();
-
-
         updatedText.textContent =
-            `${
-                tr("rateUpdated")
-            }: ${
-                updatedDate.toLocaleString(
-                    currentLanguage ===
-                        "fa"
+            cachedTime
+                ? `${
+                    currentLanguage === "fa"
+                        ? "آخرین نرخ موفق"
+                        : "Last successful rate"
+                }: ${
+                    new Date(
+                        cachedTime
+                    ).toLocaleString(
+                        currentLanguage === "fa"
+                            ? "fa-IR"
+                            : "en-US"
+                    )
+                }`
+                : "";
 
-                        ? "fa-IR"
-
-                        : "en-US"
-                )
-            }`;
-
-
-        updateRateUI();
-
-        calculatePrices();
-
-        updateTotals();
-
-
-    } catch (
-        error
-    ) {
+    } else {
 
         currentRate =
             FALLBACK_RATE;
 
-
         statusText.textContent =
-            tr(
-                "rateFallback"
-            );
-
+            tr("rateFallback");
 
         updatedText.textContent =
-            tr(
-                "rateError"
-            );
-
-
-        updateRateUI();
-
-        calculatePrices();
-
-        updateTotals();
-
-
-        toast(
-            tr(
-                "rateError"
-            ),
-            "error"
-        );
+            currentLanguage === "fa"
+                ? "فایل نرخ هنوز همگام نشده است"
+                : "Rate file has not been synced yet";
 
     }
 
+    updateRateUI();
+    calculatePrices();
+    updateTotals();
 }
 
 
@@ -3130,64 +3041,17 @@ document
         "input",
         event => {
 
-            /* =========================================================
-   MANUAL RATE INPUT
-========================================================= */
-
-document
-    .getElementById("globalFee")
-    .addEventListener(
-        "input",
-        event => {
-
-            /*
-                Keep only valid numeric characters.
-            */
-
             sanitizeNumeric(
                 event.target
             );
-
-
-            /*
-                Manual mode is required.
-            */
-
-            if (
-                rateMode !== "manual"
-            ) {
-                return;
-            }
-
-
-            /*
-                Recalculate everything immediately.
-            */
-
-            calculatePrices();
-
-            updateTotals();
-
-
-            /*
-                Update the displayed rate too.
-            */
-
-            updateRateUI();
-
-        }
-    );
-
 
             if (
                 rateMode ===
                 "manual"
             ) {
-
                 calculatePrices();
-
                 updateTotals();
-
+                updateRateUI();
             }
 
         }
@@ -3249,94 +3113,98 @@ document
    UNIT SWITCH
 ========================================================== */
 
-/* =========================================================
-   UNIT SWITCH
-========================================================= */
-
 function setUnit(
     unit
 ) {
+
+    const oldUnit =
+        currentUnit;
+
+    if (
+        unit === oldUnit
+    ) {
+        syncUnitButtons();
+        calculatePrices();
+        updateTotals();
+        return;
+    }
 
     const feeInput =
         document.getElementById(
             "globalFee"
         );
 
-
-    /*
-        If manual mode is active,
-        convert the currently entered rate
-        from the OLD unit to the NEW unit.
-    */
+    const globalValue =
+        parseNumber(
+            feeInput.value
+        );
 
     if (
-        rateMode === "manual"
+        feeInput.value.trim() !== ""
     ) {
 
-        const value =
-            parseNumber(
-                feeInput.value
+        const rialValue =
+            oldUnit === "toman"
+                ? globalValue * 10
+                : globalValue;
+
+        const newValue =
+            unit === "toman"
+                ? rialValue / 10
+                : rialValue;
+
+        feeInput.value =
+            formatNumber(
+                newValue
             );
-
-
-        if (
-            value > 0
-        ) {
-
-            /*
-                First convert the old input
-                to Rial.
-            */
-
-            const rialValue =
-                currentUnit === "toman"
-                    ? value * 10
-                    : value;
-
-
-            /*
-                Then convert Rial
-                to the NEW unit.
-            */
-
-            const newValue =
-                unit === "toman"
-                    ? rialValue / 10
-                    : rialValue;
-
-
-            feeInput.value =
-                formatNumber(
-                    newValue
-                );
-
-        }
 
     }
 
+    tableBody
+        .querySelectorAll(
+            'input[data-key="fee"]'
+        )
+        .forEach(
+            input => {
 
-    /*
-        Now change the actual unit.
-    */
+                if (
+                    input.value.trim() === ""
+                ) {
+                    return;
+                }
+
+                const value =
+                    parseNumber(
+                        input.value
+                    );
+
+                const rialValue =
+                    oldUnit === "toman"
+                        ? value * 10
+                        : value;
+
+                const newValue =
+                    unit === "toman"
+                        ? rialValue / 10
+                        : rialValue;
+
+                input.value =
+                    formatNumber(
+                        newValue
+                    );
+
+            }
+        );
 
     currentUnit =
         unit;
 
-
     syncUnitButtons();
-
-
-    /*
-        Recalculate everything.
-    */
-
     calculatePrices();
-
     updateTotals();
 
-    updateRateUI();
-
 }
+
 
 document
     .getElementById(
@@ -3376,17 +3244,44 @@ document
         "click",
         () => {
 
-            if (
-                rateMode ===
-                "live"
-            ) {
+            if (rateMode === "live") {
 
                 fetchGoldRate();
 
+                return;
             }
+
+            toast(
+                currentLanguage === "fa"
+                    ? "برای بروزرسانی نرخ، حالت نرخ پیش‌فرض را انتخاب کنید."
+                    : "Switch to the default-rate mode to refresh the online price.",
+                "error"
+            );
 
         }
     );
+
+
+/* =========================================================
+   AUTO REFRESH
+========================================================== */
+
+setInterval(
+    () => {
+
+        if (
+            rateMode === "live"
+            &&
+            document.visibilityState === "visible"
+        ) {
+
+            fetchGoldRate();
+
+        }
+
+    },
+    5 * 60 * 1000
+);
 
 
 /* =========================================================
@@ -4128,22 +4023,6 @@ function renderDashboard() {
 
                                 <p>
 
-                                    ${
-                                        tr(
-                                            "summaryWeight"
-                                        )
-                                    }:
-
-                                    ${
-                                        formatNumber(
-                                            document
-                                                .totals
-                                                ?.weight ||
-                                            0
-                                        )
-                                    }
-
-                                    ·
 
                                     ${
                                         tr(
@@ -4299,7 +4178,7 @@ function loadSavedDocument(
     id
 ) {
 
-    const document =
+    const savedDocument =
         getSavedDocuments()
             .find(
                 item =>
@@ -4308,35 +4187,68 @@ function loadSavedDocument(
             );
 
 
-    if (!document) {
+    if (!savedDocument) {
         return;
     }
 
 
     loadRows(
-        document.rows
+        savedDocument.rows
     );
 
 
     currentUnit =
-        document.unit ||
+        savedDocument.unit ||
         "rial";
 
 
     currentRate =
         Number(
-            document.rateRial ||
-            document.fee
+            savedDocument.rateRial ||
+            savedDocument.fee
         ) ||
         FALLBACK_RATE;
 
 
     rateMode =
-        document.rateMode ||
+        savedDocument.rateMode ||
         "manual";
 
 
     syncUnitButtons();
+
+
+    document
+        .getElementById(
+            "liveModeBtn"
+        )
+        .classList
+        .toggle(
+            "active",
+            rateMode === "live"
+        );
+
+
+    document
+        .getElementById(
+            "manualModeBtn"
+        )
+        .classList
+        .toggle(
+            "active",
+            rateMode === "manual"
+        );
+
+
+    document
+        .getElementById(
+            "manualRateArea"
+        )
+        .classList
+        .toggle(
+            "active",
+            rateMode === "manual"
+        );
 
 
     if (
@@ -4383,7 +4295,7 @@ function loadSavedDocument(
                 "fa"
                     ? "سند"
                     : "Document"
-        }:${document.documentNumber} ${
+        }:${savedDocument.documentNumber} ${
             tr(
                 "openOk"
             )
@@ -4401,7 +4313,7 @@ function editSavedDocument(
     id
 ) {
 
-    const document =
+    const savedDocument =
         getSavedDocuments()
             .find(
                 item =>
@@ -4410,35 +4322,68 @@ function editSavedDocument(
             );
 
 
-    if (!document) {
+    if (!savedDocument) {
         return;
     }
 
 
     loadRows(
-        document.rows
+        savedDocument.rows
     );
 
 
     currentUnit =
-        document.unit ||
+        savedDocument.unit ||
         "rial";
 
 
     currentRate =
         Number(
-            document.rateRial ||
-            document.fee
+            savedDocument.rateRial ||
+            savedDocument.fee
         ) ||
         FALLBACK_RATE;
 
 
     rateMode =
-        document.rateMode ||
+        savedDocument.rateMode ||
         "manual";
 
 
     syncUnitButtons();
+
+
+    document
+        .getElementById(
+            "liveModeBtn"
+        )
+        .classList
+        .toggle(
+            "active",
+            rateMode === "live"
+        );
+
+
+    document
+        .getElementById(
+            "manualModeBtn"
+        )
+        .classList
+        .toggle(
+            "active",
+            rateMode === "manual"
+        );
+
+
+    document
+        .getElementById(
+            "manualRateArea"
+        )
+        .classList
+        .toggle(
+            "active",
+            rateMode === "manual"
+        );
 
 
     if (
@@ -4908,7 +4853,6 @@ function preparePrint(
     unit
 ) {
 
-
     const filledRows =
         sourceRows.filter(
             row =>
@@ -4923,80 +4867,52 @@ function preparePrint(
                 )
         );
 
+    const defaultFeeInUnit =
+        unit === "toman"
+            ? Number(fee || 0) / 10
+            : Number(fee || 0);
 
     document.getElementById(
         "printBody"
     ).innerHTML =
-
         filledRows
             .map(
-                row => `
+                row => {
 
-                    <tr>
+                    const rowFeeText =
+                        String(
+                            row.fee ??
+                            ""
+                        ).trim();
 
-                        <td class="desc">
+                    const effectiveFee =
+                        rowFeeText !== ""
+                            ? parseNumber(rowFeeText)
+                            : defaultFeeInUnit;
 
-                            ${escapeHtml(
-                                row.description ||
-                                ""
-                            )}
-
-                        </td>
-
-
-                        <td dir="ltr">
-
-                            ${escapeHtml(
-                                row.weight ||
-                                ""
-                            )}
-
-                        </td>
-
-
-                        <td dir="ltr">
-
-                            ${escapeHtml(
-                                row.karat ||
-                                ""
-                            )}
-
-                        </td>
-
-
-                        <td dir="ltr">
-
-                            ${escapeHtml(
-                                row.weight750 ||
-                                ""
-                            )}
-
-                        </td>
-
-
-                        <td dir="ltr">
-
-                            ${escapeHtml(
-                                row.price ||
-                                ""
-                            )}
-
-                        </td>
-
-                    </tr>
-
-                `
+                    return `
+                        <tr>
+                            <td class="desc">
+                                ${escapeHtml(row.description || "")}
+                            </td>
+                            <td dir="ltr">
+                                ${escapeHtml(row.weight750 || "")}
+                            </td>
+                            <td dir="ltr">
+                                ${escapeHtml(
+                                    effectiveFee === 0
+                                        ? ""
+                                        : formatNumber(effectiveFee)
+                                )}
+                            </td>
+                            <td dir="ltr">
+                                ${escapeHtml(row.price || "")}
+                            </td>
+                        </tr>
+                    `;
+                }
             )
             .join("");
-
-
-    document.getElementById(
-        "printWeight"
-    ).textContent =
-        formatNumber(
-            sourceTotals.weight
-        );
-
 
     document.getElementById(
         "print750"
@@ -5005,7 +4921,6 @@ function preparePrint(
             sourceTotals.weight750
         );
 
-
     document.getElementById(
         "printPrice"
     ).textContent =
@@ -5013,126 +4928,70 @@ function preparePrint(
             sourceTotals.price
         );
 
-
-    document.getElementById(
-        "printSummaryWeight"
-    ).textContent =
-        `${tr(
-            "summaryWeight"
-        )}: ${
-            formatNumber(
-                sourceTotals.weight
-            )
-        }`;
-
-
     document.getElementById(
         "printSummary750"
     ).textContent =
-        `${tr(
-            "summary750"
-        )}: ${
-            formatNumber(
-                sourceTotals.weight750
-            )
+        `${tr("summary750")}: ${
+            formatNumber(sourceTotals.weight750)
         }`;
-
 
     document.getElementById(
         "printSummaryPrice"
     ).textContent =
-        `${tr(
-            "summaryPrice"
-        )}: ${
-            formatNumber(
-                sourceTotals.price
-            )
+        `${tr("summaryPrice")}: ${
+            formatNumber(sourceTotals.price)
         } ${
-            unit ===
-                "toman"
-
+            unit === "toman"
                 ? tr("toman")
-
                 : tr("rial")
         }`;
 
-
-/* =========================================================
-   PRINT FEE / RATE
-========================================================= */
-
-const feeInSelectedUnit =
-    unit === "toman"
-        ? Number(fee) / 10
-        : Number(fee);
-
-document.getElementById(
-    "printFee"
-).textContent =
-
-    `${
-        currentLanguage === "fa"
-            ? "فی"
-            : "Rate"
-    }: ${
-        formatNumber(
-            feeInSelectedUnit
-        )
-    } ${
-        unit === "toman"
-            ? tr("toman")
-            : tr("rial")
-    }`;
-
+    document.getElementById(
+        "printFee"
+    ).textContent =
+        `${
+            currentLanguage === "fa"
+                ? "فی پیش‌فرض"
+                : "Default rate"
+        }: ${
+            formatNumber(defaultFeeInUnit)
+        } ${
+            unit === "toman"
+                ? tr("toman")
+                : tr("rial")
+        }`;
 
     document.getElementById(
         "printDoc"
     ).textContent =
-
         `${
-            currentLanguage ===
-                "fa"
-
-                    ? "سند"
-
-                    : "Document"
+            currentLanguage === "fa"
+                ? "سند"
+                : "Document"
         }:${documentNumber}`;
-
 
     document.getElementById(
         "printTitle"
     ).textContent =
         title;
 
-
     const printDate =
         date ||
         getDateInfo();
 
-
     document.getElementById(
         "printDate"
     ).textContent =
-
-        currentLanguage ===
-            "fa"
-
+        currentLanguage === "fa"
             ? `${printDate.weekday} · ${printDate.gregorian} · ${printDate.persian} · ساعت ${printDate.time}`
-
             : `${printDate.gregorian} · ${printDate.persian} · ${printDate.time}`;
-
 
     document.getElementById(
         "printDetail"
     ).textContent =
-
         detail
-            ? `${tr(
-                "detailPrefix"
-            )}: ${detail}`
-
+            ? `${tr("detailPrefix")}: ${detail}`
             : "";
-
 
     document.getElementById(
         "printLogo"
