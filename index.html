@@ -39,8 +39,6 @@
         href="samid.css"
     >
 
-    <link rel="icon" href="img.PNG">
-
 
 <style>
 .weight750-cell{min-width:190px;}
@@ -216,6 +214,12 @@
                 <h1 data-i18n="title">
                     محاسبه قیمت فروش طلا
                 </h1>
+
+
+                <p data-i18n="subtitle">
+                    وزن، عیار و وزن ۷۵۰ را وارد کنید.
+                </p>
+
             </div>
 
 
@@ -323,7 +327,7 @@
                     :
 
                     <a
-                        href="https://github.com/HosseinOdd/Navasan-API"
+                        href="https://www.tgju.org/profile/geram18"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -501,7 +505,7 @@
 
                         <th
                             data-i18n="desc"
-                            style="width:30%"
+                            style="width:28%"
                         >
 
                             شرح
@@ -739,6 +743,22 @@
 
 
         </main>
+
+
+
+        <!-- HINT -->
+
+        <div
+            class="hint glass"
+            data-i18n="hint"
+        >
+
+            قیمت = وزن ۷۵۰ × فی.
+            مقدارهای مثبت اضافه و مقدارهای منفی کم می‌شوند.
+
+        </div>
+
+
     </section>
 
 
@@ -1124,7 +1144,7 @@
             <img
                 id="printLogo"
                 class="print-logo"
-                src="img.PNG"
+                src="samid.jpeg"
                 alt="Samid Gold Gallery"
             >
 
@@ -1344,19 +1364,23 @@ const LANG_KEY =
 */
 
 const FALLBACK_RATE =
-    233630000;
+    242964000;
 
 
 /*
     Live-rate architecture:
-    The browser reads only ./data/gold-rate.json from the same
-    GitHub Pages origin. A GitHub Actions workflow updates that
-    file from TGJU server-side, avoiding browser CORS, proxy, and
-    ISP connectivity problems.
+    The browser requests the Cloudflare Worker. The Worker fetches
+    TGJU server-side and returns a small JSON response containing
+    the current 18K / 750 price in RIAL.
+
+    IMPORTANT:
+    If the user's network blocks *.workers.dev, the request can fail
+    with ERR_CONNECTION_RESET. In that case the calculator safely
+    keeps the last successful cached rate or the fallback rate.
 */
 
 const RATE_FILE_URL =
-    "./data/gold-rate.json";
+    "https://patient-resonance-876e.aradtaghizadeh2010.workers.dev/";
 
 const LAST_RATE_KEY =
     "samidGoldLastLiveRateRialV10";
@@ -1405,6 +1429,12 @@ let editingId =
 
 
 let confirmAction =
+    null;
+
+let rateRequestInProgress =
+    false;
+
+let lastLoadedRateTimestamp =
     null;
 
 
@@ -2800,25 +2830,43 @@ document
    FETCH LIVE RATE
 ========================================================== */
 
-async function fetchJSON(url, timeout = 8000) {
+async function fetchJSON(
+    url,
+    timeout = 12000
+) {
 
-    const controller = new AbortController();
+    const controller =
+        new AbortController();
 
-    const timer = setTimeout(
-        () => controller.abort(),
-        timeout
-    );
+    const timer =
+        setTimeout(
+            () => controller.abort(),
+            timeout
+        );
 
     try {
 
-        const response = await fetch(
-            `${url}${url.includes("?") ? "&" : "?"}_=${Date.now()}`,
-            {
-                method: "GET",
-                cache: "no-store",
-                signal: controller.signal,
-            }
-        );
+        const response =
+            await fetch(
+                url,
+                {
+                    method: "GET",
+
+                    cache: "no-store",
+
+                    credentials: "omit",
+
+                    mode: "cors",
+
+                    headers: {
+                        Accept:
+                            "application/json"
+                    },
+
+                    signal:
+                        controller.signal
+                }
+            );
 
         if (!response.ok) {
             throw new Error(
@@ -2826,15 +2874,28 @@ async function fetchJSON(url, timeout = 8000) {
             );
         }
 
-        return await response.json();
+        const data =
+            await response.json();
+
+        return data;
+
+    } catch (error) {
+
+        if (error?.name === "AbortError") {
+            throw new Error(
+                "Cloudflare Worker timed out"
+            );
+        }
+
+        throw error;
 
     } finally {
 
         clearTimeout(timer);
 
     }
-}
 
+}
 
 function normalizeLiveRate(data) {
 
@@ -2874,7 +2935,26 @@ function normalizeLiveRate(data) {
 }
 
 
-async function fetchGoldRate() {
+async function fetchGoldRate(
+    fromRefreshButton = false
+) {
+
+    if (rateRequestInProgress) {
+
+        if (fromRefreshButton) {
+            toast(
+                currentLanguage === "fa"
+                    ? "در حال دریافت آخرین نرخ..."
+                    : "The latest rate is already being requested."
+            );
+        }
+
+        return;
+    }
+
+
+    rateRequestInProgress = true;
+
 
     const statusText =
         document.getElementById(
@@ -2886,21 +2966,47 @@ async function fetchGoldRate() {
             "rateUpdated"
         );
 
-    statusText.textContent =
-        tr("rateLoading");
+    const refreshButton =
+        document.getElementById(
+            "refreshRateBtn"
+        );
+
+    const originalHtml =
+        refreshButton
+            ? refreshButton.innerHTML
+            : "";
+
 
     try {
 
+        statusText.textContent =
+            tr("rateLoading");
+
+
+        if (refreshButton) {
+
+            refreshButton.disabled = true;
+
+            refreshButton.classList.add(
+                "loading"
+            );
+
+            refreshButton.innerHTML =
+                '<i class="fa-solid fa-circle-notch fa-spin"></i> ' +
+                (currentLanguage === "fa"
+                    ? "در حال بروزرسانی"
+                    : "Refreshing");
+        }
+
+
         /*
-            IMPORTANT:
-            The browser only talks to our own GitHub Pages file.
-            GitHub Actions updates this file from TGJU in the
-            background, so there is no CORS/proxy dependency here.
+            Request the Cloudflare Worker.
+            The Worker fetches TGJU server-side.
         */
 
         const data = await fetchJSON(
             RATE_FILE_URL,
-            8000
+            12000
         );
 
         const result =
@@ -2908,38 +3014,64 @@ async function fetchGoldRate() {
 
         if (!result) {
             throw new Error(
-                "Invalid local gold-rate.json"
+                "Invalid Worker gold-rate response"
             );
         }
 
-        currentRate = result.rial;
+
+        const previousRate =
+            Number(currentRate) || 0;
+
+        const previousTimestamp =
+            lastLoadedRateTimestamp ||
+            localStorage.getItem(
+                LAST_RATE_TIME_KEY
+            ) ||
+            null;
+
+
+        currentRate =
+            result.rial;
+
+        lastLoadedRateTimestamp =
+            result.updatedAt ||
+            new Date().toISOString();
+
 
         localStorage.setItem(
             LAST_RATE_KEY,
             String(currentRate)
         );
 
-        const timestamp =
-            result.updatedAt ||
-            new Date().toISOString();
-
         localStorage.setItem(
             LAST_RATE_TIME_KEY,
-            timestamp
+            lastLoadedRateTimestamp
         );
+
+
+        const updatedDate =
+            new Date(
+                lastLoadedRateTimestamp
+            );
+
+
+        const hasNewRate =
+            previousRate !== currentRate ||
+            previousTimestamp !== lastLoadedRateTimestamp;
+
 
         statusText.textContent =
             currentLanguage === "fa"
                 ? `نرخ همگام‌شده · ${result.source}`
                 : `Synced rate · ${result.source}`;
 
-        const updatedDate =
-            new Date(timestamp);
 
         updatedText.textContent =
             `${tr("rateUpdated")}: ${
-                Number.isNaN(updatedDate.getTime())
-                    ? timestamp
+                Number.isNaN(
+                    updatedDate.getTime()
+                )
+                    ? lastLoadedRateTimestamp
                     : updatedDate.toLocaleString(
                         currentLanguage === "fa"
                             ? "fa-IR"
@@ -2947,49 +3079,90 @@ async function fetchGoldRate() {
                     )
             }`;
 
+
         updateRateUI();
+
         calculatePrices();
+
         updateTotals();
 
-        return;
+
+        if (fromRefreshButton) {
+
+            toast(
+                hasNewRate
+                    ? (currentLanguage === "fa"
+                        ? "نرخ پیش‌فرض بروزرسانی شد."
+                        : "Default rate updated.")
+                    : (currentLanguage === "fa"
+                        ? "نرخ جدیدی منتشر نشده است."
+                        : "No newer published rate is available yet.")
+            );
+
+        }
+
+
+        return true;
 
     } catch (error) {
 
         console.error(
-            "Gold rate file failed:",
+            "Gold rate request failed:",
             error
         );
+
+    } finally {
+
+        rateRequestInProgress = false;
+
+        
+        if (refreshButton) {
+
+            refreshButton.disabled = false;
+
+            refreshButton.classList.remove(
+                "loading"
+            );
+
+            refreshButton.innerHTML =
+                originalHtml;
+        }
 
     }
 
 
     /*
         Network/file failure:
-        keep the last successful live rate instead of replacing it.
+        keep the last successful rate.
     */
 
-    const cachedRate = Number(
-        localStorage.getItem(
-            LAST_RATE_KEY
-        )
-    );
+    const cachedRate =
+        Number(
+            localStorage.getItem(
+                LAST_RATE_KEY
+            )
+        );
+
 
     if (
         Number.isFinite(cachedRate) &&
         cachedRate > 0
     ) {
 
-        currentRate = cachedRate;
+        currentRate =
+            cachedRate;
 
         statusText.textContent =
             currentLanguage === "fa"
                 ? "آخرین نرخ ذخیره‌شده"
                 : "Last saved rate";
 
+
         const cachedTime =
             localStorage.getItem(
                 LAST_RATE_TIME_KEY
             );
+
 
         updatedText.textContent =
             cachedTime
@@ -3018,14 +3191,32 @@ async function fetchGoldRate() {
 
         updatedText.textContent =
             currentLanguage === "fa"
-                ? "فایل نرخ هنوز همگام نشده است"
-                : "Rate file has not been synced yet";
+                ? "اتصال به سرویس نرخ آنلاین برقرار نشد"
+                : "The online rate service is unavailable";
 
     }
 
+
     updateRateUI();
+
     calculatePrices();
+
     updateTotals();
+
+
+    if (fromRefreshButton) {
+
+        toast(
+            currentLanguage === "fa"
+                ? "دریافت نرخ جدید ناموفق بود؛ آخرین نرخ ذخیره‌شده استفاده شد."
+                : "Could not fetch a newer rate; the last saved rate is being used.",
+            "error"
+        );
+
+    }
+
+
+    return false;
 }
 
 
@@ -3244,19 +3435,19 @@ document
         "click",
         () => {
 
-            if (rateMode === "live") {
+            if (rateMode !== "live") {
 
-                fetchGoldRate();
+                toast(
+                    currentLanguage === "fa"
+                        ? "برای بروزرسانی فی پیش‌فرض، ابتدا نرخ پیش‌فرض را انتخاب کنید."
+                        : "Switch to the default-rate mode first.",
+                    "error"
+                );
 
                 return;
             }
 
-            toast(
-                currentLanguage === "fa"
-                    ? "برای بروزرسانی نرخ، حالت نرخ پیش‌فرض را انتخاب کنید."
-                    : "Switch to the default-rate mode to refresh the online price.",
-                "error"
-            );
+            fetchGoldRate(true);
 
         }
     );
@@ -4996,7 +5187,7 @@ function preparePrint(
     document.getElementById(
         "printLogo"
     ).src =
-        "img.PNG";
+        "samid.jpeg";
 
 }
 
